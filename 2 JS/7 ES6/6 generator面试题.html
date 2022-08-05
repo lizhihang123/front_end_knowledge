@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function* test(num) {
+            let x = 3 * (yield num + 1)
+            let y = yield x / 3
+            return x + y + num
+        }
+        let n = test(6)
+        console.log(n);
+        console.log(n.next()); // {value: 7, done: false}
+        console.log(n.next()); // {value: NaN, done: false}
+        console.log(n.next()); // {value: NaN, done: true}
+
+        let m = test(6)
+        console.log(m);
+        console.log(m.next()); // {value: 7, done: false}
+        console.log(m.next(3)); // {value: 3, done: false}
+        console.log(m.next(3)); // {value: 18, done: true}
+
+    </script>
+</body>
+
+</html>

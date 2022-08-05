@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这段代码还没看
+        function* test() {
+            debugger
+            yield 1;
+            yield 2;
+            return 'test';
+        }
+
+        function* test1() {
+            debugger
+            yield 3;
+            let value = yield* test();
+            console.log('value=', value);
+            yield 4;
+        }
+        let it = test1(); // 仅仅创建一个迭代器
+        console.log(it.next()); // 碰到test1里面的第一个yield 停止 打印 {value: 3, done: false}
+        console.log(it.next()); // 碰到yield* 去到test()函数 碰到里面的第一个yield停止 打印{value: 1, done: false}
+        console.log(it.next()); // test()函数 碰到里面的第二个yield停止 打印{value: 2, done: false}
+        console.log(it.next()); // test() 里面return test 赋值给test1里面的value 打印value=test 走到test1里面的最后一个yield 停止 {value: 4, done: false}
+        console.log(it.next()); // {value: undefined, done: true}
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>call()函数，apply( )函数，bind( )函数的使用与区别</title>
+  </head>
+  <body>
+    <script>
+      //function.call(thisObj,arg1,arg2,...)
+      function add(a, b) {
+        console.log(this);
+        console.log(a + b);
+      }
+      function sub(a, b) {
+        console.log(a - b);
+      }
+      //   add.call(sub, 3, 6);
+
+      //function.apply(thisObj,[argsArray])
+      //   add.apply(sub, [3, 5]);
+      //function.bind(thisObj,arg1,arg2,...)
+      var newFn = add.bind(sub, 3, 3);
+      newFn();
+    </script>
+  </body>
+</html>

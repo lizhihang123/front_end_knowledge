@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>执行上下文环境</title>
+  </head>
+  <body>
+    <script>
+      //   全局执行上下文
+      // 函数上下文
+      // eval上下文
+      // 执行上下文栈（调用栈）
+
+      //   function fn1() {
+      //     fn2();
+      //     console.log(1);
+      //   }
+      //   function fn2() {
+      //     fn3();
+      //     console.log(2);
+      //   }
+      //   function fn3() {
+      //     console.log(3);
+      //   }
+      //   fn1();
+
+      //代码执行前创建全局执行上下文
+      ECStack = [globalContext];
+      // fn1调用
+      ECStack.push("fn1 functionContext");
+      // fn1又调用了fn2，fn2执行完毕之前无法console 1
+      ECStack.push("fn2 functionContext");
+      // fn2又调用了fn3，fn3执行完毕之前无法console 2
+      ECStack.push("fn3 functionContext");
+      // fn3执行完毕，输出3并出栈
+      ECStack.pop();
+      // fn2执行完毕，输出2并出栈
+      ECStack.pop();
+      // fn1执行完毕，输出1并出栈
+      ECStack.pop();
+      // 此时执行栈中只剩下一个全局执行上下文
+    </script>
+  </body>
+</html>

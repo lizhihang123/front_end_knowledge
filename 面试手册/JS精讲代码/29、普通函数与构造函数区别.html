@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>普通函数与构造函数区别</title>
+  </head>
+  <body>
+    <script>
+      // 1、构造函数的函数名称第一个字母为大写。
+      // 2、在构造函数内可以使用this关键字。
+      // 3、 构造函数必须与new操作符一起使用
+      // 4、 构造函数的执行过程与普通函数是不一样的。
+      function Person(userName) {
+        this.userName = userName;
+        // this.sayHi = function () {
+        //   console.log(this.userName);
+        // };
+      }
+      Person.prototype.sayHi = function () {
+        console.log(this.userName);
+      };
+      var p1 = new Person("zhangsan");
+      var p2 = new Person("lisi");
+      console.log(p1.sayHi === p2.sayHi);
+    </script>
+  </body>
+</html>

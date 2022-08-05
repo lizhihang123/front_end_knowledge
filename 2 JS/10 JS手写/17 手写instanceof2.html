@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 
+        function MyInstanceof(example, classFunc) {
+            let proto = Object.getPrototypeOf(example)
+            let prototype = classFunc.prototype
+            // !出错点 构造函数的原型对象 不能用getPrototypeOf
+            // let prototype = Object.getPrototypeOf(classFunc)
+            while (true) {
+                if (proto === null) {
+                    return false
+                }
+                if (proto === prototype) {
+                    return true
+                }
+                debugger
+                proto = Object.getPrototypeOf(proto)
+            }
+        }
+        // console.log('test', MyInstanceof('', Array)); // false
+        console.log('test', MyInstanceof([], Array)); // true
+        console.log('test', MyInstanceof({}, Object)); // true
+    </script>
+</body>
+
+</html>

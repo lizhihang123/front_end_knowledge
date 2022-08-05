@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>应用场景</title>
+  </head>
+  <body>
+    <script>
+      //   var arr = [3, 6, 2, 8, 9, 10];
+      //   console.log(Math.max.apply(null, arr));
+      //   console.log(Math.min.apply(null, arr));
+      // arguments
+
+      //   function fn() {
+      //     var arr = Array.prototype.slice.call(arguments);
+      //     arr.push(6);
+      //     return arr;
+      //   }
+      //   console.log(fn(1, 2));
+
+      //   function Person(userName, userAge) {
+      //     this.userName = userName;
+      //     this.userAge = userAge;
+      //   }
+      //   function Student(name, age, gender) {
+      //     Person.call(this, name, age);
+      //     this.gender = gender;
+      //   }
+      //   var student = new Student("zhangsan", 20, "男");
+      //   console.log(
+      //     "userName=" +
+      //       student.userName +
+      //       ",userAge=" +
+      //       student.userAge +
+      //       ",gender=" +
+      //       student.gender
+      //   );
+
+      var person = [
+        { id: 1, userName: "zhangsan" },
+        { id: 2, userName: "lisi" },
+      ];
+      for (var i = 0; i < person.length; i++) {
+        (function (i) {
+          this.print = function () {
+            console.log(this.id);
+          };
+          this.print();
+        }.call(person[i], i));
+      }
+    </script>
+  </body>
+</html>

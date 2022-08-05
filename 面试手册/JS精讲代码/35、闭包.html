@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>闭包</title>
+  </head>
+  <body>
+    <script>
+      //关于闭包的官方概念：一个拥有许多变量和绑定了这些变量执行上下文环境的表达式，通常是一个函数。
+      // 简单的理解就是：闭包就是能够读取其它函数内部变量的函数
+      // 闭包的本质：是将函数外部与内部链接起来的桥梁。
+      //   function outer() {
+      //     //...
+      //     function inner() {
+      //       // ...
+      //     }
+      //   }
+
+      //   function makeFunc() {
+      //     var name = "Mozilla";
+      //     function displayName() {
+      //       alert(name);
+      //     }
+      //     return displayName;
+      //   }
+
+      //   var myFunc = makeFunc();
+      //   myFunc();
+
+      function fn() {
+        var max = 10;
+        return function bar(x) {
+          if (x > max) {
+            console.log(x);
+          }
+        };
+      }
+      var f1 = fn();
+      f1(11); // 11
+    </script>
+  </body>
+</html>

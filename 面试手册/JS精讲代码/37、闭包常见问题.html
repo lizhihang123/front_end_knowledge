@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>闭包常见问题</title>
+  </head>
+  <body>
+    <!-- <ul>
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+      <li>d</li>
+      <li>e</li>
+    </ul> -->
+    <script>
+      //   var list = document.getElementsByTagName("ul")[0].children;
+      //   for (var i = 0; i < list.length; i++) {
+      //     (function (index) {
+      //       list[index].onclick = function () {
+      //         console.log(index);
+      //       };
+      //     })(i);
+      //   }
+      //   var arr = ["a", "b", "c"];
+      //   for (var i = 0; i < arr.length; i++) {
+      //     (function (index) {
+      //       setTimeout(function () {
+      //         console.log(arr[index]);
+      //       }, 1000);
+      //     })(i);
+      //   }
+
+      //   var userName = "zhangsan";
+      //   var person = {
+      //     userName: "lisi",
+      //     method: function () {
+      //       var that = this;
+      //       return function () {
+      //         return that.userName;
+      //       };
+      //     },
+      //   };
+      //   console.log(person.method()());
+
+      //   function create() {
+      //     var a = 100;
+      //     return function () {
+      //       console.log(a);
+      //     };
+      //   }
+      //   var fn = create();
+      //   var a = 200;
+      //   fn();
+
+      function print(fn) {
+        var a = 200;
+        fn();
+      }
+      var a = 100;
+      function fn() {
+        console.log(a);
+      }
+      print(fn);
+    </script>
+  </body>
+</html>

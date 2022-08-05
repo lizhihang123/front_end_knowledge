@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proxy应用场景</title>
+  </head>
+  <body>
+    <script>
+      class Person {
+        constructor() {
+          this.name = "";
+          this.age = 19;
+          return validator(this, personValidators);
+        }
+      }
+      const personValidators = {
+        name(val) {
+          return typeof val === "string";
+        },
+        age(val) {
+          return typeof val === "number" && val > 18;
+        },
+      };
+      function validator(target, validator) {
+        return new Proxy(target, {
+          _validator: validator,
+          set(target, key, value) {
+            if (target.hasOwnProperty(key)) {
+              let v = this._validator[key];
+              if (v(value)) {
+                var resut = Reflect.set(target, key, value);
+                console.log(resut);
+              } else {
+                throw new Error(`不能给${key}属性设置${value}`);
+              }
+            } else {
+              throw new Error(`${key}不存在`);
+            }
+          },
+        });
+      }
+      let person = new Person();
+      person.name = "zhangsan";
+      person.age = 30;
+      console.log(person);
+    </script>
+  </body>
+</html>

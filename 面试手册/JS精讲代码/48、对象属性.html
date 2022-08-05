@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>对象属性</title>
+  </head>
+  <body>
+    <script>
+      //   var person = {
+      //     userName: "zhangsan",
+      //   };
+      //   Object.defineProperty(person, "userName", {
+      //     writable: false,
+      //   });
+      //   person.userName = "lisi";
+      //   console.log(person.userName);
+
+      var person = {
+        _age: 20,
+      };
+      Object.defineProperty(person, "age", {
+        get: function () {
+          return this._age;
+        },
+        set: function (value) {
+          if (value >= 18) {
+            this._age = value;
+            console.log("可以浏览该网站");
+          } else {
+            console.log("不能访问该网站");
+          }
+        },
+      });
+      console.log(person.age);
+      person.age = 12;
+      console.log(person.age);
+      person.age = 30;
+      console.log(person.age);
+    </script>
+  </body>
+</html>

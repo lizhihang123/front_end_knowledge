@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <picture>
+        <!-- 为什么是min-width而不是max-width => >640px 显示大图 >480px 显示小图 -->
+        <!-- 
+
+            1 外层包裹 picture标签
+            2 内层img 标签 + 可选容器 source标签
+            3 source标签有 srcset属性 + media属性
+                srcset => 图片路径
+                media  => 媒体查询的代码
+            作用就是 多大的设备显示多大的尺寸的图片 不管图片的高度
+         -->
+        <source srcset="640.png" media="(min-width: 640px)">
+        <source srcset="480.png" media="(min-width: 480px)">
+        <img src="./320.png" alt="">
+    </picture>
+</body>
+
+</html>

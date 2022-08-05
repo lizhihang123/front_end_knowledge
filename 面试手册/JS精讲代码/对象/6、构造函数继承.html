@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>构造函数继承</title>
+  </head>
+  <body>
+    <script>
+      function Person(age) {
+        this.emotion = ["吃饭", "睡觉"];
+        this.age = age;
+        this.study = function () {
+          console.log("好好学习");
+        };
+      }
+      //   Person.prototype.study = function () {
+      //     console.log("好好学习");
+      //   };
+      function Student(id, age) {
+        this.id = id;
+        Person.call(this, age);
+      }
+      var stu1 = new Student(10001, 20);
+      var stu2 = new Student(10002, 21);
+      //
+      stu1.emotion.push("玩游戏");
+      console.log(stu1.emotion);
+      console.log(stu2.emotion);
+      console.log(stu1.age);
+      console.log(stu2.age);
+      stu1.study();
+    </script>
+  </body>
+</html>

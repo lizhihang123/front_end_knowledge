@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 
+        flex布局：
+        1 给父盒子设置display: flex
+        2 flex的主轴和侧轴
+          默认水平是主轴
+          起始线和终止线的描述会更加合适一些 比起左右
+          flex-direction
+            row 从左向右
+            column 从上向下 -> 如果修改 justify-content修改的是垂直方向的值
+            row-reverse
+            column-reverse
+        3 如果父元素设置了display:flex 所有的子元素会默认添加下列行为
+          1 元素排列为一行
+          2 元素从主轴的起始线开始
+          3 元素不会在主维度上拉伸[太多元素 不会换行 而是会挤得很满] 但是可能会缩小，但是会在交叉轴也就是侧轴上面拉伸
+          4 flex-basis的属性为auto
+          5 flex-wrap的属性为nowrap
+        
+        4 使用flex-wrap
+          flex-wrap 元素太多 实现换行
+          如果值为nowrap[默认值] 且 子元素无法缩小 使用nowrap将会导致子元素溢出
+        
+        5 简写 flex-flow
+          是flex-direction 和 flex-wrap的合并写法
+          flex-flow: row wrap;
+        
+        6 flex-grow flex-shrink flex-basis
+        https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox#flexbox_%E7%9A%84%E4%B8%A4%E6%A0%B9%E8%BD%B4%E7%BA%BF 
+        必须学会
+
+        5 元素间的对齐和空间分配
+          1 justify-content
+            center
+            space-around
+            space-between
+            space-evenly
+            flex-start
+            flex-end
+          2 align-items
+            center
+            stretch 撑满
+            flex-start
+            flex-end
+
+        
+        
+        */
+    .father {
+      display: flex;
+      /* justify-content: space-evenly; */
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+    }
+
+    .son {
+      width: 100px;
+      height: 50px;
+      background-color: pink;
+    }
+
+    .son:nth-child(1) {
+      order: 1;
+      flex-grow: 2;
+    }
+
+    .son:nth-child(2) {
+      order: 2;
+      flex-grow: 1;
+    }
+
+    .son:nth-child(3) {
+      order: 3;
+      flex-grow: 1;
+    }
+
+    /* .son:nth-child(4) {
+          order: 4;
+        }
+        .son:nth-child(5) {
+          order: 8;
+        }
+        .son:nth-child(6) {
+          order: 6;
+        } */
+  </style>
+</head>
+
+<body>
+  <div class="father">
+    <div class="son">1</div>
+    <div class="son">2</div>
+    <div class="son">3</div>
+  </div>
+</body>
+
+</html>

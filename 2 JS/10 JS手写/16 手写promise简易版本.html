@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 原本的promise
+        let promise = new Promise((resolve, reject) => {
+            if ('操作成功') {
+                resolve(value)
+            } else {
+                reject('error')
+            }
+        })
+        promise.then((success) => {
+            // 操作成功
+        }, err => {
+            // 操作失败
+        })
+
+
+        // 
+        function MyPromise(constructor) {
+            let self = this
+            // 初始状态 - 状态改变前
+            self.status = 'pending'
+            // resolved - 状态
+            self.value = undefined
+            // rejected - 状态
+            self.reason = undefined
+
+            // resolve函数
+            function resolve(value) {
+                if (self.status === 'pending') {
+                    self.value = value
+                    self.status = 'resolved'
+                }
+            }
+
+            // reject函数
+            function reject(value) {
+                if (self.status === 'pending') {
+                    self.value = value
+                    self.status = 'rejected'
+                }
+            }
+
+
+            // 捕获异常
+            try {
+                constructor(resolve, reject)
+            } catch (err) {
+                reject(err)
+            }
+            debugger
+        }
+        let promise2 = new MyPromise(function (resolve, reject) {
+            resolve(1)
+        })
+    </script>
+</body>
+
+</html>

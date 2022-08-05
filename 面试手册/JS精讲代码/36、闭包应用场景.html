@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>闭包应用场景</title>
+  </head>
+  <body>
+    <script>
+      // 缓存
+      //   var cacheApp = (function () {
+      //     var cache = {};
+      //     return {
+      //       getResult: function (id) {
+      //         if (id in cache) {
+      //           return "得到的结果是：" + cache[id];
+      //         }
+      //         var result = timeFn(id);
+      //         cache[id] = result;
+      //         return "得到的结果是:" + result;
+      //       },
+      //     };
+      //   })();
+      //   function timeFn(id) {
+      //     console.log("这是一个耗时的操作");
+      //     return id;
+      //   }
+      //   console.log(cacheApp.getResult(12));
+      //   console.log(cacheApp.getResult(12));
+
+      var stack = (function () {
+        var arr = [];
+        return {
+          push: function (value) {
+            arr.push(value);
+          },
+          pop: function () {
+            return arr.pop();
+          },
+          size: function () {
+            return arr.length;
+          },
+        };
+      })();
+      stack.push("abc");
+      stack.push("def");
+      console.log(stack.size());
+      console.log(stack.pop());
+      console.log(stack.size());
+    </script>
+  </body>
+</html>

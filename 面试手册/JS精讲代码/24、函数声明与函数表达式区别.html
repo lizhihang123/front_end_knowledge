@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数声明与函数表达式区别</title>
+  </head>
+  <body>
+    <script>
+      console.log(add(1, 2));
+      console.log(sum(3, 6));
+      function add(num1, num2) {
+        return num1 + num2;
+      }
+      var sum = function (num1, num2) {
+        return num1 + num2;
+      };
+    </script>
+  </body>
+</html>

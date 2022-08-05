@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+  // 闭包: 内部函数, 访问了外部函数的变量, 就可以形成闭包 (常见应用: 实现数据私有)
+  // 注意点: 外部函数中, 一般需要 return 引用 (内存才不会被释放)
+
+  // 闭包的基本形式:
+  // function fn () {
+  //   let num = 1
+  //   function inner () {
+  //     num = num + 1
+  //     console.log(num)
+  //   }
+  //   return inner
+  // }
+  // let result = fn()
+  // result()
+  // ---------------------------------------------------------------------------
+
+  // 闭包的作用: 实现数据私有, 计数器, 函数每执行一次, 统计一次count++
+  // let count = 0 // 全局变量, 容易被随意修改, 希望有些数据是私有的, 不让外部随意的访问
+  // function fn () {
+  //   count++
+  //   console.log('函数被调用了' + count + '次')
+  // }
+  // fn()
+  // fn()
+
+  // -------------------------------------------------------------------------------
+  function fn () {
+    let count = 0
+
+    function inner () {
+      count++
+      console.log('函数被调用了' + count + '次')
+    }
+    return inner
+  }
+
+  let result = fn()
+  result()
+  result()
+  result()
+
+  // 标记清除: 从根部, 全局出发, 访问不到(无法触及)的内存空间, 就会被自动回收
+  result = null // 释放内存, 断开了对于之前内部函数的引用, 对应的缓存的变量内容也会被释放掉
+
+
+  // ----------------------------------------------------------------------------------
+  // for (let i = 1; i <= 5; i++) {
+  //   setTimeout(() => {
+  //     console.log(i)
+  //   }, i * 1000)
+  // }
+
+  // 早期, 闭包还用于解决for循环中, 定时打印内容的问题
+  // for (var i = 1; i <= 5; i++) {
+  //   (function(num) {
+  //     // 形参也可以理解为函数中局部变量
+  //     setTimeout(() => {
+  //       console.log(num)
+  //     }, num * 1000)
+  //   })(i)
+  // }
+
+
+</script>
+
+  
+</body>
+</html>

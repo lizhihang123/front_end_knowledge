@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<script>
+
+  // 用户输入网址到最终渲染出来, 发生了哪些事情?
+  // 1. 输入www.baidu.com网址, DNS解析(域名映射的过程), 将域名转换成ip地址 (计算机在网络中的标识)
+  // 2. 根据ip地址, 就可以找到服务器, 尝试建立TCP连接, 三次握手
+  //    三次握手: 一次发起连接, 两次 => 双方确认
+  // 3. 发起 http 请求, 服务器端做出响应, 响应index.html
+  // 4. 浏览器解析 index.html, 加载其他的一些资源 图片, js等
+  // 5. 浏览器完成渲染
+  // 6. http服务结束, 断开TCP连接, 四次挥手(客气挽留)
+  //    (1) A我要撤了, 我要断开连接 
+  //    (2) B你先等等, 我看看, 还有没有没发完的数据  (A就在等着)
+  //        ...
+  //    (3) B检查完, 确实没有什么额外的数据要传输了, 跟A说, 你撤吧, 你断开连接吧
+  //    (4) A: 好的, 那我走了 (A准备要断开连接了)
+  //        B收到A的确认关闭的消息后, B就会直接断开, 而A还会再等一等
+  //        ...
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>修改节点</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="div1" style="color: red">hello</div>
+      <div id="div2" class="foo">前端学习</div>
+    </div>
+    <script>
+      //   var container = document.getElementById("container");
+      //   var div1 = document.getElementById("div1");
+      //   var newP = document.createElement("p");
+      //   var newText = document.createTextNode("nihao");
+      //   newP.appendChild(newText);
+      //   container.replaceChild(newP, div1);
+
+      //   var div1 = document.getElementById("div1");
+      //   div1.setAttribute("style", "color:blue");
+      //   console.log(div1.getAttribute("style"));
+      //   div1.style.color = "blue";
+
+      var div2 = document.getElementById("div2");
+      div2.className = "bar";
+      div2.innerHTML = "Vue 学习";
+    </script>
+  </body>
+</html>

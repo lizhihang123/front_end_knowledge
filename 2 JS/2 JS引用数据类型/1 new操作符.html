@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        
+        1.1 引用数据类型和基本数据类型的区别
+
+        1. 引用数据类型 创建数据类型 可以依靠new 关键字 也可以直接用字面量 比如数组和对象
+        2. 引用数据类型 变量赋值 实际上赋值的是地址
+        3. 比较大小来看，引用数据类型比较的是内存地址是否一致，而基本 是看值
+        */
+
+
+        /*
+        1.1 new操作符
+        - 构造函数中为什么没有添加return 会有返回值 就是因为this关键字
+        - this关键字指向的就是新创建的对象 而构造函数里面默认返回的就是this指向的对象 即便没有return
+        - new 关键字 做的几件事情：
+          1. 创建一个新对象 var person = {}
+          2. 让新对象的proto属性指向构造函数的原型prototype person.__proto__ = Person.prototype
+          3. 执行构造函数 通过call 方法 改变this指向 给新对象的属性赋值 Person.call(person)
+          4. 返回这个对象
+
+        */
+
+        function Person(username, age) {
+            // console.log(this); // 指向新创建的实例对象
+            // this.username = username
+            // this.age = age
+
+            var person = {}
+            person.username = username
+            person.age = age
+            // return person 
+            // 如果自己声明对象 但是没有return 没有用this 返回的就是空对象 默认返回的是this指向的对象 但是这个对象没有赋值
+        }
+        console.log(new Person('张三', '19'));
+
+    </script>
+</body>
+
+</html>

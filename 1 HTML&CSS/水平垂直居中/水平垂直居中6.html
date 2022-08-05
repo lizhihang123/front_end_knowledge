@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        父级设置宽高
+        子级
+        display: inline-block;
+        vertical-align: middle;
+
+        额外的标签
+        设置宽度和一样宽
+        */
+        .father {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        .son,
+        .extra {
+            /* 增加一个额外的元素 */
+            display: inline-block;
+            vertical-align: middle;
+            background-color: red;
+        }
+        .extra {
+            /* 宽度和父级一样宽 */
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">123</div>
+        <div class="extra">extra</div>
+    </div>
+</body>
+</html>

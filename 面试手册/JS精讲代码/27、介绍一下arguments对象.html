@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>介绍一下arguments对象</title>
+  </head>
+  <body>
+    <script>
+      function fn(num1, num2, num3) {
+        // console.log(arguments[0]);
+        // console.log(arguments[1]);
+        // console.log(arguments[2]);
+        // console.log(arguments.length);
+        // arguments[0] = 23;
+        // console.log("num1=", num1);
+        // // arguments[1] = 22;
+        // // console.log("num2=", num2);
+        // num2 = 33;
+        // console.log("num3=", arguments[1]);
+
+        arguments[2] = 19;
+        console.log(arguments.length);
+        // console.log(num3);
+        // num3 = 10;
+        // console.log(arguments[2]);
+      }
+      fn(1, 2);
+    </script>
+  </body>
+</html>

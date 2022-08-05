@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>标题</title>
+</head>
+
+<body>
+    <script>
+        var userName = 'zhangsan'
+        let person = {
+            userName: 'lisi',
+            method: function () {
+                return function () {
+                    return this.userName
+                }
+            }
+        }
+        console.log(person.method()());
+        // 1 请注意 如果全局下 使用的是let userName = 'zhangsan' 打印的就是undefined
+        //   为什么? let const 关键字 变量不是绑定到window上面 而是绑定在script对象
+        //   var会
+        //   全局对象 local对象【局部】 script对象是平行关系
+
+        /*
+           1 打印全局
+             因为是window调用最终的函数
+           2 that = this 或 箭头函数 能够使得打印 lisi
+        */
+    </script>
+</body>
+
+</html>

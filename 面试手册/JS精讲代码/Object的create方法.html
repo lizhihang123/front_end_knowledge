@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   Object.create(prototype, propertyDescriptor);
+
+      //prototype 对象的原型 null undefined
+      //   var propertyName = {
+      //     value: "", //value用来设置属性的值
+      //     writable: true, // 用来设置属性是否可写入，默认为false,表示只读
+      //     enumerable: true, // 用来设置属性是否可枚举，默认为false,不可枚举
+      //     configurable: true, //设置属性是否可配置，例如是否可以修改属性的特性以及是否可以删除属性,默认值为false.
+      //   };
+
+      //   const person = {
+      //     userName: "zhangsan",
+      //     sanyHello: function () {
+      //       console.log("hello" + this.userName);
+      //     },
+      //   };
+      //   var student = Object.create(person); // student原型就是person student.__proto__===person
+      //   student.userName = "lisi";
+      //   student.sanyHello();
+
+      //   var obj = Object.create(null, {
+      //     userName: {
+      //       value: "wangwu",
+      //       writable: true,
+      //       enumerable: true,
+      //       configurable: true,
+      //     },
+      //     age: {
+      //       value: 23,
+      //     },
+      //   });
+      //   console.log(obj.userName);
+      //   console.log(obj.age);
+      //   obj.age = 26;
+      //   console.log(obj.age);
+      //   for (var o in obj) {
+      //     console.log(o);
+      //   }
+      //   delete obj.userName;
+      //   console.log(obj.userName);
+      //   delete obj.age;
+      //   console.log(obj.age);
+
+      var obj = Object.create(null); // Object.prototype  //toString()
+    </script>
+  </body>
+</html>

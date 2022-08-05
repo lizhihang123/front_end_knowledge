@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现resolve的值是promise实例</title>
+</head>
+<body>
+<script>
+  const PENDING = 'pending'
+  const FULFILLED = 'fulfilled'
+  const REJECTED = 'rejected'
+  class Promise2{
+    constructor(executor){
+      this.status = 'pending'
+      this.value = null
+      this.reason = null
+      this.onFulfilledCallbacks = [] //成功的回调队列
+      this.onRejectedCallbacks = [] //失败的回调队列
+      const resolve = (value) => {
+        if(value instanceof this.constructor){
+          value.then(resolve,reject) //promise2解决后，将外层的promise也解决
+          return
+        }
+        if(this.status === PENDING){
+          this.status = FULFILLED
+          this.value = value
+          setTimeout(()=>{
+            this.onFulfilledCallbacks.forEach(callback => {
+              callback(this.value)
+            })
+          })
+        }
+      }
+      const reject = (reason) => {
+        if(this.status === PENDING){
+          this.status = REJECTED
+          this.reason = reason
+          setTimeout(()=>{
+            this.onRejectedCallbacks.forEach(callback => {
+              callback(this.reason)
+            })
+          })
+        }
+      }
+      executor(resolve, reject)
+    }
+    then(onFulfilled,onRejected){
+      const p2 = new this.constructor((resolve, reject)=>{
+        if(this.status === FULFILLED){
+          setTimeout(()=>{
+            try {
+              let callbackValue = onFulfilled(this.value)
+              resolve(callbackValue)
+            }catch (error) {
+              reject(error)
+            }
+
+          })
+        }
+
+        if(this.status === REJECTED){
+          setTimeout(()=>{
+            try {
+              let callbackValue = onRejected(this.reason)
+              resolve(callbackValue)
+            }catch (error) {
+              reject(error)
+            }
+
+          })
+        }
+        if(this.status === PENDING){
+          this.onFulfilledCallbacks.push(()=>{
+            try {
+              let callbackValue = onFulfilled(this.value)
+              resolve(callbackValue)
+            }catch (error) {
+              reject(error)
+            }
+          })
+          this.onRejectedCallbacks.push(()=>{
+            try {
+              let callbackValue = onRejected(this.reason)
+              resolve(callbackValue)
+            }catch (error) {
+              reject(error)
+            }
+          })
+        }
+      })
+      return p2
+    }
+  }
+  let p = new Promise2((resolve,reject) =>{
+    setTimeout(()=>{
+      resolve(1)
+    },1000)
+  })
+  p.then(val => {
+    console.log(val);
+    return new Promise2((resolve) => {
+      setTimeout(()=>{
+        resolve(2)
+      },1000)
+    })
+  }).then(val => {
+    console.log(val);
+    return 3
+  }).then(val => {
+    console.log(val);
+  })
+</script>
+</body>
+</html>

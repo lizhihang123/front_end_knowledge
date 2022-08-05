@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 返回的对象值
+        var obj = null
+        function fn() {
+            return {
+                name: '123'
+            }
+        }
+        obj = fn()
+        console.log(obj);
+
+        // 2. js访问dom元素 访问不到时
+        let box = document.querySelector('#box')
+        console.log(box);
+
+        // 3. 正则表达式 匹配不到时 返回null
+        console.log('namea'.match(/g/));
+    </script>
+</body>
+
+</html>

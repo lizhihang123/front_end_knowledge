@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>手动实现find函数</title>
+  </head>
+  <body>
+    <script>
+      // 当找到第一个满足条件的元素值时，则直接返回该元素值
+      Array.prototype.findTest = function (fn) {
+        for (var i = 0; i < this.length; i++) {
+          var f = fn(this[i]);
+          if (f) {
+            return this[i];
+          }
+        }
+      };
+      var arr = [1, 2, 6, 90, 23];
+      var result = arr.findTest(function (item) {
+        return item > 6;
+      });
+      console.log(result);
+    </script>
+  </body>
+</html>

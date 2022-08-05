@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. {}对象法
+        //    json对象 + charAt 
+        function fn (str) {
+            let json = {}
+            for (let i = 0 ; i < str.length; i++) {
+                debugger
+                if (json[str.charAt(i)]) {
+                    json[str.charAt(i)]++
+                } else {
+                    
+                    json[str.charAt(i)] = 1
+                 }
+            }
+            let maxCount = 0
+            let maxStr
+            for (let key in json) {
+                debugger
+                if (json[key] > maxCount) {
+                    maxCount = json[key]
+                    maxStr = key
+                }
+            }
+            return maxStr
+        }
+        console.log(fn('aabbc'));
+
+        // 2. 用数组应该也可以
+    </script>
+</body>
+</html>

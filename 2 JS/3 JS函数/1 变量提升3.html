@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 问 点击a 输出的是什么? 
+        let a = 0
+        for(var i = 0; i < 10; i++) {
+            a = document.createElement('a')
+            a.innerHTML = i + '<br>'
+            a.addEventListener('click', function(e) {
+                e.preventDefault()
+                console.log(i)
+            })
+            document.body.appendChild(a)
+        }
+        // 输出的都是10 因为 此时打印i时，for循环执行完毕 i 会泄露 变为全局变量
+        // 在sources里面断点也可以看到global i是10
+        // 此时的点击事件会根据作用域链向外查找 是10
+
+        for(let i = 0; i < 10; i++) {
+            a = document.createElement('a')
+            a.innerHTML = i + '<br>'
+            a.addEventListener('click', function(e) {
+                e.preventDefault()
+                console.log(i)
+            })
+            document.body.appendChild(a)
+        }
+        // 打印的是每个对应的i
+        // 因为let关键字 具备块级作用域 不会存在变量的泄露
+        // 每个点击事件 访问的是块级作用域里面的对应的i
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数调用方式</title>
+  </head>
+  <body>
+    <script>
+      //   var obj = {
+      //     userName: "zhangsan",
+      //     getUserName: function () {
+      //       return this.userName;
+      //     },
+      //     setUserName: function (name) {
+      //       this.userName = name;
+      //       return this;
+      //     },
+      //   };
+      //   //   console.log(obj.getUserName());
+      //   //   console.log(obj["getUserName"]());
+      //   console.log(obj.setUserName("lisi").getUserName());
+
+      //   function Person(name) {
+      //     this.userName = name;
+      //   }
+      //   Person.prototype.getUserName = function () {
+      //     return this.userName;
+      //   };
+      //   var p = new Person("zhangsan");
+      //   console.log(p.getUserName());
+
+      //   call(), apply();
+      function sum(num1, num2) {
+        console.log(this);
+        return num1 + num2;
+      }
+      var obj = {
+        age: 12,
+      };
+      console.log(sum.call(obj, 2, 6));
+      console.log(sum.apply(obj, [3, 6]));
+    </script>
+  </body>
+</html>

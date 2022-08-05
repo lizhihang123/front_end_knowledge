@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现节流</title>
+</head>
+<body>
+<div style="height: 2000px"></div>
+<script>
+    function throttle(fn,time) {
+      let canRun = true  //是否允许fn执行
+      return function () {
+        if(canRun){
+          fn.apply(this, arguments) //绑定this，解决传参的问题
+          canRun = false
+          setTimeout(function () {
+            canRun = true
+          },time)
+        }
+      }
+
+    }
+
+
+    function test(name) {
+      console.log(name);
+      console.log(this.age);
+    }
+    let obj  = {
+      age:18
+    }
+    let newFn = throttle(test,1000)
+    obj.newFn = newFn
+    window.onscroll =function(){
+      obj.newFn('小明')
+    }
+
+
+</script>
+</body>
+</html>

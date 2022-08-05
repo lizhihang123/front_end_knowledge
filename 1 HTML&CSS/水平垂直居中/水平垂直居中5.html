@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        .son {
+            position: absolute;
+            /* 注释宽度 宽度会横跨 注释高度 高度会横跨铺满 */
+            width: 50px;
+            height: 50px;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">123</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+<script>
+  // async 可以用于修饰一个函数, 表示一个函数是异步的
+  // async 只有在遇到了 await 开始, 才是异步的开始
+  // async function fn () {
+  //   console.log(111)
+  // }
+  // fn()
+  // console.log(222)
+
+
+  // async function fn () {
+  //   // await开始往下的内容, 就可以理解为, 写在.then的内容
+  //   console.log(3333)
+  //   const res = await 1
+  //   console.log(res)
+  // }
+  // fn()
+  // console.log(222)
+
+
+  async function fn () {
+    console.log('嘿嘿')
+    const res = await fn2()
+    console.log(res)
+  }
+  async function fn2 () {
+    console.log('gaga')
+    return 100
+  }
+  fn()
+  console.log(222)
+
+  // 嘿嘿 
+
+</script>
+</body>
+</html>

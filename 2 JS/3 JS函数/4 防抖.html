@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="height: 2000px; background-color: pink;">123</div>
+    <button id="btn">点击提交</button>
+    <script>
+        // 有以下几个难点：
+        // this指向 怎么样会出问题【箭头函数+赋值可以解决】
+        // 函数传参【从事件对象 -> 很多个参数】  箭头函数 + 赋值可以解决?
+        // 每个执行函数都可以传很多参数 即便没有形参
+        // 第一次希望立即调用没有延时 怎么处理
+
+        let btn = document.querySelector('#btn')
+        // 按钮点击的submit事件
+        function submit (num) {
+            console.log(num);
+            console.log(this);
+        }
+        function debounce (fn,delay) {
+            let timer;
+            return function () {
+                let args = arguments
+                let context = this
+                if (timer) {
+                    clearTimeout(timer)
+                }
+                timer = setTimeout(function () {
+                    console.log(this);
+                    fn.apply(context, args)
+                }, delay)
+            }
+        }
+        // btn.addEventListener('click', fn) // fn是一个回调函数
+        btn.addEventListener('click', debounce(submit, 1000)) // fn是一个回调函数
+        
+        
+
+
+    </script>
+</body>
+</html>

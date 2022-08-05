@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 1. 默认的写法, 会阻塞后面结构的加载和解析 -->
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.0/index.js"></script> -->
+
+  <!-- 2. async 异步加载文件, 不会阻塞, 脚本加载完, async立刻执行 -->
+  <!--    async 使用场景: 适合于不依赖于其他js文件的脚本加载 -->
+  <!-- <script async src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+  <script async src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.0/index.js"></script> -->
+
+  <!-- 3. defer 异步加载文件, 不会阻塞, 脚本加载完, 不会立刻执行, 会等一等, 
+          等dom结构的加载, 且等上面的defer的脚本先执行, 它再执行 (保证顺序)
+  -->
+  <!--    如果有依赖关系, 用defer  -->
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.js"></script>
+  <script defer src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.15.0/index.js"></script>
+</head>
+<body>
+
+<div>555</div>
+
+<script>
+  console.log('555')
+</script>
+</body>
+</html>

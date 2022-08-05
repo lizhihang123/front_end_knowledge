@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display:table实现</title>
+    <style>
+        /* 父元素
+        display: table;
+
+        子元素
+        display: table-cell;
+        vertical-align: middle;
+
+        overflow: scroll; 和 hidden 都失效
+        */
+        .father {
+            display: table;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            /* 需要 */
+            text-align: center;
+            overflow: scroll;
+            margin-bottom: 10px;
+        }
+        .son {
+            /* 子盒子不需要宽度高度 设置了也不会生效 */
+            /* 子元素会铺满整个父盒子 即便设置了宽度 */
+            display: table-cell;
+            vertical-align: middle;
+            background-color: red;
+        }
+        .father2 {
+            display: table;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            /* 需要 */
+            text-align: center;
+            overflow: scroll;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+           
+        </div>
+    </div>
+    <div class="father2">
+        <div class="son">
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+            12wq123e12e12ed12s
+           
+        </div>
+    </div>
+</body>
+</html>

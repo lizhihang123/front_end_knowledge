@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      transition: 1s;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+
+<div></div>
+
+<script>
+  // 问: 页面效果是什么? 
+  // 选择题:
+  // 1. 直接显示一个 400*400 的盒子 (实际效果)
+  // 2. 一个动画, 从 200*200 过渡到 400*400 (想看的效果)
+
+  // 浏览器做了优化, 对所有进行了重绘和重排的操作, 进行一次批处理
+  let div = document.querySelector('div') // 宏1
+  // console.log(div.offsetWidth) // 200 * 400, 为了保证计算值的获取准确性, 这里一会提前刷新浏览器队列
+
+  setTimeout(() => {
+    div.style.height = '400px' // 宏2
+    div.style.width = '400px'  // 宏2
+  }, 0)
+
+  // 如果了解了重绘和重排, 了解了浏览器的优化策略
+  // 要进行性能优化 => 角度: 尽可能的减少重绘 + 重排, 尤其是重排
+
+
+
+
+</script>
+  
+</body>
+</html>

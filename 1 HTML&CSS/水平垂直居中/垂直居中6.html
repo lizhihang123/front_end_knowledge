@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            文字垂直居中 设置line-height: 50px; 为宽度
+        */
+        .father {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        .son {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: red;
+            /* 看这里 */
+            line-height: 50px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">
+            123
+        </div>
+    </div>
+</body>
+</html>

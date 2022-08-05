@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>构建自己的Promise对象</title>
+</head>
+
+<body>
+    <script>
+        function MyPromise(task) {
+            let that = this;
+            that.status = "Pending";
+            that.value = undefined;
+            that.onResolvedCallbacks = [];
+            that.onRejectedCallbacks = [];
+            function resolve(value) {
+                setTimeout(() => {
+                    if (that.status === "Pending") {
+                        that.status = "Resolved";
+                        that.value = value;
+                        that.onResolvedCallbacks.forEach((item) => item(that.value));
+                    }
+                })
+            }
+            function reject(reason) {
+                setTimeout(() => {
+                    if (that.status === "Pending") {
+                        that.status = "Rejected";
+                        that.value = reason;
+                        //状态修改完成后，调用的是then 方法中处理失败的回调函数
+                        that.onRejectedCallbacks.forEach((item) => item(that.value));
+                    }
+                })
+            }
+            try {
+                task(resolve, reject);
+            } catch (e) {
+                reject(e);
+            }
+        }
+        MyPromise.prototype.then = function (onFulfilled, onRejected) {
+            let that = this;
+
+            // // 判断两个参数是否为函数类型 因为这两个参数是可选的
+            // if (typeof onFulfilled === 'function') {
+            //     onFulfilled = onFulfilled
+            // } else {
+            //     // 如果传进来的参数不是函数类型 就让他变为函数类型
+            //     onFulfilled = function (value) {
+            //         return value
+            //     }
+            // }
+
+            // // 判断两个参数是否为函数类型 因为这两个参数是可选的
+            // if (typeof onRejected === 'function') {
+            //     onRejected = onRejected
+            // } else {
+            //     // 如果传进来的参数不是函数类型 就让他变为函数类型
+            //     onRejected = function (value) {
+            //         return value
+            //     }
+            // }
+
+            switch (that.status) {
+                case 'Pending':
+                    that.onResolvedCallbacks.push(onFulfilled)
+                    that.onRejectedCallbacks.push(onRejected)
+                    break
+                case 'Resolved':
+                    onFulfilled(that.value)
+                    break
+                case 'Rejected':
+                    onRejected(that.value)
+                    break
+                default:
+            }
+
+            // // 如果是等待状态 回调函数放入数组
+            // if (that.status === 'Pending') {
+            //     that.onResolvedCallbacks.push(onFulfilled);
+            //     that.onRejectedCallbacks.push(onRejected);
+            // }
+
+            // // 如果状态凝固 执行对应的回调函数
+            // if (that.status === 'Resolved') {
+            //     onFulfilled(that.value)
+            // }
+            // if (that.status === 'Rejected') {
+            //     onRejected(that.value)
+            // }
+        };
+        let myPromise = new MyPromise(function (resolve, reject) {
+            debugger
+            setTimeout(function () {
+                // let num = Math.random();
+                // if (num > 0.3) {
+                //     resolve("成功了");
+                // } else {
+                //     reject("失败了");
+                // }
+                resolve('111')
+            }, 3000);
+            // resolve('成功了')
+        });
+        myPromise.then(
+            function (value) {
+                debugger
+                console.log(value);
+            },
+            function (reason) {
+                console.log(reason);
+            }
+        )
+    </script>
+</body>
+
+</html>

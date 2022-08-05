@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事件捕获</title>
+  </head>
+  <body>
+    <table border="1">
+      <tbody>
+        <tr>
+          <td>单元格内容</td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+      var table = document.querySelector("table");
+      var tbody = document.querySelector("tbody");
+      var tr = document.querySelector("tr");
+      var td = document.querySelector("td");
+      table.addEventListener(
+        "click",
+        function () {
+          console.log("table");
+        },
+        true
+      );
+      tbody.addEventListener(
+        "click",
+        function () {
+          console.log("tbody");
+        },
+        true
+      );
+      tr.addEventListener(
+        "click",
+        function () {
+          console.log("tr");
+        },
+        true
+      );
+      td.addEventListener(
+        "click",
+        function () {
+          console.log("td");
+        },
+        true
+      );
+    </script>
+  </body>
+</html>

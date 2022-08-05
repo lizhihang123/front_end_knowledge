@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const PENDING = 'PENDING'
+        const RESOLVED = 'resolved'
+        const REJECTED = 'rejected'
+        function MyPromise(fn) {
+            // 保存初始化状态
+            let self = this
+            // 初始化状态
+            this.state = PENDING
+            // 用于保存resolve或者rejected传入的值
+            this.value = null
+            // 用于保存resolve的回调函数
+            this.resolvedCallbacks = []
+            // 用于保存reject的回调函数
+            this.rejectedCallbacks = []
+            // 状态转变为resolved的方法
+            function resolve(value) {
+                // 判断传入元素是否为Promise的值 如果是 则状态改变必须等待前一个状态改变后再进行改变
+                if (value instanceof MyPromise) {
+                    // 这个是什么意思，不懂了
+                    return value.then(resolve, reject)
+                }
+
+                setTimeout(() => {
+                    // 只有状态为pending时才能转变
+                    if (selft.state === PENDING) {
+                        // 修改状态
+                        self.state = RESOLVED
+                        // 设置传入的值
+                        self.value = value
+                        // 执行回调函数
+                        selft.resolvedCallbacks.forEach(callback => {
+                            callback(value)
+                        })
+                    }
+                }, 0)
+            }
+
+
+            function reject(value) {
+                setTimeout(() => {
+                    if (self.state === PENDING) {
+                        self.state = REJECTED
+                        self.value = value
+                        // 执行回调函数
+                        self.rejectedCallbacks.forEach(callback => {
+                            callback(value)
+                        })
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(age) {
+            this.age = age
+            this.emotion = ['吃饭', '睡觉', '打豆豆']
+            this.study = function () {
+                console.log(this.id + '正在学习');
+            }
+        }
+        Person.prototype.run = function () {
+            console.log(this.id + '正在跑步' + this.age);
+        }
+
+        Person.prototype.study = function () {
+            console.log(this.id);
+        }
+        function Student(id, age) {
+            Person.call(this, age)
+            this.id = id
+        }
+        function Super() { }
+        // Super.prototype = Object.create(Person.prototype)
+        Super.prototype = Person.prototype
+        // 不再new Person() 不让Person() 这个实例对象里面的变量和方法被绑定两次
+        Student.prototype = new Super()
+        Student.prototype.constructor = Student
+        Student.prototype.eat = function () {
+            console.log(this.id + '正在吃饭' + this.age);
+        }
+        let stu2 = new Student('1001', 21)
+        // console.log(stu2);
+        // console.log(stu2.emotion);
+        stu2.run()
+        stu2.study()
+        // stu2.eat()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+
+  // 简单类型, 进行参数传递时, 传递的是值本身
+  // let num = 10
+
+  // function fn (n) {
+  //   n = n + 1
+  //   console.log(n) // 11
+  // }
+  // fn(num)
+
+  // console.log(num) // 10
+
+  // 复杂类型, 进行参数传递时, 传值的是地址
+  // let obj = {
+  //   name: 'zs'
+  // }
+  // function fn (p) {
+  //   p.name = 'ls'
+  // }
+  // fn(obj)
+  // console.log(obj)
+
+
+  let a = {
+    count: 1 
+  }
+
+  function test(x) { 
+    x = { 
+      count: 20 
+    }
+    x = 100
+    console.log(x)
+  }
+
+  test(a)
+  console.log(a)
+
+</script>
+  
+</body>
+</html>

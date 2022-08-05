@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      width: 100%;
+      background-color: pink;
+      height: 500px;
+      margin: 0 auto;
+    }
+    /* 媒体查询 (不会增加任何的权重, 一般放下面) 
+       1. width: xxx 固定值
+       2. max-width: 样式生效的最大宽度 <= 这个宽, 样式生效
+       3. min-width: 样式生效的最小宽度 >= 这个宽, 样式生效
+    */
+    @media screen and (min-width: 1200px) {
+      .box {
+        width: 1170px;
+      }
+    }
+    /* 992 <= x < 1200 */
+    @media screen and (min-width: 992px) and (max-width: 1199px) {
+      .box {
+        width: 980px;
+      }
+    }
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+      .box {
+        width: 750px;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      .box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- box在不同屏幕范围有不同的宽度 
+       1. 1200以上, 宽度1170px
+       2. 992以上, 宽度980px
+       3. 768以上, 宽度750px
+       4. 768以内, 宽度100%
+  -->
+  <div class="box"></div>
+  
+</body>
+</html>

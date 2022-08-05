@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- vue的语法 -->
+  <!-- 
+  <div>
+    <div v-for="item in list" :key="item.id">
+      <p>姓名: {{ item.name }}</p>
+      <p>年纪: {{ item.age }}</p>
+      <button @click="del(item.id, item.name)">删除</button>
+    </div>
+  </div> 
+  -->
+
+
+  <div>
+    <div>
+      <p>姓名: 张三</p>
+      <p>年纪: 18</p>
+      <button id="btn" data-id="101" data-name="张三">删除</button>
+    </div>
+    <hr>
+    <div>
+      <p>姓名: 李四</p>
+      <p>年纪: 20</p>
+      <button data-id="102">删除</button>
+    </div>
+  </div>
+
+  <script>
+    // data-开头的属性作用: 往html标签上存储一些数据 (dom操作的思想)
+    let btn = document.querySelector('#btn')
+    btn.addEventListener('click', function() {
+      console.log('触发删除')
+      console.log(this.dataset.id)
+      console.log(this.dataset.name)
+    })
+  </script>
+  
+</body>
+</html>

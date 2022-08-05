@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>浅拷贝</title>
+  </head>
+  <body>
+    <script>
+      // 深拷贝
+      //   var arr = [1, 22, 33];
+      //   var arr2 = arr;
+      //   arr2[0] = 10;
+      //   console.log(arr);
+
+      var obj = { a: 1, arr: [2, 3], o: { name: "zhangsan" } };
+      //   var shallowObj = shallowCopy(obj);
+      //   function shallowCopy(src) {
+      //     var dst = {};
+      //     for (var prop in src) {
+      //       if (src.hasOwnProperty(prop)) {
+      //         dst[prop] = src[prop];
+      //       }
+      //     }
+      //     return dst;
+      //   }
+      //   obj.o.name = "lisi";
+      //   console.log(shallowObj.o.name);
+      //   obj.arr[0] = 20;
+      //   console.log(shallowObj.arr[0]);
+      //   obj.a = 10;
+      //   console.log(shallowObj.a);
+      var result = {};
+      Object.assign(result, obj);
+      //   console.log(result);
+      obj.a = 10;
+      console.log(result.a);
+      obj.arr[0] = 20;
+      console.log(result.arr[0]);
+      obj.o.name = "lisi";
+      console.log(result.o.name);
+    </script>
+  </body>
+</html>

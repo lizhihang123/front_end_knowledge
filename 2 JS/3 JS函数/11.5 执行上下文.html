@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>标题</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        1 执行上下文分为
+          全局执行上下文
+          函数上下文 
+          执行上下文栈(调用栈)
+          eval上下文(不怎么用)
+        
+        2 函数执行过程(每一个执行上下文是在代码执行 函数执行时创建)
+          执行代码时 先创建一个全局执行上下文 压入栈中
+          ECStack = [globalContext]
+          fn1()执行，创建fn1()执行上下文 => 压入栈中
+          ECStack.push('fn1 functionContext')
+          调用fn2()，fn2()执行，创建fn2的执行上下文 => 压入栈中
+          ECStack.push('fn2 functionContext')
+          调用fn3()，fn3()执行，创建fn3的执行上下文 => 压入栈中
+          ECStack.push('fn3 functionContext')
+          打印3
+          fn3的执行上下文从栈中弹出
+          ECStack.pop()
+          打印2
+          fn2的执行上下文从栈中弹出
+          ECStack.pop()
+          打印1
+          fn1的执行上下文从栈中弹出
+          ECStack.pop()
+        */
+        function fn1() {
+            fn2()
+            console.log(1);
+        }
+        function fn2() {
+            fn3()
+            console.log(2);
+        }
+        function fn3() {
+            console.log(3);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 1. 如果仅仅是对于 dpr 进行响应式处理, 可以用 srcset 
+          针对于不同 dpr 的设备, 使用不同的图片显示
+  -->
+  <!-- <img style="width: 320px; height: 320px;" srcset="320.png 1x, 640.png 2x" alt=""> -->
+
+  <!-- 2. 希望能够在不同的尺寸下, 设置不同的img src (通过js也可以实现) -->
+  <!-- 
+    srcset: 提供了备选项, 可以用的图片路径 (1元, 5元, 10元, 到底用哪个, 根据符合的条件)
+    sizes: 响应式的配置 img 的宽度
+      (max-width: 320px) 100vw  样式生效的最大宽度, <=320生效, 100vw, 一个屏幕的宽度
+      (max-width: 360px) 320px  320~360范围, 图片的宽度, 设置成 320px
+      (max-width: 480px) 360px  360~480范围, 图片的宽度, 设置成 360px
+      ...
+
+    如果已经加载了高清图片, 再切换到小屏幕, 没有必要换成小图, 因为已经加载了
+    如果要测试, 
+      1. 先切换到小屏幕(浏览器宽度小) 
+      2. 清除缓存
+   -->
+  <img alt="img元素srcset属性浅析"
+    srcset="
+      320.png 320w, 
+      480.png 480w, 
+      640.png 640w"
+    sizes="
+      (max-width: 320px) 100vw, 
+      (max-width: 360px) 320px,
+      (max-width: 480px) 360px,
+      (max-width: 640px) 480px,
+      640px"
+    src="640.png"
+  />
+  
+</body>
+</html>

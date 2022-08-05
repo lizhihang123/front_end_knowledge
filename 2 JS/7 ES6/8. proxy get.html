@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        1. proxy是一个拦截器 能够在我们访问、赋值对象，调用方法之间 进行拦截
+        2. proxy有get set has apply的方法
+        3. get方法 访问前进行拦截
+        4. Proxy 通过new 关键字 创建实例对象 传入参数1是目标对象，参数2是一个完整的对象，里面可以写get set apply has等方法
+        
+        */
+        let obj = {
+            name: '123'
+        }
+        let proxy = new Proxy(obj, {
+            get: function (target, property) {
+                // target 目标对象
+                // property 目标对象的属性
+                if (property in target) {
+                    return target[property]
+                } else {
+                    // 没有属性 就直接报错
+                    throw new ReferenceError('访问的属性不存在')
+                }
+            }
+        })
+        console.log(proxy.age);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 模拟new操作符的实现
+      function Person(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      Person.prototype.sayHello = function () {
+        console.log("hello world");
+      };
+      function New() {
+        var obj = {};
+        obj.__proto__ = Person.prototype;
+        Person.apply(obj, arguments);
+        return obj;
+      }
+      New("zhangsan", 19).sayHello();
+    </script>
+  </body>
+</html>

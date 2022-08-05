@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现call-3</title>
+</head>
+<body>
+<script>
+  function setDetails(name,color) {
+    this.name = name
+    this.color = color
+  }
+  Function.prototype.call2 = function (context) {
+    function mySymbol(obj){
+      let unique = (Math.random()+ new Date())
+      if(obj.hasOwnProperty(unique)){
+        return mySymbol(obj)
+      }else {
+        return unique
+      }
+    }
+    let uniqueName = mySymbol(context)
+    //let args = Array.from(arguments).slice(1)
+    let args = []
+    for (let i = 1; i <arguments.length; i++) {
+      args.push('arguments[' + i + ']')
+    }
+
+    context[uniqueName] = this
+/*    let result = context[uniqueName](...args) //等同于context[uniqueName]('大毛','橘色')*/
+    let result = eval('context[uniqueName](' + args.join(',') + ')')
+
+
+    //删除临时方法
+    delete context[uniqueName]
+    return result
+  }
+  let cat1 = {}
+  let result = setDetails.call2(cat1,'大毛','橘色')
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>怎样实现数组的去重操作</title>
+  </head>
+  <body>
+    <script>
+      // 利用数组遍历操作
+      //   function fn(array) {
+      //     var newArray = [];
+      //     for (var i = 0; i < array.length; i++) {
+      //       if (newArray.indexOf(array[i]) === -1) {
+      //         newArray.push(array[i]);
+      //       }
+      //     }
+      //     return newArray;
+      //   }
+
+      //利用键值对方式进行去重操作
+      // key
+      //   function fn(array) {
+      //     var obj = {},
+      //       result = [],
+      //       val,
+      //       type;
+      //     for (var i = 0; i < array.length; i++) {
+      //       val = array[i];
+      //       type = typeof val;
+      //       if (!obj[val]) {
+      //         obj[val] = [type];
+      //         result.push(val);
+      //       } else if (obj[val].indexOf(type) < 0) {
+      //         obj[val].push(type);
+      //         result.push(val);
+      //       }
+      //     }
+      //     return result;
+      //   }
+
+      function fn(arr) {
+        return Array.from(new Set(arr));
+      }
+
+      var arr = [1, 2, 3, 3, 3, 5, 6, "6"]; //[1, 2, 3, 5, 6,"6"]
+      console.log(fn(arr));
+    </script>
+  </body>
+</html>

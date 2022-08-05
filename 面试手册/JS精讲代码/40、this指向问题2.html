@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>this指向问题2</title>
+  </head>
+  <body>
+    <button id="btn">获取用户信息</button>
+    <script>
+      //   var value = 10;
+      //   var obj = {
+      //     value: 20,
+      //   };
+      //   var method = function () {
+      //     console.log(this.value);
+      //   };
+      //   method(); // 10
+      //   method.call(obj); // 20
+      //   method.apply(obj); // 20
+      //   var newMethod = method.bind(obj);
+      //   newMethod(); // 20
+
+      //--------------------------------------------
+      //   var userInfo = {
+      //     data: [
+      //       { userName: "zhangsan", age: 20 },
+      //       { userName: "lisi", age: 21 },
+      //     ],
+      //     getUserInfo: function () {
+      //       var index = 1;
+      //       console.log(this.data[index].userName + " " + this.data[index].age);
+      //     },
+      //   };
+      //   var btn = document.getElementById("btn");
+      //   btn.onclick = userInfo.getUserInfo.bind(userInfo);
+
+      //------------------------------------------------
+      var userInfo = {
+        data: [
+          { userName: "zhangsan", age: 20 },
+          { userName: "lisi", age: 21 },
+        ],
+        getUserInfo: function () {
+          //   var that = this;
+          //   this.data.forEach(function (p) {
+          //     console.log(that);
+          //   });
+          this.data.forEach((p) => {
+            console.log(this);
+          });
+        },
+      };
+      var btn = document.getElementById("btn");
+      btn.onclick = userInfo.getUserInfo.bind(userInfo);
+    </script>
+  </body>
+</html>

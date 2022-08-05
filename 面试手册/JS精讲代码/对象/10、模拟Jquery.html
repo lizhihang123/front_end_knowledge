@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模拟Jquery</title>
+  </head>
+  <body>
+    <script>
+      (function (window) {
+        var $ = (jQuery = function (selector, context) {
+          return new jQuery.fn.init(selector, context);
+        });
+        jQuery.fn = jQuery.prototype = {
+          init: function (selector, context) {
+            selector = selector || document;
+            context = context || document;
+            if (typeof selector === "string") {
+              var e = context.getElementsByTagName(selector);
+              // 将获取的元素存储到当前的实例中
+              for (var i = 0; i < e.length; i++) {
+                this[i] = e[i];
+              }
+              this.length = e.length;
+              this.context = context;
+              return this;
+            } else {
+              this.length = 0;
+              this.context = context;
+              return this;
+            }
+            //   this.length = 0;
+            //   this._size = function () {
+            //     return this.length;
+            //   };
+            //return this;
+          },
+
+          // version: "7.1",
+          // length: 1,
+          // size: function () {
+          //   return this.length;
+          // },
+        };
+        jQuery.fn.init.prototype = jQuery.fn;
+        jQuery.each = function (object, callback, args) {
+          console.log("object=", object);
+          for (var i = 0; i < object.length; i++) {
+            callback.call(object[i], args);
+          }
+          return object;
+        };
+        jQuery.extend = jQuery.fn.extend = function () {
+          var destination = arguments[0];
+          var source = arguments[1];
+          if (typeof destination === "object" && typeof source === "object") {
+            for (var property in source) {
+              destination[property] = source[property];
+            }
+            return destination;
+          } else {
+            for (var prop in destination) {
+              this[prop] = destination[prop];
+            }
+            return this;
+          }
+        };
+        window.jQuery = window.$ = jQuery;
+      })(window);
+      jQuery.fn.extend({
+        html: function (val) {
+          jQuery.each(
+            this,
+            function (val) {
+              this.innerHTML = val;
+            },
+            val
+          );
+        },
+      });
+      jQuery.fn.extend({
+        fontStyle: function (obj) {
+          var defaults = {
+            color: "#ccc",
+            size: "16px",
+          };
+          defaults = jQuery.extend(defaults, obj || {});
+          jQuery.each(this, function () {
+            this.style.color = defaults.color;
+            this.style.fontSize = defaults.size;
+          });
+        },
+      });
+      window.onload = function () {
+        // console.log($("div").length);
+        $("div").html("<h2>hello world</h2>");
+        $("p").fontStyle({
+          color: "red",
+          size: "30px",
+        });
+      };
+    </script>
+    <div></div>
+    <div></div>
+    <p>前端学习</p>
+    <p>前端学习</p>
+  </body>
+</html>

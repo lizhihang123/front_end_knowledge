@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function* go(str) {
+            debugger
+            console.log(1)
+            let a = yield str
+            console.log(2)
+            let b = yield a
+            console.log(3)
+            return b
+        }
+        let it = go('a的值')
+        console.log(it); // 打印迭代器
+        let r1 = it.next() // 打印 1 碰到第一个yield 停止
+        console.log(r1); //  打印对象 {value: 'a的值', done: false}
+        let r2 = it.next('b的值') // 打印2 碰到第二个yield 停止
+        console.log(r2); // 打印 {value: 'b的值', done: false}
+        let r3 = it.next('c的值') // 3 此时走到了return done已经是true
+        console.log(r3);// 打印对象 {value: 'c的值', done: true}
+
+        // 总结：给next赋值，ne参数会被当作上一条yield语句的返回值
+
+    </script>
+</body>
+
+</html>

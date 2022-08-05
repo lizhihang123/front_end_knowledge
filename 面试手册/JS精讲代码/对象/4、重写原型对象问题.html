@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>重写原型对象问题</title>
+  </head>
+  <body>
+    <script>
+      function Person() {}
+      Person.prototype = {
+        constructor: Person,
+        userName: "zhangsan",
+        age: 20,
+        sayHi: function () {
+          console.log(this.userName);
+        },
+      };
+      var person = new Person();
+      person.sayHi();
+      console.log(Person.prototype.constructor);
+    </script>
+  </body>
+</html>

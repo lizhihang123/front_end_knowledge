@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 函数中的this, 要看如何调用的
+    // function fn () {
+    //   console.log(this)
+    // }
+    // let obj = {
+    //   name: 'zs'
+    // }
+    // obj.fn = fn
+    // obj.fn()
+
+    // this指向的情况:
+    // 1. 函数调用模式  fn()     指向window  (默认绑定)
+    // 2. 方法调用模式  obj.fn() 指向调用者   (隐式绑定, 虽然没有刻意的绑定, 但是执行时, 会自动将函数的this指向调用者)
+    // 3. 上下文调用模式         想指向谁就指向谁 (显示绑定, 硬绑定)
+    //    call apply bind
+    //    fn.call(this指向的内容, 参数1, 参数2, ...)
+    //    fn.apply(this指向的内容, [参数1, 参数2, ...])
+
+    //    const newFn = fn.bind(this指向的内容)
+
+    // 4. 构造函数模式 new Person() 指向创建的实例 (new绑定)
+    //    new四步:
+    //    1. 创建一个新对象
+    //    2. 让构造函数的this, 指向新对象
+    //    3. 执行构造函数
+    //    4. 返回实例
+
+
+    // let obj = {
+    //   a: {
+    //     fn: function () {
+    //       console.log(this)
+    //     },
+    //     b: 10
+    //   }
+    // }
+    // obj.a.fn() // 方法调用模式(指向调用者)
+    // let temp = obj.a.fn;
+    // temp() // 函数调用模式 (默认绑定, 指向window)
+
+    // -------------------------------------------------------------
+
+    function Person(theName, theAge) {
+      this.name = theName // 指向创建的实例
+      this.age = theAge
+    }
+    Person.prototype.sayHello = function () { // 定义函数
+      console.log(this)
+      console.log('大家好, 我是' + this.name + ', 我今年' + this.age)
+    }
+
+    let per = new Person("小黑", 18)
+    per.sayHello() // 谁调用, 指向谁
+
+
+
+  </script>
+
+</body>
+
+</html>

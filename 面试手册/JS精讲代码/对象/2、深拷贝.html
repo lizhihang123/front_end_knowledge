@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深拷贝</title>
+  </head>
+  <body>
+    <script>
+      //  浅拷贝：如果一个对象中的属性是基本数据类型，拷贝的就是基本类型的值，如果属性是引用类型，拷贝的就是内存地址，也就是拷贝后的内容与原始内容指向了同一个内存地址，这样拷贝后的值的修改会影响到原始的值。
+
+      // 深拷贝：如果一个对象中的属性是基本数据类型，拷贝的也是基本类型的值，如果属性是引用类型，就将其从内存中完整的拷贝一份出来，并且会在堆内存中开辟出一个新的区域存来进行存放，而且拷贝的对象和原始对象之间相互独立，互不影响。
+      //   JSON.stringify()//将对象转换成字符串
+      //   JSON.parse()//将字符串转成为一个对象.
+      //   var obj = { a: 1, arr: [2, 3], o: { name: "zhangsan" } };
+      //   var str = JSON.stringify(obj);
+      //   var resultObj = JSON.parse(str);
+      //   obj.a = 10;
+      //   console.log(resultObj.a);
+      //   obj.arr[0] = 20;
+      //   console.log(resultObj.arr[0]);
+      //   obj.o.name = "lisi";
+      //   console.log(resultObj.o.name);
+      //   第一：无法实现对函数的拷贝
+      // 第二：如果对象中存在循环引用，会抛出异常
+      // 第三：对象中的构造函数会指向Object,原有的原型链关系被破坏。
+      //   function Person(userName) {
+      //     this.userName = userName;
+      //   }
+      //   var person = new Person("zhangsan");
+      //   var obj = {
+      //     fn: function () {
+      //       console.log("abc");
+      //     },
+      //     o: person,
+      //   };
+      //   var str = JSON.stringify(obj);
+      //   var resultObj = JSON.parse(str);
+      //   console.log("resultObj==", resultObj);
+      //   console.log(resultObj.o.constructor);
+      var obj = {
+        userName: "zhangsan",
+      };
+      obj.a = obj;
+      var result = JSON.parse(JSON.stringify(obj));
+    </script>
+  </body>
+</html>

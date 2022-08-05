@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 聊到作用域链的概念 需要掰扯到作用域、再掰扯到作用域的过程【大白话】、再解释到作用域的机理【原理部分】
+        // 2 比如作用域 有全局 局部 块级作用域。
+        //   在外部无法访问到局部作用域里面的变量。下面例子，age是没有定义。fn一执行完毕 就会释放age变量
+        //   在外部无法访问到块级作用域的变量 且 块级作用域 存在暂时性死区  
+        let num = 1000
+        function fn() {
+            console.log(num); // 能够访问到外部的变量
+            let age = 18
+        }
+        fn()
+        console.log(age); // age is not defined
+
+        // 3. 除非内部的变量return出来 但是return出来 也是创建了两块不同的内存空间 不相等
+        function fn() {
+            let obj = {}
+            return obj
+        }
+        const obj2 = fn() // 这样上面的obj就没有被回收掉
+        const obj3 = fn() // 这样上面的obj就没有被回收掉
+        console.log(obj2 === obj3) // false 返回的对象是不一样的
+
+        // 4. 为什么vue的data是一个函数，而不是直接一个对象存储数据
+        // data() {
+        //     let name2 = '123' // 这些的变量 组件被销毁 变量就会被释放
+        //     return {
+        //         obj: {}
+        //     }
+        // }
+        // --为什么不像下面这样写
+        // data() {
+        //     obj: {}
+        // }
+
+        // -- 因为return obj返回的对象，不会因为data函数执行完毕，就被销毁，vue里面，
+        // 组件初始化，data执行，返回的数据，都会开辟新的内存空间，是新的地址。--》能够
+        // 保证组件的独立性
+
+
+    </script>
+</body>
+
+</html>

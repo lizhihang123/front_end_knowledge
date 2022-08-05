@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数组遍历的方式</title>
+  </head>
+  <body>
+    <script>
+      // for
+      // var arr=[1,2,3]
+      // for(var i=0;i<arr.length;i++){
+      //     console.log(arr[i])
+      // }
+      // forEach()
+
+      //   var arr = [1, 2, 6, 90, 23];
+      //   arr.forEach(function (element, index, array) {
+      //     console.log(element + ":" + index);
+      //   });
+      // map
+      //   var arr = [1, 2, 6, 90, 23];
+      //   var result = arr.map(function (element, index, array) {
+      //     return element * element;
+      //   });
+      //   console.log("result=", result);
+      // some() every()
+      //   function fn(element, index, array) {
+      //     return element > 6;
+      //   }
+      //   var arr = [1, 2, 6, 90, 23];
+      //   //   var result = arr.some(fn);
+      //   var result = arr.every(fn);
+      //   console.log("result=", result);
+
+      // find()
+      var arr = [1, 2, 6, 90, 23];
+      const result = arr.find(function (element, index, array) {
+        return element > 600;
+      });
+      console.log(result);
+    </script>
+  </body>
+</html>

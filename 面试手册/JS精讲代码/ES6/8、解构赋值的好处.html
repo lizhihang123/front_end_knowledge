@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>解构赋值的好处</title>
+  </head>
+  <body>
+    <script>
+      //1、 交换变量的值
+      // let num1 = 3;
+      // let num2 = 6;
+      // [num1, num2] = [num2, num1];
+      // console.log(num1, num2);
+      //2、 函数可以返回多个值
+      // function test() {
+      //   return [1, 2, 3];
+      // }
+      // let [a, , b] = test();
+      // console.log(a, b);
+      //3、函数返回一个对象
+      function test() {
+        return {
+          num1: 3,
+          num2: 6,
+        };
+      }
+      let { num1, num2 } = test();
+      console.log(num1, num2);
+    </script>
+  </body>
+</html>

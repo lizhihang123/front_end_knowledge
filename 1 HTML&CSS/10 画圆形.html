@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5,minimum-scale=0.5, maximum-scale=0.5">
+    <title>Document</title>
+    <style>
+        /* 1. 圆形
+        正园 需要宽高都一致 border-radius设置50%或者和宽高一致即可
+        */
+        .circular {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            /* 下面两个都可以 */
+            /* border-radius: 50%; */
+            border-radius: 100px;
+        }
+
+        /* 2. 半圆形 
+        宽度为高度的一半
+        border-radius使得左上和左下的大小为0
+        半圆朝左边
+        */
+        .half-circular {
+            width: 50px;
+            height: 100px;
+            background-color: red;
+            /* 值写50px或者100px都可以 */
+            border-radius: 0 50px 50px 0;
+        }
+
+        /* 
+        3. triangle 
+        宽度高度都为0
+        边框四条边都设置 但颜色是透明的
+        只给一个边框额外设置颜色，如果添加左边，则三角形朝右边
+        */
+        .triangle {
+            width: 0;
+            height: 0;
+            border: 20px solid transparent;
+            border-left-color: pink;
+            /* 上或者下修改不一样的宽度 -> 不规则的三角形 */
+            /* border-top-width: 10px; */
+        }
+
+        /* 
+        4. 扇形
+        */
+        .sector {
+            width: 0;
+            height: 0;
+            border: 200px solid transparent;
+            border-top-color: pink;
+            border-radius: 200px;
+            margin-top: 100px;
+        }
+
+        /* 
+        5. 宽高自适应的正方形
+        宽度为父元素的10%
+        高度用vw来设置，1vw = 1/100页面的宽度
+        */
+        .squart {
+            width: 10vw;
+            height: 10vw;
+            background: tomato;
+        }
+
+        .squart2 {
+            width: 20%;
+            height: 0;
+            padding-top: 20%;
+            background: orange;
+        }
+
+        .squart3 {
+            width: 30%;
+            overflow: hidden;
+            background: yellow;
+        }
+
+        .squart3::after {
+            content: '';
+            display: block;
+            margin-top: 100%;
+        }
+
+        .squart4 {
+            width: 10rem;
+            height: 10rem;
+            background-color: pink;
+        }
+
+
+        /* 0.5px的线？直接画？ */
+        .line {
+            height: 1px;
+            /* height: 0.5px; */
+            /* transform: scale(0.5, 0.5); */
+            width: 1000px;
+            background: red;
+        }
+
+        .text {
+            /* transform: scale(0.5); */
+            font-size: 11px;
+            /* -webkit-text-size-adjust: none; */
+            /* 不管用了 */
+        }
+
+        #one {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        div[data-device='1.5'] {
+            border: 0.5px solid pink;
+        }
+
+        .two {
+            position: relative;
+        }
+
+        .two::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            border: 1px solid #333;
+            transform-origin: left top;
+            transform: scale(0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circular"></div>
+    <div class="half-circular"></div>
+    <div class="triangle"></div>
+    <div class="sector"></div>
+    <div class="squart">squart</div>
+    <div class="squart2">squart2</div>
+    <div class="squart3">squart3</div>
+    <div class="squart4">squart4</div>
+    <div class="line"></div>
+    <div class="text">123</div>
+    <div id="one">123</div>
+    <div class="two">345</div>
+    <script>
+        let div = document.querySelector('#one')
+        let dpr = window.devicePixelRatio
+        div.setAttribute('data-device', dpr)
+    </script>
+</body>
+
+</html>

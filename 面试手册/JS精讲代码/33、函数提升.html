@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>函数提升</title>
+  </head>
+  <body>
+    <script>
+      //   function foo() {
+      //     console.log("hello");
+      //   }
+      //   foo();
+
+      //   foo();
+      //   var foo = function () {
+      //     console.log("hello");
+      //   };
+
+      //   function foo() {
+      //     function bar() {
+      //       return 3;
+      //     }
+      //     return bar();//9
+      //     function bar() {
+      //       return 9;
+      //     }
+      //   }
+      //   console.log(foo());
+
+      //   var a = true;
+      //   foo();
+      //   function foo() {
+      //     var a;
+      //     if (a) {
+      //       a = 20;
+      //     }
+      //     console.log(a);
+      //   }
+
+      //   function v() {
+      //     var a = 1;
+      //     function a() {}
+      //     console.log(a);
+      //   }
+      //   v();
+
+      function foo() {
+        var a = 1;
+        function b() {
+          a = 10;
+          return;
+          function a() {}
+        }
+        b();
+        console.log(a);
+      }
+      foo();
+    </script>
+  </body>
+</html>

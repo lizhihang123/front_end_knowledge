@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+/*  let obj={
+    x:  10,
+    fn: function(){
+      function a(){
+        console.log(this.x)
+        console.log(this);
+      }
+      a();
+    }
+  };
+  obj.fn() //输出什么？*/
+/*let obj={
+  x:  10,
+  fn: function(){
+    console.log(this.x)
+    console.log(this);
+  }
+};
+let a = obj.fn;
+obj.fn() //输出什么？
+a(); //输出什么？*/
+
+let obj={
+  x:  10,
+  fn: function(){
+    return function (){
+      console.log(this.x)
+      console.log(this);
+    }
+  }
+};
+obj.fn()() //输出什么？
+</script>
+</body>
+</html>

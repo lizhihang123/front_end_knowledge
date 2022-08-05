@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function debounce(func, time, triggleNow) {
+            let timer = null
+            return function() {
+                timer && clearTimeout(timer)
+                if (triggleNow) {
+                    if (!timer) {					// 第一次触发
+                        func.apply(this, arguments)
+                        timer = setTimeout(() => {
+                            timer = null
+                        }, time)
+                    } else {						// 非第一次触发
+                        timer = setTimeout(() => {
+                            func.apply(this, arguments)
+                            timer = null
+                        }, time)
+                    }
+                } else {
+                    timer = setTimeout(() => {
+                        func.apply(this, arguments)
+                        timer = null
+                    }, time)
+                }
+            }
+        }
+    </script>
+</body>
+</html>

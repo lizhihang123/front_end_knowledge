@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>手写apply函数</title>
+  </head>
+  <body>
+    <script>
+      Function.prototype.myApply = function (context) {
+        var result = null;
+        context = context || window;
+        context.fn = this; //Sub.fn
+        if (arguments[1]) {
+          result = context.fn(...arguments[1]);
+        } else {
+          result = context.fn();
+        }
+        return result;
+      };
+
+      function Add(num1, num2) {
+        console.log(this);
+        console.log(num1 + num2);
+      }
+      function Sub(num1, num2) {
+        console.log(num1 - num2);
+      }
+      Add.myApply(Sub, [6, 3]);
+    </script>
+  </body>
+</html>

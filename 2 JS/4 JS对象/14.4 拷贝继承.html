@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 拷贝继承
+        // 实现方式+优点+缺点
+        function Person(age) {
+            this.age = age
+            this.emotion = ['吃饭', '睡觉', '打豆豆']
+        }
+        Person.prototype.run = function () {
+            console.log(this.id + '正在跑步' + this.age);
+        }
+
+        function Student(id, age) {
+            this.id = id
+            let person = new Person(age)
+            for (let key in person) {
+                if (person.hasOwnProperty(key)) {
+                    // !这里怎么写 存在疑惑
+                    // 返回false 表示该方法是原型的不是自己的
+                    // 如果是自己id 返回true
+                    this[key] = person[key]
+                } else {
+                    Student.prototype[key] = person[key]
+                }
+            }
+        }
+        Student.prototype.eat = function () {
+            console.log(this.id + '正在吃饭' + this.age);
+        }
+        let stu1 = new Student('1001', 19)
+        stu1.eat()
+        stu1.run()
+        console.log(stu1);
+    </script>
+</body>
+
+</html>

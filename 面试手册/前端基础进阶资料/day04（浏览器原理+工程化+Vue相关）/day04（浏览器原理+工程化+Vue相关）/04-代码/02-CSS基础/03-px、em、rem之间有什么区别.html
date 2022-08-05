@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      font-size: 20px;
+    }
+    .father {
+      width: 400px;
+      height: 300px;
+      background-color: pink;
+      border: 1px solid #000;
+      margin-bottom: 10px;
+      font-size: 30px;
+    }
+    .box1, .box2, .box3 {
+      width: 100%;
+      height: 150px;
+      background-color: skyblue;
+    }
+    .box1 {
+      font-size: 40px;
+    }
+    .box2 {
+      font-size: 2em;
+    }
+    .box3 {
+      font-size: 3rem;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- 
+  px: 绝对单位
+  em: 相对单位, 相对于父盒子的font-size
+  rem: 相对单位, 相对于html根标签
+
+  => rem 一般可以用于 rem适配
+  => rem 适配的原理?
+     1. 使用 rem 作为单位 (转换问题 => 利用webpack插件, 写px自动转rem)
+        width: 10rem;
+
+     2. 动态的设置不同屏幕下的 html font-size (媒体查询, js设置 (插件 => flexible.js))
+        360px 屏幕中, html { font-size: 36px; }  盒子大小360
+        480px 屏幕中, html { font-size: 48px; }  盒子大小480
+ -->
+<div class="father">
+  <div class="box1">嘎嘎</div>
+</div>
+
+<div class="father">
+  <div class="box2">嘿嘿</div>
+</div>
+
+<div class="father">
+  <div class="box3">吼吼</div>
+</div>
+  
+</body>
+</html>

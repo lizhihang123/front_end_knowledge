@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. yield* 作用等同于 for of的遍历
+        function* test() {
+            yield "a"
+            yield "b"
+        }
+        function* test1() {
+            yield "x"
+            // 在generator函数里面调用generator函数 默认无效
+            // test()
+            // for (let v of test()) {
+            //     console.log(v);
+            // }
+            // 可以把上面的for of遍历替换为 结果一致
+            yield* test()
+            yield "y"
+        }
+        for (let v of test1()) {
+            console.log(v);
+        } // 打印 x a b y
+
+
+        // 2. 伪代码加深理解
+        // function* test() {
+        //     yield it1
+        //     yield it2
+        // }
+        // // 上面相当于下面
+        // function* test() {
+        //     for (let value of it1) {
+        //         yield value
+        //     }
+        //     for (let value of it2) {
+        //         yield value
+        //     }
+        // }
+
+
+        // 3. yield如果跟数组
+        function* test3() {
+            yield* [1, 2, 3]
+        }
+        let r = test3()
+        console.log(r.next()); // 如果用yield关键字打印的是完整的一个数组
+        console.log(r.next()); // 如果加 *这个关键字 打印的是1 和 2这个数
+    </script>
+</body>
+
+</html>

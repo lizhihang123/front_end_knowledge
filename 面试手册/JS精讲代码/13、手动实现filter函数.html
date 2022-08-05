@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>手动实现filter函数</title>
+  </head>
+  <body>
+    <script>
+      Array.prototype.filterOne = function (fn) {
+        var newArray = [];
+        for (var i = 0; i < this.length; i++) {
+          var f = fn(this[i]);
+          if (f) {
+            newArray.push(this[i]);
+          }
+        }
+
+        return newArray;
+      };
+      var arr = [1, 2, 6, 90, 230];
+      var array = arr.filterOne(function (item) {
+        return item > 60;
+      });
+      console.log(array);
+    </script>
+  </body>
+</html>

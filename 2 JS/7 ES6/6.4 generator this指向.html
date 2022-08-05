@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  generator函数的this指向
+        // 1. generator会返回一个遍历器 这个遍历器是generator函数的实例
+        //    且实例继承了generator函数身上的方法
+        function* g() { }
+        g.prototype.hello = () => {
+            return 'hi'
+        }
+        let obj = g()
+        console.log(obj instanceof g); // true 表示obj是g函数的实例
+        console.log(obj.hello()); // hi
+
+
+        // 2. 但是generator构造器不能够被当成普通的函数
+        //    函数返回的不是this指向的实例对象 而是遍历器对象 直接使用构造器会报错
+        //    
+        function* Person(name, age) {
+            // console.log(this);
+            yield this.name = name
+            yield this.age = age
+        }
+        // 报错
+        // let person = new Person('张三', '19')
+        // console.log(person.name);
+
+
+        // 3. 既可以用next方法 又可以获得正常的this？
+        //    生成空对象
+        //    使用call方法绑定generator函数内部的this
+        function* F() {
+            this.a = 1
+            yield this.b = 2
+            yield this.c = 3
+        }
+        let obj2 = {}
+        let f = F.call(obj2)
+        let r1 = f.next()
+        console.log(r1); // {value: 2, done: false}
+        let r2 = f.next()
+        console.log(r2); // {value: 3, done: false}
+        let r3 = f.next()
+        console.log(r3); // {value: undefined, done: true}
+
+
+        console.log(obj2.a); // 1
+        console.log(obj2.b); // 2
+        console.log(obj2.c); // 3
+        console.log(f); // 遍历器对象 此时已经遍历完毕 状态为closed
+
+        /*
+        上面执行过程：
+        1. let f = F.call(obj2) F内部的this绑定到obj2对象上
+        2. 调用函数 返回一个f实例对象【可以迭代的对象】
+        3. 执行三次next方法【yield表达式】
+        4. 所有内部属性绑定在obj2对象上
+        5. obj2对象成为了F的实例
+        
+        */
+
+
+
+
+    </script>
+</body>
+
+</html>

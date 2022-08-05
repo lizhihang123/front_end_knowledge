@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1 声明变量 没有 赋值
+        var a
+        console.log(a);
+        let b
+        console.log(b);
+
+        // 2 函数调用 里面没有return值
+        function fn() {
+
+        }
+        console.log(fn());
+
+        // 3 访问一个对象 没有的属性值
+        let obj = { name: 'xiaohang' }
+        console.log(obj.age);
+
+        // 4 函数有3个形参 但是只传递了2个 在里面打印了第三个
+        function fn2(p1, p2, p3) {
+            console.log(p3);
+        }
+        fn2(1, 2)
+    </script>
+</body>
+
+</html>

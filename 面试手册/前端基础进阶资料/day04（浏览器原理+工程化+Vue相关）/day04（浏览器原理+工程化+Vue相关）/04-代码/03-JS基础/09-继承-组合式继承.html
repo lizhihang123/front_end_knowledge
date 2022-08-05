@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+  // 组合继承: 两种技术的组合, 原型链技术, 借用构造函数(call)结合, 发挥二者之长, 实现继承的方式
+  // 1. 原型链技术: 改造原型链, 实现继承方法
+  //    Student.prototype = new Person()
+  // 2. 实例属性的构造过程没有得到复用, 可以用借用构造函数的方式, 实现复用
+  //    Person.call(this, name, age)
+
+  function Person (name, age) {
+    this.name = name 
+    this.age = age
+  }
+  Person.prototype.sayHi = function() {
+    console.log('会说话')
+  }
+
+  function Student (name, age, className) {
+    // 不仅要执行Person构造函数, 且要让执行构造函数时的this指向创建出来的实例stu
+    // call
+    // 1. 调用函数
+    // 2. 改变函数执行时的this指向
+    Person.call(this, name, age)
+    this.className = className
+  }
+  Student.prototype = new Person()
+
+  const stu = new Student('zs', 7, '一年级一班')
+  stu.sayHi()
+  console.log(stu)
+
+
+</script>
+  
+</body>
+</html>

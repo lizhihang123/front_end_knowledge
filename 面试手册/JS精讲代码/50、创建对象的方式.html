@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>创建对象有哪几种方式</title>
+  </head>
+  <body>
+    <script>
+      // 通过字面量的方式创建对象
+      //   var userInfo = {
+      //     userName: "zhangsan",
+      //     userAge: 20,
+      //     getUserInfo: function () {
+      //       console.log(this.userName + ":" + this.userAge);
+      //     },
+      //   };
+      //   userInfo.getUserInfo();
+      // 通过工厂模式创建对象
+      //   function createUser(userName, userAge) {
+      //     var o = new Object();
+      //     o.userName = userName;
+      //     o.userAge = userAge;
+      //     o.sayHi = function () {
+      //       console.log(this.userName + ":" + this.userAge);
+      //     };
+      //     return o;
+      //   }
+      //   var user1 = createUser("wangwu", 20);
+      //   var user2 = createUser("lisi", 21);
+
+      //通过构造函数来创建对象
+      //   function Person(userName, userAge) {
+      //     this.userName = userName;
+      //     this.userAge = userAge;
+      //     this.sayHi = function () {
+      //       console.log(this.userName + ":" + this.userAge);
+      //     };
+      //   }
+      //   var p = new Person("zhangsan", 20);
+      //   var p1 = new Person("zhangsan", 20);
+      //   p.sayHi();
+      // 通过原型模式创建对象
+      //   function Person() {}
+      //   Person.prototype.userName = "zhangsan";
+      //   Person.prototype.userAge = 20;
+      //   Person.prototype.arr = [1, 2];
+      //   Person.prototype.sayHi = function () {
+      //     console.log(this.userName + ":" + this.userAge);
+      //   };
+      //   var p1 = new Person();
+      //   console.log(p1.userName);
+      //   var p2 = new Person();
+      //   p2.userName = "lisi";
+      //   console.log(p1.userName);
+      //   p1.arr.push(3);
+      //   console.log(p1.arr);
+      //   console.log(p2.arr);
+      //   p1.sayHi();
+      //   var p2 = new Person();
+      //   console.log(p1.sayHi === p2.sayHi);
+
+      function Person(userName, userAge) {
+        this.userName = userName;
+        this.userAge = userAge;
+        this.arr = [1, 2];
+      }
+      Person.prototype.sayHi = function () {
+        return this.userName;
+      };
+      var p = new Person("zhangsan", 20);
+      var p1 = new Person("lisi", 21);
+      console.log(p.sayHi());
+      console.log(p1.sayHi());
+      console.log(p.sayHi === p1.sayHi);
+      p.arr.push(3);
+      console.log(p.arr);
+      console.log(p1.arr);
+    </script>
+  </body>
+</html>

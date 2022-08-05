@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>属性访问方式的区别</title>
+  </head>
+  <body>
+    <script>
+      // 1.使用方括号
+      //   var person = {
+      //     username: "zhangsan",
+      //   };
+      //   var myName = "username";
+      //   console.log(person[myName]);
+      // 2、可以通过数字来做属性
+      var person = {};
+      person[1] = "hello";
+      console.log(person[1]);
+    </script>
+  </body>
+</html>

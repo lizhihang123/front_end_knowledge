@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. set方法 赋值时拦截
+        // 2. 写法 
+        let obj3 = {
+            name: 'xiaohang'
+        }
+        let proxy3 = new Proxy(obj3, {
+            // obj 对象
+            // prop 拦截的属性
+            // value 拦截的值
+            set: function (obj, prop, value) {
+                if (prop === 'age') {
+                    if (!Number.isInteger(value)) {
+                        throw new Error('年龄不是整数')
+                    }
+                    if (value > 60) {
+                        throw new Error('年龄不能大于60')
+                    }
+                }
+            }
+        })
+
+        proxy3.age = 19
+        console.log(obj3);
+        // 注意这里不能写 obj.age 而是要写proxy3.age
+        // proxy.age = 61
+
+
+
+
+
+        // has可以隐藏某些属性 不被in操作符发现
+        let user = {
+            username: 'lizhihang',
+            age: '19'
+        }
+        let handler2 = {
+            has(target, key) {
+                console.log('target', target);
+                console.log('key=', key);
+                if (key[0] === 'u') {
+                    return false
+                }
+                return key in target
+            }
+        }
+        let proxy = new Proxy(user, handler2)
+        console.log('age' in proxy); // true 能够显示
+        console.log('username' in proxy); // false 被隐藏
+
+
+
+    </script>
+</body>
+
+</html>

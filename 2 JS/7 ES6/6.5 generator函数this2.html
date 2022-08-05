@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这个再练习一下
+        // 4. 将遍历器对象和实例对象变成1个。而不是像上面那样的，遍历器对象是f，实例对象是obj2
+        function* F2() {
+            this.a = 1
+            yield this.b = 2
+            yield this.c = 3
+        }
+        let f2 = F2.call(F2.prototype) // 为什么呢
+        let r1 = f2.next()
+        console.log(r1);
+        let r2 = f2.next()
+        console.log(r2);
+        let r3 = f2.next()
+        console.log(r3);
+
+        console.log(f2.a); // 1
+        console.log(f2.b); // 2
+        console.log(f2.c); // 3
+
+
+
+        function* gen() {
+            debugger
+            console.log(this); // this指向gen构造函数身上
+            this.a = 1
+            yield this.b = 2
+            yield this.c = 3
+        }
+        // 构造函数F3
+        function F3() {
+            // gen函数的调用 创建一个generator的实例 this指向gen的原型
+            debugger
+            return gen.call(gen.prototype)
+        }
+        let f3 = new F3()
+        let m1 = f3.next()
+        console.log(m1);
+        let m2 = f3.next()
+        console.log(m2);
+        let m3 = f3.next()
+        console.log(m3);
+
+        console.log(f3.a);
+        console.log(f3.b);
+        console.log(f3.c);
+
+    </script>
+</body>
+
+</html>

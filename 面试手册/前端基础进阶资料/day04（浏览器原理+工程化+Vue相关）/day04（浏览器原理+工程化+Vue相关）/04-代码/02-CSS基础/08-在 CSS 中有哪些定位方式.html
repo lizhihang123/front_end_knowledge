@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .header, .nav, .main, .footer {
+      border: 2px solid #000;
+      margin: 5px;
+    }
+    .header {
+      height: 200px;
+    }
+    .nav {
+      position: sticky;
+      /* 设置盒子, 距离浏览器的顶部边缘, 多少时, 开始吸顶 */
+      top: 10px;
+      background-color: orange;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+<!-- 
+  position: 
+    1. static; (默认)
+    2. fixed; 固定定位
+    3. absolute; 绝对定位
+    4. relative; 相对定位
+    5. sticky; 粘性定位(吸顶效果) (兼容性, 目前大部分场景, 通过js模拟效果实现的)
+ -->
+<div class="header">
+  <p>这是头部</p>
+  <p>这是头部</p>
+  <p>这是头部</p>
+</div>
+
+<div class="nav">
+  <p>导航</p>
+  <p>导航</p>
+  <p>导航</p>
+</div>
+
+<div class="main">
+  <p>我是主体1</p>
+  <p>我是主体2</p>
+  <p>我是主体3</p>
+  <p>我是主体4</p>
+  <p>我是主体5</p>
+  <p>我是主体6</p>
+  <p>我是主体7</p>
+  <p>我是主体8</p>
+  <p>我是主体9</p>
+  <p>我是主体10</p>
+  <p>我是主体11</p>
+  <p>我是主体12</p>
+  <p>我是主体13</p>
+  <p>我是主体14</p>
+  <p>我是主体15</p>
+  <p>我是主体16</p>
+  <p>我是主体17</p>
+  <p>我是主体18</p>
+  <p>我是主体19</p>
+  <p>我是主体20</p>
+  <p>我是主体21</p>
+  <p>我是主体22</p>
+  <p>我是主体23</p>
+  <p>我是主体24</p>
+  <p>我是主体25</p>
+  <p>我是主体26</p>
+  <p>我是主体27</p>
+  <p>我是主体28</p>
+  <p>我是主体29</p>
+  <p>我是主体30</p>
+  <p>我是主体30</p>
+  <p>我是主体30</p>
+  <p>我是主体30</p>
+  <p>我是主体30</p>
+  <p>我是主体30</p>
+  <p>我是主体30</p>
+  <p>我是主体30</p>
+</div>
+
+<div class="footer">
+  <p>底部</p>
+  <p>底部</p>
+  <p>底部</p>
+</div>
+  
+</body>
+</html>

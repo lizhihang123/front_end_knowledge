@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 如果你使用了一个别人提供的对象想要增加它的属性和方法名 但是可能和现有的对象的属性和方法名之间产生冲突，如果有一种机制 保证每个属性的名字都是唯一的 
+        //  =》能够从根本上防止属性名称冲突的问题
+        // 2. symbol能够解决这个问题
+        //   symbol是js的第七种数据类型 number string boolean null undefined 对象 symbol
+        //   是独一无二的，也是唯一的，可以保证对象中属性的名称的唯一
+
+
+        //  3. 通过Symbol函数来生成symbol类型的值
+        let s1 = Symbol()
+        let s2 = Symbol()
+        console.log(s1); // Symbol()
+        console.log(s2); //Symbol()
+        console.log(s1 === s2); // false
+
+
+        //   4. 通过传入字符串生成唯一的值
+        //    symbol函数的参数 只对当前Symbol结果的描述
+        let s3 = Symbol('1')
+        let s4 = Symbol('1')
+        console.log(s3); // Symbol(1)
+        console.log(s4); // Symbol(2)
+        console.log(s4 === s3); // false 发现传入的字符串不同 但是仍旧是false
+
+        //   5. symbol的应用场景
+        // 给对象添加属性 1
+        let mySymbol = Symbol()
+        let obj = {}
+        obj[mySymbol] = 'hello'
+        console.log(obj[mySymbol]); // hello
+
+        //  给对象添加属性 2
+        let mySymbol2 = Symbol()
+        let obj2 = {
+            [mySymbol2]: '123' // 加了就是symbol类型
+            // mySymbol: '123' // 没加方括号 就只是字符串
+        }
+        console.log(obj2);
+
+
+        // 给对象添加属性 3 使用Object.defineProperty添加symbol类型
+        let mySymbol3 = Symbol()
+        let obj3 = {}
+        Object.defineProperty(obj3, mySymbol3, {
+            value: '123'
+        })
+        console.log(obj3);
+
+
+        // 6. 如果通过symbol防止变量名的冲突
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // MyPromise构造函数
+        // task就是回调函数
+        function MyPromise(task) {
+            // 保存this
+            let that = this
+            // 初始状态
+            that.state = 'Pending'
+            that.value = null
+            // 成功+失败的回调函数+挂载到that上
+            that.onResolvedCallbacks = []
+            that.onRejectedCallbacks = []
+
+            function resolve(value) {
+                debugger
+                if (that.state = 'Pending') {
+                    that.state = 'Resolved'
+                    that.value = value
+                    that.onResolvedCallbacks.forEach(item => item(that.value))
+                }
+
+            }
+
+            function reject(reason) {
+                debugger
+                if (that.state = 'Pending') {
+                    // 修改状态
+                    that.state = 'Rejected'
+                    // 修改值
+                    that.value = reason
+                    // 执行失败的回调函数
+                    that.onRejectedCallbacks.forEach(item => item(that.value))
+                }
+            }
+            // 执行函数
+            try {
+                task(resolve, reject)
+            } catch (error) {
+                reject(error)
+            }
+
+        }
+
+        MyPromise.prototype.then = function (onFulfilled, onRejected) {
+            let that = this
+            // 失败的回调函数 push到数组
+            that.onRejectedCallbacks.push(onRejected)
+            that.onResolvedCallbacks.push(onFulfilled)
+        }
+        // promise实例对象
+        let promise = new MyPromise(function (resolve, reject) {
+            setTimeout(function () {
+                let num = Math.random(1, 10) * 10
+                if (num > 3) {
+                    resolve('成功了')
+                } else {
+                    reject('失败了')
+                }
+            }, 1000)
+        })
+
+    </script>
+</body>
+
+</html>

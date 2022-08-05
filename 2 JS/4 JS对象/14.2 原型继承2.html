@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 父类里面的属性 共用
+        // 子类和子类的属性之间会共享
+        function Person() {
+            this.emotion = ['吃饭', '睡觉']
+            this.sleep = function () {
+                console.log('sleep');
+            }
+        }
+        Person.prototype.sing = function () {
+            console.log('I can sing');
+        }
+        function Student(id) {
+            this.id = id
+        }
+        Student.prototype = new Person()
+        Student.prototype = Person.prototype
+        Student.prototype.study = function () {
+            console.log('好好学习');
+        }
+        Student.prototype.constructor = Student
+        let stu1 = new Student('123')
+        stu1.sing()
+        console.log(stu1.emotion); // ['吃饭','睡觉']
+        stu1.emotion.push('学习')
+        let stu2 = new Student('34')
+        console.log(stu2.emotion); // ['吃饭','睡觉','学习']
+        console.log(stu1.emotion === stu2.emotion); // true
+        console.log(stu1.__proto__ === stu2.__proto__); // true
+        console.log(stu2.__proto__);
+        console.log(stu1.__proto__);
+        stu1.study()
+    </script>
+</body>
+
+</html>

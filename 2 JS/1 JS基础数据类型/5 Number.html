@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Number函数
+        // 1. 数字 会按照对应的进制进行转换
+        console.log(Number(10));// 10
+        console.log(Number(010));// 8
+        console.log(Number(0x10));// 16
+
+        // 2. Boolean 类型的值
+        console.log(Number(true));// 1
+        console.log(Number(false));// 0
+
+        // 3. null - 0
+        console.log(Number(null)); // 0
+
+        // 4. undefined - NaN
+        console.log(Number(undefined)); // NaN
+
+        // 5.1 字符串 只包含数字 前面有0会忽略0
+        console.log(Number('21')); // 21
+        console.log(Number('012')); // 12 字符串是八进制 -》不按照八进制进行转化 前置的0倍忽略掉 就跟十进制一样了
+        console.log(Number('0x10')); // 16 十六进制 -》对应的十进制数
+
+        // 5.2 浮点数浮点数本身的值 + 去掉前面的0
+        console.log(Number('0.01')); // 0.01 
+        console.log(Number('00.11')); // 0.11 多余的0会被去除掉
+
+        // 5.3 字符串为空 就转换为0 字符串有很多个空格也转化为0
+        console.log(Number('')); // 0
+        console.log(Number('   ')); // 0
+
+        // 5.4 字符串包含不适合以上五种情况的 都是NaN
+        console.log(Number('123ab')); // NaN
+        console.log(Number('123++')); // NaN
+
+
+        // 6 转化对象
+        const obj = {
+            name: 123
+        }
+        console.log(Number(obj)); // NaN
+        const obj2 = {
+            name: 123,
+            valueOf: function () {
+                return this.name
+            }
+        }
+
+        const obj3 = {
+            name: 123,
+            toString: function () {
+                return this.name
+            }
+        }
+        console.log(Number(obj2)); // 123
+        console.log(Number(obj3)); // 123
+
+
+
+    </script>
+</body>
+
+</html>

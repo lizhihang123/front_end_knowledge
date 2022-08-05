@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事件委托</title>
+  </head>
+  <body>
+    <ul>
+      <li>a1</li>
+      <li>a2</li>
+      <li>a3</li>
+      <li>a4</li>
+      <li>a5</li>
+    </ul>
+    <button id="btn">添加</button>
+    <script>
+      //   function bindEvent() {
+      //     console.log("aa");
+      //     var children = document.querySelectorAll("li");
+      //     for (var i = 0; i < children.length; i++) {
+      //       children[i].addEventListener("click", function () {
+      //         console.log(this.innerHTML);
+      //       });
+      //     }
+      //   }
+      var ul = document.querySelector("ul");
+      ul.addEventListener("click", function (e) {
+        var target = e.target;
+        if (target.nodeName.toLowerCase() === "li") {
+          console.log(target.innerHTML);
+        }
+      });
+
+      var btn = document.getElementById("btn");
+
+      btn.addEventListener("click", function () {
+        var newLi = document.createElement("li");
+        var newText = document.createTextNode("a6");
+        newLi.appendChild(newText);
+        ul.appendChild(newLi);
+        // bindEvent();
+      });
+    </script>
+  </body>
+</html>

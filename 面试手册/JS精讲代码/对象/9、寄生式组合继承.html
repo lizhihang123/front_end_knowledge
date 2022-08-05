@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>寄生式组合继承</title>
+  </head>
+  <body>
+    <script>
+      function Person(age) {
+        this.emotion = ["吃饭", "睡觉", "学习"];
+        this.age = age;
+        this.study = function () {
+          console.log(this.id + "号同学要努力学习");
+        };
+      }
+      Person.prototype.run = function () {
+        console.log(this.id + "号学生正在跑步,年龄是:" + this.age);
+      };
+      Person.prototype.study = function () {
+        console.log(this.id);
+      };
+      function Student(id, age) {
+        Person.call(this, age);
+        this.id = id;
+      }
+      function Super() {}
+      Super.prototype = Person.prototype;
+      Student.prototype = new Super();
+      Student.prototype.constructor = Student;
+      var student = new Student(1001, 21);
+      student.run();
+      console.log("爱好是:", student.emotion);
+      student.study();
+    </script>
+  </body>
+</html>

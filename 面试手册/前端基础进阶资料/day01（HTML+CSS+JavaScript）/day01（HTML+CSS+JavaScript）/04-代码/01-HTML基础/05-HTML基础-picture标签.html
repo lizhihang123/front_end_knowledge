@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     * {
+       margin: 0;
+       padding: 0;
+     }
+     img {
+       width: 100%;
+     }
+  </style>
+</head>
+<body>
+
+  <!-- 图像的容器, 最终会将匹配到的图片路径, 使用显示 -->
+  <!-- picture设置, 在什么范围内使用什么图 (图片响应式处理, 小屏幕使用小图, 大屏幕使用大图)-->
+  <picture>
+    <!-- >= 640 生效 -->
+    <source srcset="640.png" media="(min-width: 640px)">
+    <!-- >= 480 生效 -->
+    <source srcset="480.png" media="(min-width: 480px)">
+    <!-- 默认 -->
+    <img src="320.png" alt="">
+  </picture>
+  
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dom性能问题</title>
+  </head>
+  <body>
+    <ul id="list"></ul>
+    <script>
+      // 1、对DOM查询操作进行缓存
+      //   const pList = document.getElementsByTagName("p");
+      //   const length = pList.length;
+      //   for (let i = 0; i < length; i++) {}
+      // 2、将频繁操作修改改为一次性操作。
+      const listNode = document.getElementById("list");
+      //   for (let i = 0; i < 10; i++) {
+      //     const li = document.createElement("li");
+      //     li.innerHTML = `item${i}`;
+      //     listNode.appendChild(li);
+      //   }
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < 10; i++) {
+        const li = document.createElement("li");
+        li.innerHTML = `item${i}`;
+        frag.appendChild(li);
+      }
+      listNode.appendChild(frag);
+    </script>
+  </body>
+</html>

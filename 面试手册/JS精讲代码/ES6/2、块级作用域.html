@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>为什么需要块级作用域</title>
+  </head>
+  <body>
+    <script>
+      let tmp = new Date();
+      function show() {
+        console.log("tmp=", tmp);
+        if (false) {
+          let tmp = "hello world";
+        }
+      }
+      show();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let set = new Set()
+        // 1. add 添加值
+        set.add(1)
+        set.add(2)
+        set.add(3)
+        console.log(set); // 包含 1 2 3
+        set.add(3) // 并不能添加成功
+
+        // 2. delete 删除成员
+        console.log(set.delete(1)); // 删除成功返回true
+        console.log(set.delete(4)); // false 不存在这个值
+
+        // 3. has(val) 判断是否有这个成员
+        console.log(set.has(2)); // true
+
+        // 4. clear清空
+        set.clear()
+        console.log(set); // 空的set
+
+        // 5. Array.from(set)
+        set.add(1)
+        set.add(2)
+        set.add(3)
+        // 用新的变量接受
+        let arr = Array.from(set)
+        console.log(arr); // [1, 2, 3]
+
+        // 6 set.size 表示个数
+        console.log(set.size); // 3
+
+
+
+        // --------------------------
+        // WeakSet
+    </script>
+</body>
+
+</html>

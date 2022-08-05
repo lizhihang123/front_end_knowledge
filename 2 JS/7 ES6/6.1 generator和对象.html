@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 1 借助 generator函数 + yield关键字 能够使得 for of 遍历对象
+        let username = {
+            name: '李治航',
+            age: 18
+        }
+        function* test(obj) {
+            debugger
+            let keys = Reflect.ownKeys(obj)
+            // Reflect.ownKeys(obj) vs Object.keys() 
+            // 后者 如果对象的某个属性的 enurmerable属性设置为false 就不能遍历
+            // Reflect.ownKeys(obj) 不管是不是可以枚举的对象 都可以遍历
+
+            for (let key of keys) {
+                // 每次返回一个 【属性， 对象】
+                yield [key, obj[key]]
+            }
+        }
+        for (let item of test(username)) {
+            debugger
+            console.log(item);
+        }
+    </script>
+</body>
+
+</html>

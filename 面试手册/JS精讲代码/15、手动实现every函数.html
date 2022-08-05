@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>手动实现every函数</title>
+  </head>
+  <body>
+    <script>
+      Array.prototype.everyTest = function (fn) {
+        var f = true;
+        for (var i = 0; i < this.length; i++) {
+          f = fn(this[i]);
+          if (!f) {
+            return false;
+          }
+        }
+        return f;
+      };
+      var arr = [11, 21, 61, 91, 23];
+      let result = arr.everyTest(function (item) {
+        return item > 10;
+      });
+      console.log(result);
+    </script>
+  </body>
+</html>

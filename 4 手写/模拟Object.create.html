@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /* 
+        
+        Object.create()方法
+            1 创建新的对象
+            2 让新的对象的prototype属性指向传入的对象
+        */
+        function create(obj) {
+            function F() {
+                this.name = '123'
+            }
+            F.prototype = obj
+            return new F()
+        }
+        let obj2 = {
+            age: '123'
+        }
+        let obj = create(obj2)
+        console.log(obj.age); // 123
+
+        let obj3 = Object.create(obj2)
+        console.log(obj3.age); // 能够通过打印，访问到obj2身上的name属性
+    </script>
+</body>
+
+</html>

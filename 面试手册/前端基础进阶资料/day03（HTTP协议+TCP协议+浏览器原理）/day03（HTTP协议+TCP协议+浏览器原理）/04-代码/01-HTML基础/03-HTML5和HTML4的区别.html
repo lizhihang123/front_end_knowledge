@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    1. 语法更标准, html5 一套标准
+    2. 新增一些标签元素: 语义化, 功能性
+       header main footer nav aside section ...
+       video canvas ...
+    3. 新增一些input type属性值: date(日历), email(自带表单校验), url(自带表单校验), ...
+    4. 新增的全域属性  contenteditable, draggable hidden
+       contenteditable 让内容可编辑
+       draggable 可拖拽, 必须 draggable="true"  还有对应的 js 拖拽api
+    5. 新增api: 本地存储, 地理定位, Canvas绘图, 拖拽API, 即时通信WebSocket
+   -->
+   <input type="date">
+
+   <form action="">
+     邮箱: <input type="email"> <br>
+     地址: <input type="url"> <br>
+     <input type="submit">
+   </form>
+
+   <div contenteditable>
+     <p>张三</p>
+     <p>李四</p>
+   </div>
+
+   <div draggable="true">我是内容</div>
+
+</body>
+</html>

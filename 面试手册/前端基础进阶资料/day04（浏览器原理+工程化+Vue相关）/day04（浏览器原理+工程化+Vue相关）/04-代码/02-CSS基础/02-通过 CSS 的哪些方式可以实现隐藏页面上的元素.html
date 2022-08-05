@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: pink;
+      transition: 1s;
+    }
+    body:hover div {
+      /* transform 变换只是一个视觉效果, 不会影响其他盒子的布局 */
+      transform: scale(0, 0);
+    }
+    h1 {
+      position: absolute;
+      left: -99999px;
+      top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 
+    隐藏页面元素:
+      1. opacity: 0; 透明度为0, 盒子占位置
+      2. visibility: hidden; 盒子占位置
+      3. display: none; 盒子不占位置
+      4. transform: scale(0, 0)
+   -->
+   <!-- 提升SEO, 做搜索引擎优化 -->
+  <h1>京东</h1>
+  <h2>嘎嘎</h2>
+  <div>我是盒子</div>
+  <h2>嘎嘎</h2>
+  
+</body>
+</html>

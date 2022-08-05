@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 复杂 掰断钥匙
+
+        // let a = {
+        //     count: 1
+        // }
+        // function test(x) {
+        //     x = {
+        //         count: 20
+        //     }
+        //     console.log(x); // 20
+        // }
+        // test(a)
+        // console.log(a); // 1
+
+
+        // 易错 
+        // var foo = 1;
+        // function fn() {
+        //   foo = 10
+        // }
+        // fn()
+        // console.log(foo);
+
+        // 相当于
+        // function fn() {}
+        // var foo;
+        // foo = 1;
+        // 执行fn() foo = 10 没有声明 向外面去寻找
+        // 类似之前说的 如果是var a = b = c 这里b和c是全局变量 
+        // foo也是全局的变量 因此也是向外赋值
+
+        // 易错
+        var foo = 1;
+        function fn () {
+          var foo;
+          foo = 10;
+        }
+        fn()
+        console.log(foo); // 1
+        // 为什么是1不是10
+        // 相当于
+        // var foo
+        // function fn () {
+        //  var foo
+        //  foo = 10
+        // }
+        // foo = 1
+        // console.log(foo)
+        // 因为内部声明了 因此打印的是 内部改变的是局部变量 外面访问不到
+    </script>
+</body>
+</html>

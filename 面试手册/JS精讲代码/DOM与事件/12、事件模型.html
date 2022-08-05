@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>介绍一下三种事件模型</title>
+  </head>
+  <body>
+    <button id="btn">单击</button>
+    <script>
+      // 关于JavaScript的事件模型有三类，分别是DOM0，DOM2,DOM3
+      var btn = document.getElementById("btn");
+      // btn.onclick = function () {
+      //   console.log("123");
+      // };
+      // function fn() {
+      //   console.log("hello");
+      // }
+
+      //       element.attachEvent('on'+ eventName,handler) // 添加事件处理程序
+      // element.detachEvent('on'+ eventName,handler) //  删除事件处理程序
+
+      // addEventListener(eventName,handler,useCapture) //添加事件处理程序
+      // removeEventListener(eventName,handler,useCapture) // 删除事件处理程序
+      // btn.addEventListener("click", function () {
+      //   console.log("abc");
+      // });
+      // btn.addEventListener("click", function () {
+      //   console.log("123");
+      // });
+      // var handle=function(){
+      //   console.log('abc')
+      // }
+      // btn.addEventListener('click',handle)
+      // btn.removeEventListener('click',handle)
+      // btn.addEventListener('click',function(){
+      //   console.log('abc')
+      // })
+      // btn.removeEventListener('click',function(){})
+
+      // btn.attachEvent("click", function () {
+      //   console.log("hello");
+      // });
+      // btn.attachEvent("click", function () {
+      //   console.log("nihao");
+      // }); //nihao,hello
+
+      var EventHandler = {
+        addEventHandler: function (ele, type, handler) {
+          if (ele.addEventListener) {
+            ele.addEventListener(type, handler);
+          } else if (ele.attachEvent) {
+            ele.attachEvent("on" + type, handler);
+          } else {
+            ele["on" + type] = handler;
+          }
+        },
+        removEventHanlder: function (ele, type, handler) {
+          if (ele.removeEventListener) {
+            ele.removeEventListener(type, handler);
+          } else if (ele.detachEvent) {
+            ele.detachEvent("on" + type, handler);
+          } else {
+            ele["on" + type] = null;
+          }
+        },
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Symbol应用场景</title>
+  </head>
+  <body>
+    <script>
+      //   let mySymbol = Symbol();
+      //   let obj = {
+      //     [mySymbol]: "nihao",
+      //   };
+
+      //   //   obj[mySymbol] = "hello";
+      //   console.log(obj[mySymbol]);
+
+      //   let mySymbol = Symbol();
+      //   let obj = {};
+      //   Object.defineProperty(obj, mySymbol, {
+      //     value: "你好",
+      //   });
+      //   console.log(obj[mySymbol]);
+
+      let obj = {
+        name: "zs",
+        age: 18,
+      };
+      let mySymbol = Symbol("b1");
+      function test1(obj) {
+        obj[mySymbol] = 21;
+      }
+      let mySymbol2 = Symbol("b2");
+      function test2(obj) {
+        obj[mySymbol2] = 20;
+      }
+      test1(obj);
+      test2(obj);
+      console.log(obj);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+  // function Person (name, age) {
+  //   this.name = name
+  //   this.age = age
+  // }
+  // Person.prototype.sayHi = function() {}
+  // Person.prototype.jump = function() {}
+
+
+  // 人类
+  class Person {
+    // 类似于之前的构造函数
+    constructor (name, age) {
+      this.name = name
+      this.age = age
+    }
+    // 底层 => 这两个方法, 就是添加到 Person.prototype 上
+    sayHi () {
+      console.log('你好哇')
+    }
+    jump () {
+      console.log('会跳')
+    }
+  }
+  const p = new Person('zs', 18)
+  console.log(p)
+
+
+  // 老师类
+  class Teacher extends Person {
+    // 如果没有提供构造函数, 在继承时, 会默认自动借调父构造函数
+    constructor (name, age, lesson) {
+      // 你写的构造函数中, 没有借调父构造函数
+      super(name, age) // 触发调用父构造函数, 进行实例的属性初始化
+      this.lesson = lesson
+    }
+    teach () {
+      console.log('会教书')
+    }
+  }
+  const teacher = new Teacher('zs', 18, '教体育')
+  console.log(teacher)
+
+
+
+</script>
+  
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数组中元素累加处理</title>
+  </head>
+  <body>
+    <script>
+      // arr.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])
+      //   var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+      //   var sum = arr.reduce(function (accumulator, currentValue) {
+      //     return accumulator + currentValue;
+      //   }, 0);
+      //   console.log(sum);
+      // 统计出数组中每个元素出现的次数。
+      // key-value
+      var fun = function (arr) {
+        return arr.reduce(function (accumulator, currentValue) {
+          accumulator[currentValue]
+            ? accumulator[currentValue]++
+            : (accumulator[currentValue] = 1);
+          return accumulator;
+        }, {});
+      };
+      console.log(fun([1, 2, 2, 3, 3, 3, 5, 6]));
+    </script>
+  </body>
+</html>

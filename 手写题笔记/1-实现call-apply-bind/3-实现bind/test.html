@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>示例</title>
+</head>
+<body>
+<script>
+/*  function setDetails(name,color){
+    this.name = name
+    this.color = color
+    console.log(123);
+  }
+  let cat1 = {}
+  let setDetails2 = setDetails.bind(cat1)
+  setDetails2('大毛','橘色')*/
+
+/*function setDetails(name,color,weight){
+  this.name = name
+  this.color = color
+}
+let cat1 = {}
+let setDetails2 = setDetails.bind(cat1,'大毛','橘色')
+setDetails2('橘色')*/
+
+function Cat(name, color) {
+  this.name = name
+  this.color = color
+}
+Cat.prototype.miao = function(){console.log('喵~！')}
+let cat1 = {}
+let CatBind = Cat.bind(cat1)
+let cat2 = new CatBind('大毛','橘色')
+cat2.miao()
+</script>
+</body>
+</html>

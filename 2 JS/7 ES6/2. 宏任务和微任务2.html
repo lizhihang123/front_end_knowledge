@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(1); // 宏任务1
+
+        setTimeout(function () {
+            console.log(2); // 宏任务2的内容
+        }, 0)
+
+        const p = new Promise((resolve, reject) => {
+            console.log('嘎嘎'); // 这里都属于宏任务1的内容
+            resolve(1000)
+            console.log('嘿嘿');
+        })
+        p.then(data => {
+            console.log(data); // 微任务1的内容
+        })
+
+        console.log(3); // 宏任务1
+        // 1 '嘎嘎' '嘿嘿' 3 1000 2
+    </script>
+</body>
+</html>

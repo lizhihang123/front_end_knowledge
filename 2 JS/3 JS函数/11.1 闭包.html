@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>标题</title>
+</head>
+
+<body>
+    <script>
+        const arr = [1, 2, 3]
+        for (var i = 0; i < arr.length; i++) {
+            // setTimeout(function () {
+            //     console.log(arr[i]);
+            // }) // 打印都是undefined
+
+            // 闭包
+            (function (index) {
+                setTimeout(function () {
+                    console.log(arr[index]);
+                }) // 1 2 3
+            })(i)
+
+            // 用let
+
+            // 用赋值 that
+
+        }
+    </script>
+</body>
+
+</html>

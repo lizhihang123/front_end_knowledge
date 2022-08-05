@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>对象解构赋值</title>
+  </head>
+  <body>
+    <script>
+      //   let { userName: name, userAge: age } = {
+      //     userName: "zhangsan",
+      //     userAge: 18,
+      //   };
+      //   console.log(name, age);
+      //默认解构
+      //   let obj = {
+      //     name: "zhangsan",
+      //     age: 26,
+      //   };
+      //   let { name, age = 20 } = obj;
+      //   console.log(name, age);
+      //嵌套结构对象的解构
+      //   let obj = {
+      //     arr: [
+      //       "hello",
+      //       {
+      //         msg: "world",
+      //       },
+      //     ],
+      //   };
+      //   let {
+      //     arr: [str, { msg }],
+      //   } = obj;
+      //   console.log(str, msg);
+      let obj = {
+        local: {
+          start: {
+            x: 20,
+            y: 30,
+          },
+        },
+      };
+      let {
+        local: {
+          start: { x, y },
+        },
+      } = obj;
+      console.log(x, y);
+    </script>
+  </body>
+</html>

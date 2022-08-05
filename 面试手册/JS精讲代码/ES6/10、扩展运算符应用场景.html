@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>扩展运算符应用场景</title>
+  </head>
+  <body>
+    <script>
+      // 1、代替数组中的apply方法
+      //   let arr = [12, 3, 56, 78];
+      //   let max = arr[0];
+      //   for (let index = 0; index < arr.length; index++) {
+      //     if (arr[index] > max) {
+      //       max = arr[index];
+      //     }
+      //   }
+      //   console.log(max);
+
+      //   console.log(Math.max.apply(null, arr));
+      //   console.log(Math.max(...arr));
+      // 2、方便参数传递
+      //   function test(num1, num2) {
+      //     return num1 + num2;
+      //   }
+      //   let arr = [23, 56];
+      //   console.log(test(...arr)); //23,56
+
+      //rest参数
+      function test(array, ...items) {
+        array.push(...items);
+        console.log(array);
+      }
+      let array = [23, 56];
+      test(array, 90, 67, 88);
+    </script>
+  </body>
+</html>

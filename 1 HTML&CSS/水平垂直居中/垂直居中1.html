@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        父盒子 display: table;
+        子盒子
+        display: table-cell;
+        vertical-align: middle;
+        */
+        .father {
+            display: table;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        .son {
+            display: table-cell;
+            vertical-align: middle;
+            /* 宽度高度 将会失效 多一个单元格 就会平分父盒子 */
+            width: 50px;
+            height: 50px;
+            /* background: red; */
+            background-color: red;
+            border: 1px solid black;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son">
+            123
+        </div>
+        <div class="son">
+            456
+        </div>
+    </div>
+</body>
+</html>

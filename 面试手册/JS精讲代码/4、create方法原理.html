@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   const person = {
+      //     userName: "zhangsan",
+      //     sanyHello: function () {
+      //       console.log("hello" + this.userName);
+      //     },
+      //   };
+      //   var student = Object.create(person);
+      Object.create = function (proto, propertiesObject) {
+        //省略了其它判断操作
+        function F() {}
+        F.prototype = proto;
+        if (propertiesObject) {
+          Object.defineProperties(F, propertiesObject);
+        } //defineProperties的主要作用就是添加或者是修改对象的属性值。
+        var f = new F();
+        return f;
+        f.__proto__ === F.prototype;
+        // return new F();
+      };
+      var obj = { x: 12, y: 13 };
+      var test = Object.create(obj);
+      console.log(test.x);
+      console.log(test.__proto__.x);
+    </script>
+  </body>
+</html>

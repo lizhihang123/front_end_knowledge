@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .father {
+      height: 600px;
+      background-color: pink;
+    }
+    .left {
+      height: 400px;
+      width: 100px;
+      background-color: red;
+      float: left;
+    }
+    .right {
+      height: 400px;
+      width: 100px;
+      background-color: red;
+      float: right;
+    }
+    .center {
+      height: 400px;
+      background-color: orange;
+      overflow: hidden;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 
+    BFC: 块级格式化上下文, 是一块独立的渲染区域 (触发了BFC, 这块区域就是一块独立的渲染区域)
+    会将处于BFC的内容 和 处于BFC外的内容 隔离
+
+    触发BFC的方式:
+      1. position: absolute/fixed
+      2. float: left / right;   浮动的元素多个放在一起, 会互相隔开
+      3. overflow: 非visible hidden/auto/scroll
+      4. display: inline-block
+
+    BFC应用:
+      1. 处理块级元素, 上下margin合并的问题
+      2. 处理margin塌陷
+      3. 清除浮动
+      4. 实现自适应布局
+         左边固定, 右边自适应
+            flex => display: flex; 左边定宽, 右边 flex: 1;
+            浮动 => 先浮动占位置, 再中间盒子overflow: hidden
+            定位 => 先定位, 再设置padding即可
+   -->
+   <div class="father">
+      <div class="left"></div>
+      <div class="right"></div>
+
+      <div class="center"></div>
+   </div>
+  
+</body>
+</html>

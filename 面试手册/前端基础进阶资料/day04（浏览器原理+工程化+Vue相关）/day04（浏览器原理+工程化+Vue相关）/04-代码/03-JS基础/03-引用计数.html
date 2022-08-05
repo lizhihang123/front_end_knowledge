@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+
+    // let person = { // person变量, 存储着对象的引用, 引用计数+1  // 1
+    //   age: 22,
+    //   name: 'ifcode'
+    // }
+
+    // let p = person // p变量, 存储者对象的引用, 引用计数+1  // 2 
+    // person = 1 // person中存1了, 引用计数-1 // 1
+
+    // p = null // p中存null了, 引用计数-1   // 0, 没有任何变量存储着对象空间的引用, 这块空间就会被释放
+
+    // -----------------------------------------------------------------------------------
+    function cycle() {
+      let o1 = {}
+      let o2 = {}
+      o1.a = o2
+      o2.a = o1 
+      return "Cycle reference!"
+    }
+    cycle()
+
+    // 标记清除法:
+    // 从js根部(全局对象), 出发, 能够访问到的对象, 普通变量, 函数等, 都是需要用的, 不会释放
+    // 但是如果从js根部, 无法访问到, 无法触及 (谁都找不到这块空间), 这块空间就是垃圾, 需要被回收
+
+
+  </script>
+
+</body>
+
+</html>

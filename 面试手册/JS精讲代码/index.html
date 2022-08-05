@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Object Function Array Date
+      //  1.引用数据类型是通过new关键字创建的
+      // 2.赋值给变量，实际上是赋值的内存地址
+      // 3、引用数据类型比较的是内存的地址，而基本数据类型比较的是数值。
+      function Person(userName, userAge) {
+        // console.log(this);
+        // var Person = {};
+        this.userName = userName;
+        this.age = userAge;
+        // 如果没有添加return 默认返回的是this
+        // return Person;
+      }
+      Person.prototype.address = "";
+      //   console.log(new Person("zhangsan", 20));
+      var person = new Person("zhangsan", 20);
+
+      // new 操作符主要做了三件事。
+      //  第一件事：var person={}
+      //第二件事：person.__proto__=Person.prototype
+      // 第三件事：Person.call(person)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现apply</title>
+</head>
+<body>
+<script>
+  function setDetails(name,color) {
+    this.name = name
+    this.color = color
+  }
+  Function.prototype.apply2 = function (context,args) {
+    function mySymbol(obj){
+      let unique = (Math.random()+ new Date())
+      if(obj.hasOwnProperty(unique)){
+        return mySymbol(obj)
+      }else {
+        return unique
+      }
+    }
+    let uniqueName = mySymbol(context)
+    let arr = []
+    if(args){
+      for (let i = 0; i <args.length; i++) {
+        arr.push('args[' + i + ']')
+      }
+    }
+
+
+    context[uniqueName] = this
+
+    let result = eval('context[uniqueName](' + arr.join(',') + ')')
+
+
+    //删除临时方法
+    delete context[uniqueName]
+    return result
+  }
+  let cat1 = {}
+  let result = setDetails.apply2(cat1,['大毛','橘色'])
+</script>
+</body>
+</html>

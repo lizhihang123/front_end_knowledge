@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+  // 每个组件都需要有自己独立的数据, 互相不影响的, 每次初始化组件, 会去执行data函数, 
+  // 都会将 data 函数的返回值, 作为组件的数据对象
+  // data () {
+  //   return {
+  //     desc: '不错'
+  //   }
+  // }
+
+
+
+  // 一个函数, 有着一个函数作用域, 在函数内声明的变量, 外部无法直接访问的
+  // 全局作用域, 局部作用域
+
+  // let num = 100
+
+  // function fn () {
+  //   let age = 18
+  //   let obj = {}
+  //   return obj
+  // }
+  // const obj1 = fn()
+  // const obj2 = fn()
+  // console.log(obj1 === obj2)
+
+  // console.log(age)
+  // -------------------------------------------------------
+
+  let num = 100
+  
+  function fn () {
+    let age = 18
+
+    function inner () {
+      // 函数内访问变量时, 优先使用自己内部声明的变量
+      // 如果没有, 尝试访问外部函数作用域的变量
+      // 如果外部函数作用域也没有这个变量, 继续往外找...
+      // 直到找到全局, 如果全局都没有, 就报错
+      let count = 100
+      console.log(count)
+      console.log(age)
+      console.log(num)
+    }
+    inner()
+  }
+
+  fn()
+
+</script>
+  
+</body>
+</html>

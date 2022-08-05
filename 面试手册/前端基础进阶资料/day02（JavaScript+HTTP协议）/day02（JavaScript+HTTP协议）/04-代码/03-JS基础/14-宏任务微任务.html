@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+  // js是单线程的, 如果遇到了异步的内容, 交给浏览器处理 (等待, 监听)
+  // 1. 宏任务
+  //  主线程要执行的代码 => 宏任务
+  //  定时器/延时器 => 宏任务
+  //  注意: 只有上一个宏任务执行完, 才会考虑执行下一个宏任务
+  // 2. 微任务
+  //  promise的.then和.catch中需要执行的代码, 微任务会在当前宏任务执行完,
+  //  在下一个宏任务开始前, 执行
+
+  console.log(1) // 宏任务1的内容
+  console.log(1) // 宏任务1的内容
+
+  setTimeout(function() {
+    console.log(2) // 宏任务2的内容
+    console.log(2) // 宏任务2的内容
+    console.log(2) // 宏任务2的内容
+  }, 0)
+
+  setTimeout(function() {
+    console.log(4) // 宏任务3的内容
+    console.log(4) // 宏任务3的内容
+    console.log(4) // 宏任务3的内容
+  }, 0)
+
+  console.log(3) // 宏任务1的内容
+
+
+</script>
+  
+</body>
+</html>

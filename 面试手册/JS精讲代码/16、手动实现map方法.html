@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>手动实现map方法</title>
+  </head>
+  <body>
+    <script>
+      Array.prototype.mapTest = function (fn) {
+        var newArray = [];
+        for (var i = 0; i < this.length; i++) {
+          var f = fn(this[i], i, this);
+          newArray.push(f);
+        }
+        return newArray;
+      };
+      var arr = [11, 21, 61, 91, 23];
+      var result = arr.mapTest(function (element, index, array) {
+        return element * element;
+      });
+      console.log(result);
+    </script>
+  </body>
+</html>

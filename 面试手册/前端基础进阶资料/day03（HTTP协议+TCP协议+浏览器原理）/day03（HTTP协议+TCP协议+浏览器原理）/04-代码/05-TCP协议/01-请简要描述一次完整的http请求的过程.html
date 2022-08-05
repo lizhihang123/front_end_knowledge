@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+<script>
+
+  // 浏览器中, 输入地址: www.baidu.com, 到最后用户在浏览器中看到完整的页面, 
+  // 中间发生了什么事情? 做了什么处理? (简述一次完整的http服务的过程, 底层就是tcp协议)
+
+  // 1. 输入www.baidu.com, 回车后, 需要先进行DNS解析, 得到IP地址
+  //    可以在cmd中ping www.baidu.com  112.80.248.75
+
+  // 2. 根据IP地址, 找到服务器, 开始建立TCP连接, 三次握手
+
+  // 3. 浏览器端发送 http请求, 服务器端进行响应 index.html
+
+  // 4. 浏览器解析 index.html, 加载 index.html 中需要加载的其他一些资源(图片, css, js)
+  //    ...
+
+  // 5. 浏览器完成页面的解析渲染
+
+  // 6. http服务完成, 释放关闭TCP连接, 四次挥手
+
+  // 强化认知:
+  // 1. DNS解析, 将域名 => ip地址
+  // 2. 建立连接 => 三次握手 (双方确认)
+  //    (1) 服务器啊, 我是浏览器, 我要和你建立连接
+  //    (2) 服务器看到了, 好的, 那么建立连接吧, 我准备好了, 你确定吗?
+  //    (3) 浏览器: 是的, 我确定!
+  //    连接就建立成功
+  //    三次握手 = 连接的发起 + 双方的确认
+
+  // 3. 断开连接 => 四次挥手 (客气挽留)
+  //    (1) 一方A发起断开连接的消息
+  //    (2) 另一方B会确认收到断开的需求, 但是会要求等一等, 确认是否数据传输完毕
+  //    (3) B当确认完之后, 确实数据都传完了, 告知A, 连接可以断开了
+  //    (4) A确认收到消息, 告知B, 我要走了
+
+</script>
+</body>
+</html>

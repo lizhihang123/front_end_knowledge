@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<script>
+  // 构造函数
+  // function Person (name, age) {
+  //   this.name = name
+  //   this.age = age
+
+  //   // 通用的一些方法, 如果直接添加给实例, 可以是可以, 但是浪费内存
+  //   // 所有创建的实例, 可以公用同一个sayHi方法
+  //   this.sayHi = function() {
+  //     console.log('你好哇')
+  //   }
+  // }
+  // let p1 = new Person('zs', 18)
+  // let p2 = new Person('ls', 30)
+  // console.log(p1.sayHi === p2.sayHi)
+
+  
+  // 构造函数  实例  原型
+  function Person (name, age) {
+    this.name = name
+    this.age = age
+  }
+  // 添加到原型上的方法, 可以被所有的实例访问到
+  Person.prototype.sayHi = function() {
+    console.log('你好哇')
+  }
+  let p1 = new Person('zs', 18)
+  let p2 = new Person('ls', 30)
+
+  console.log(p1.sayHi === p2.sayHi)
+
+
+
+</script>
+  
+</body>
+</html>

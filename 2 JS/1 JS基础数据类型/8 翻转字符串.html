@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. 法一 转化为数组 再reverse
+        function strReverse(a) {
+            return a.split('').reverse().join('')
+        }
+        console.log(strReverse('abcde'));
+
+        // 2. Array.from()
+        function strReverse2(a) {
+            var arr = Array.from(a)
+            return arr.reverse().join('')
+        }
+        console.log(strReverse2('abcde'));
+
+        // 3. 利用字符串本身携带的charAt
+        function strReverse3(a) {
+            let result = '';
+            for (let i = a.length - 1; i >= 0; i--) {
+                result += a.charAt(i)
+            }
+            return result
+        }
+        console.log(strReverse3('abcde'));
+
+        // 4. 不借助api 如何实现？
+    </script>
+</body>
+</html>

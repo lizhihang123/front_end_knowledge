@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTMLCollection对象与NodeList对象区别</title>
+  </head>
+  <body>
+    <!-- <div id="container">
+      <div class="bar"></div>
+      <div class="foo">
+        <div class="inner"></div>
+      </div>
+    </div> -->
+    <form id="form1">
+      用户名<input type="text" id="userName" /> 用户密码<input
+        type="password"
+        id="password"
+        name="userPwd"
+      />
+    </form>
+    <script>
+      //   var form1Children = document.getElementById("form1").children;
+      //   var form1 = document.getElementById("form1");
+      //   console.log(form1Children.length);
+      //   var input = document.createElement("input");
+      //   form1.appendChild(input);
+      //   console.log(form1Children.length);
+
+      //   console.log(form1.namedItem("userPwd"));
+      //   var main = document.getElementById("container").children;
+      //   console.log(main);
+      //   console.log(main.item(0));
+      //   console.log(main.item(6));
+
+      //相同点：
+      // 1、都是类似数组的结构，都有length
+      // 2、item
+      // 3、在DOM树上添加或者是删除元素，都会立即反应到HTMLCollection与NodeList
+      //不同点
+      //1、HTMLCollection中有namedItem，而NodeList中没有
+      // 2、NodeList存储的是元素,节点的集合
+      var form1Children = document.getElementById("form1").children;
+      console.log(form1Children);
+      var formNodes = document.getElementById("form1").childNodes;
+      console.log(formNodes);
+    </script>
+  </body>
+</html>

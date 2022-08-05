@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Function构造函数问题</title>
+  </head>
+  <body>
+    <script>
+      //   var s = new Function("num1", "num2", "return a+b");
+      var a = 12;
+      function fun() {
+        var a = 11;
+        return new Function("return a");
+      }
+      console.log(fun()());
+    </script>
+  </body>
+</html>

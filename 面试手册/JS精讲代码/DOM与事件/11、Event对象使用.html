@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event对象使用</title>
+  </head>
+  <body>
+    <button id="btn">单击</button>
+    <a href="https://www.baidu.com" id="a1">百度</a>
+    <script>
+      var eventFn = {
+        event: function (e) {
+          return e || window.event;
+        },
+      };
+      //   var btn = document.getElementById("btn");
+      //   btn.addEventListener("click", function (event) {
+      //     // console.log(eventFn.event(event));
+      //     // var winEvent = eventFn.event(window.event);
+      //     // console.log(winEvent);
+      //     // console.log(winEvent === event);
+      //     var event = eventFn.event(event);
+      //     console.log(event.target);
+      //   });
+
+      var a1 = document.getElementById("a1");
+      a1.addEventListener("click", function (event) {
+        var event = eventFn.event(event);
+        event.preventDefault();
+        alert("你点击了链接");
+      });
+    </script>
+  </body>
+</html>

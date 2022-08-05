@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>怎样判断一个变量是数组还是对象</title>
+  </head>
+  <body>
+    <script>
+      // instanceof运算符
+      //   var a = [1, 2, 3];
+      //   console.log(typeof a);
+      //   console.log(a instanceof Array); // true
+      //   console.log(a instanceof Object); // true
+      //   function getType(o) {
+      //     if (o instanceof Array) {
+      //       return "Array";
+      //     } else if (o instanceof Object) {
+      //       return "Object";
+      //     } else {
+      //       return "传递的参数不是Array也不是Object";
+      //     }
+      //   }
+      //   console.log(getType(a));
+
+      // 通过构造函数进行判断
+      //   var a = [1, 2, 3];
+      //   //   console.log(a.__proto__.constructor === Array);
+      //   function getType(o) {
+      //     var constructor = o.__proto__.constructor;
+      //     if (constructor === Array) {
+      //       return "Array";
+      //     } else if (constructor === Object) {
+      //       return "Object";
+      //     } else {
+      //       return "传递的参数不是Array也不是Object";
+      //     }
+      //   }
+      //   console.log(getType(a));
+
+      //通过toString( )函数来判断
+      //   var a = [1, 2, 3];
+      //   var obj = { userName: "zhangsan" };
+      //   console.log(Object.prototype.toString.call(a));
+      //   console.log(Object.prototype.toString.call(obj));
+      //   console.log(a.toString());
+
+      //   var a = [1, 2, 3];
+      //   console.log(a.toString());
+      //   delete Array.prototype.toString;
+      //   console.log(a.toString());
+
+      //   通过Array.isArray( )函数来判断
+      //   var a = [1, 2, 3];
+      //   var obj = { userName: "zhangsan" };
+      //   console.log(Array.isArray(a));
+      //   console.log(Array.isArray(obj));
+
+      //   let obj = {};
+      //   obj.__proto__ = Array.prototype;
+      //   console.log(obj instanceof Array);
+      //   console.log(Array.isArray(obj));
+
+      //   if (!Array.isArray) {
+      //     Array.isArray = function (args) {
+      //       return Object.prototype.toString.call(args) === "[object Array]";
+      //     };
+      //   }
+
+      function Person(userName) {
+        this.userName = userName;
+      }
+      const p = new Person("zhangsan");
+      console.log(Object.prototype.toString.call(p));
+      console.log(p instanceof Person);
+    </script>
+  </body>
+</html>

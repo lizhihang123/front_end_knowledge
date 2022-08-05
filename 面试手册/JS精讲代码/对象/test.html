@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 给构造函数传递selector,context两个参数
+      var $ = (jQuery = function (selector, context) {
+        return new jQuery.fn.init(selector, context); //调用原型中的`init方法`
+      });
+      jQuery.fn = jQuery.prototype = {
+        init: function (selector, context) {
+          selector = selector || document; //初始化选择器，默认值为document
+          context = context || document; // 初始化上下文对象，默认值为document
+          if (selector.nodeType) {
+            // 如果是DOM元素
+            // 把该DOM元素赋值给实例对象
+            this[0] = selector;
+            this.length = 1; //表示包含了1个元素
+            this.context = selector; //重新设置上下文对象
+            return this; //返回当前实例
+          }
+          if (typeof selector === "string") {
+            //如果选择器是一个字符串
+            var e = context.getElementsByTagName(selector); // 获取指定名称的元素
+            //通过for循环将所有元素存储到当前的实例中
+            for (var i = 0; i < e.length; i++) {
+              this[i] = e[i];
+            }
+            this.length = e.length; //存储元素的个数
+            this.context = context; //保存上下文对象
+            return this; //返回当前的实例
+          } else {
+            this.length = 0;
+            this.context = context;
+            return this;
+          }
+          //   this.length = 0;
+          //   console.log("init==", this);
+          //   this._size = function () {
+          //     return this.length;
+          //   };
+          //   return this;
+        },
+        // html: function (val) {
+        //   jQuery.each(
+        //     this,
+        //     function (val) {
+        //       this.innerHTML = val;
+        //     },
+        //     val
+        //   );
+        // },
+
+        // version: "6.1.1",
+        // length: 1,
+        // size: function () {
+        //   return this.length;
+        // },
+      };
+      jQuery.fn.init.prototype = jQuery.fn;
+
+      //提供each扩展方法
+      jQuery.each = function (object, callback, args) {
+        console.log("args=", args);
+        //通过for循环的方式来遍历jQuery对象中的每个DOM元素。
+        for (var i = 0; i < object.length; i++) {
+          // 在每个DOM元素上调用回调函数
+          callback.call(object[i], args);
+        }
+
+        return object; //返回jQuery对象。
+      };
+
+      // jQuery.extend = jQuery.fn.extend = function (obj) {
+      //   for (var prop in obj) {
+      //     this[prop] = obj[prop];
+      //   }
+      //   return this;
+      // };
+      jQuery.extend = jQuery.fn.extend = function () {
+        var destination = arguments[0],
+          source = arguments[1];
+
+        //如果存在两个参数，并且都是对象
+        if (typeof destination === "object" && typeof source === "object") {
+          //把第二个对象合并到第一个参数对象中，并返回合并后的对象
+          for (var property in source) {
+            destination[property] = source[property];
+          }
+
+          return destination;
+        } else {
+          for (var prop in destination) {
+            this[prop] = destination[prop];
+          }
+          return this;
+        }
+      };
+      jQuery.fn.extend({
+        html: function (val) {
+          jQuery.each(
+            this,
+            function (val) {
+              this.innerHTML = val;
+            },
+            val
+          );
+        },
+      });
+      jQuery.fn.extend({
+        fontStyle: function (obj) {
+          var defaults = {
+            color: "#ccc",
+            size: "16px",
+          };
+          //如果有参数，会覆盖掉默认的参数
+          defaults = jQuery.extend(defaults, obj || {});
+          //为每个DOM元素执设置样式.
+          jQuery.each(this, function () {
+            this.style.color = defaults.color;
+            this.style.fontSize = defaults.size;
+          });
+        },
+      });
+      window.onload = function () {
+        // console.log($("div").length);
+        $("div").html("<h2>hello<h2>");
+        $("p").fontStyle();
+      };
+      //   console.log($().version);
+      //   console.log($()._size()); // 0
+      //   console.log($().size()); // 0
+      //   var jq = new $();
+      //   console.log(jq.version); // 6.1.1
+      //   console.log(jq.size());
+    </script>
+    <div></div>
+    <div></div>
+    <p>学习前端</p>
+    <p>学习前端</p>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>标题</title>
+</head>
+
+<body>
+    <script>
+        // 打印的是?
+        function print(fn) {
+            var a = 200
+            fn()
+        }
+        var a = 100
+        function fn() {
+            console.log(a);
+        }
+        print(fn)
+        // 100 闭包查找 => 从函数定义的地方开始查找 不是执行的地方开始查找
+    </script>
+</body>
+
+</html>

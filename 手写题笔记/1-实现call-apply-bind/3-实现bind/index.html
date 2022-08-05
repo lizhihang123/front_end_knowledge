@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现bind1</title>
+</head>
+<body>
+<script>
+
+
+  Function.prototype.bind2 = function (context) {
+    let originFn = this
+    return function () {
+      originFn.apply(context)
+    }
+  }
+
+  function setDetails(name, color) {
+    this.name = name
+    this.color = color
+    console.log(123);
+  }
+
+  let cat1 = {}
+  let setDetails2 = setDetails.bind2(cat1)
+  setDetails2()
+</script>
+</body>
+</html>

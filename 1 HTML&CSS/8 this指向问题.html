@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>标题</title>
+</head>
+
+<body>
+    <script>
+        function fn() {
+            console.log(1);
+        }
+        const obj = {
+            name: '123'
+        }
+        obj.fn = fn
+        obj.fn()
+        /*
+            1 this指向
+        */
+    </script>
+</body>
+
+</html>

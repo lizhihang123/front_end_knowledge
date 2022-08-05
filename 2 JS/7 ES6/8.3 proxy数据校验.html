@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name, age) {
+                debugger
+                this.name = name
+                this.age = age
+                // 因为返回的是validator函数的调用
+                // validator函数返回的是一个proxy对象
+                // 因此new Person实例 就是一个proxy对象 person.name = 'lizhihang' 就会触发proxy对象的set方法 经过校验函数
+                return validator(this, personValidator)
+            }
+        }
+        const personValidator = {
+            name(value) {
+                debugger
+                return typeof value === 'string'
+            },
+            age(value) {
+                return value >= 18 && typeof value === 'number'
+            }
+        }
+
+        function validator(target, validator) {
+            return new Proxy(target, {
+                _validator: validator,
+                set(target, key, value) {
+                    debugger
+                    if (target.hasOwnProperty(key)) {
+                        let v = this._validator[key]
+                        if (v(value)) {
+                            return Reflect.set(target, key, value)
+                        } else {
+                            throw new Error(`不能给 属性${key}设置值`)
+                        }
+                    } else {
+                        throw new Error(`${key}属性不存在`)
+                    }
+                },
+            })
+        }
+        let person = new Person()
+        person.name = 'lizhihang'
+        console.log(person);
+    </script>
+</body>
+
+</html>

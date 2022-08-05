@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>手动实现reduce方法</title>
+  </head>
+  <body>
+    <script>
+      Array.prototype.reduceTest = function (fn, initValue) {
+        var hasInitValue = initValue !== undefined;
+        var value = hasInitValue ? initValue : this[0];
+        for (var i = hasInitValue ? 0 : 1, len = this.length; i < len; i++) {
+          value = fn(value, this[i], i, this);
+        }
+        return value;
+      };
+      var arr = [11, 21, 61, 91, 23];
+      var sum = arr.reduceTest(function (accumulator, currentValue) {
+        return accumulator + currentValue;
+      }, 0);
+      console.log(sum);
+    </script>
+  </body>
+</html>

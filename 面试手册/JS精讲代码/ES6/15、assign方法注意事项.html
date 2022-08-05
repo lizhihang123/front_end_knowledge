@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>assign注意事项</title>
+  </head>
+  <body>
+    <script>
+      //1、如果目标对象与源对象有同名属性，那么后面的属性会覆盖前面的属性。
+      //   let target = {
+      //     a: 1,
+      //     b: 2,
+      //   };
+      //   let source = {
+      //     b: 3,
+      //     d: 4,
+      //   };
+      //   Object.assign(target, source);
+      //   console.log(target);
+      //2、不可枚举的属性不会被复制。
+      let obj = {};
+      Object.defineProperty(obj, "b", {
+        enumerable: false,
+        value: "world",
+      });
+      let obj1 = {
+        a: "hello",
+      };
+      Object.assign(obj1, obj);
+      console.log(obj1);
+    </script>
+  </body>
+</html>

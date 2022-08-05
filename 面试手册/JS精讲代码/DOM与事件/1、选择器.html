@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>选择器</title>
+  </head>
+  <body>
+    <!-- <div>
+      <h4>标题内容</h4>
+      <span>span标签内容</span>
+      <p>
+        段落内容
+        <span>段落中的第一个span标签</span><br />
+        <span>段落中的第二个span标签</span>
+      </p>
+    </div> -->
+
+    <div id="container">
+      <div class="bar"></div>
+      <div class="foo">
+        <div class="inner"></div>
+      </div>
+    </div>
+    <script>
+      var div1 = document.querySelectorAll("#container div");
+      console.log(div1);
+      //   console.log(document.querySelectorAll("span"));
+      //   console.log(document.querySelector("p span").innerHTML);
+      //   console.log(document.querySelector("h4,span").innerHTML);
+
+      //   var ele = document.querySelector("p");
+      //   console.log(ele.querySelector("div span").innerHTML);
+
+      //    getElementById():通过id来查找对应的元素。
+
+      // getElementsByClassName():通过类名来查找对应的元素，返回的是一个HTMLCollection对象。
+
+      // getElementsByName():通过元素的name属性查找对应的元素，返回的是NodeList对象，它是一个类似于数组的结构。
+
+      // getElementsByTagName(): 通过标签的名称来查找对应的元素，返回的是HTMLCollection对象。
+
+      // querySelector：该选择器返回的是在基准元素下，选择器匹配到的元素集合中的第一个元素。该选择器的参数接收的是一个css选择器
+    </script>
+  </body>
+</html>

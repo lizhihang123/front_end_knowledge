@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>标题</title>
+</head>
+
+<body>
+    <script>
+        var scope = 'global scope'
+        function checkscope() {
+            var scope = 'local scope'
+            function fn() {
+                console.log(scope);
+                return scope
+            }
+            return fn()
+        }
+        checkscope()
+
+        var scope = 'global scope'
+        function checkscope2() {
+            var scope = 'local scope'
+            function fn() {
+                console.log(scope);
+                return scope
+            }
+            return fn
+        }
+        checkscope2()()
+    </script>
+</body>
+
+</html>

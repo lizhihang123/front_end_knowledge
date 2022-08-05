@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(age) {
+            this.emotion = ['吃饭', '睡觉']
+            this.age = age
+        }
+        Person.prototype.sayHi = function () {
+            console.log(1);
+        }
+        function Student(id, age) {
+            Person.call(this, age)
+            this.id = id
+        }
+
+        let stu1 = new Student('001', 19)
+        console.log(stu1);
+        stu1.emotion.push('打豆豆')
+        let stu2 = new Student('002', 20)
+        console.log(stu1.emotion === stu2.emotion); // false
+        console.log(stu2);
+        stu1.sayHi()
+    </script>
+</body>
+
+</html>

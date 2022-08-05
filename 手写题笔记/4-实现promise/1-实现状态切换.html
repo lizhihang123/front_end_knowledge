@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实现状态切换</title>
+</head>
+<body>
+<script>
+    const PENDING = 'pending'
+    const FULFILLED = 'fulfilled'
+    const REJECTED = 'rejected'
+    class Promise2{
+      constructor(executor){
+        this.status = 'pending'
+        this.value = null
+        this.reason = null
+        const resolve = (value) => {
+          if(this.status === PENDING){
+            this.status = FULFILLED
+            this.value = value
+          }
+        }
+        const reject = (reason) => {
+          if(this.status === PENDING){
+            this.status = REJECTED
+            this.reason = reason
+          }
+        }
+        executor(resolve, reject)
+      }
+
+    }
+
+
+    let p = new Promise2((resolve,reject)=>{
+
+      setTimeout(()=>{
+        //resolve(1)
+        reject(2)
+      },5000)
+    })
+
+
+</script>
+</body>
+</html>
