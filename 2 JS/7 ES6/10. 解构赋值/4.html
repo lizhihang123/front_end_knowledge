@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 4 只解构数组里面的部分值 其余用逗号跳过
+        const arr = ['蛋同学', '鸡同学', '鸭同学', '鹅同学', '牛同学', '羊同学']
+        const [, , num3, , num5] = arr
+        console.log(`第三名：${num3}，第五名: ${num5}`); // 第三名：鸭同学，第五名: 牛同学
+    </script>
+</body>
+
+</html>

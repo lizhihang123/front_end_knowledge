@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="txtInput">
+    <p id="extP">123</p>
+    <script>
+        // 0 获取dom元素
+        let iInput = document.getElementById('txtInput')
+        let iP = document.getElementById('extP')
+        // 1 handler方法和obj对象
+        let obj = {
+            text: ''
+        }
+        let handler = {
+            get(target, key, value, receiver) {
+                console.log(`访问到属性值是${target[key]}`);
+                // 打印值
+                Reflect.get(target, key, value, receiver)
+                console.log(obj);
+                console.log(p2);
+                return
+            },
+            set(target, key, value, receiver) {
+                debugger
+                iInput.value = value
+                iP.innerHTML = value
+                console.log(`监测到值修改为${value}`);
+                // 修改值
+                Reflect.set(target, key, value, receiver)
+                console.log(obj);
+                console.log(p2);
+                return
+            },
+            defineProperty(target, key, value, receiver) {
+                debugger
+                console.log(target, key, value, receiver);
+                // 如果加了这个拦截器 那么必须要返回一个Reflect.defineProperty(target, key, value) 
+                // 不然就会设置值失败
+                // Reflect.defineProperty 就是为对象来定义属性
+                return Reflect.defineProperty(target, key, value)
+            }
+        }
+        // 2 new Proxy对象
+        let p2 = new Proxy(obj, handler)
+        iInput.addEventListener('keyup', function (e) {
+            p2.text = e.target.value
+        })
+
+
+    </script>
+</body>
+
+</html>

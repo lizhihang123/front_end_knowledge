@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 13 对象解构 取名
+        const obj = {
+            id: '1',
+            name: '蛋老师',
+            age: 18,
+            gender: '男',
+            email: '1111'
+        }
+        const { name: eggName, email: eggEmail } = obj
+        console.log(eggName, eggEmail); // 蛋老师 1111
+    </script>
+</body>
+
+</html>

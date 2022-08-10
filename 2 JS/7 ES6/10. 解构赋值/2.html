@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 2. 解构赋值 能够进行变量的排序
+        let num1 = 30
+        let num2 = 10
+        let num3 = 40
+        let num4 = 20
+        console.log(num1, num2, num3, num4);
+        [num1, num2, num3, num4] = [num2, num4, num1, num3]
+        console.log(`第一: ${num1}, 第二：${num2}, 第三：{num3}, 第四：{num4}`);
+    </script>
+</body>
+
+</html>

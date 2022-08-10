@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 12 从对象里面解构出特定的属性 解构时 利用已有数组里面的值 作为属性 注意[arr[0]]这个写法 最外层有一个方括号(对象的键只能是字符串，加[]表示计算，结果是字符串，不加就会报错)
+        const obj = {
+            id: '1',
+            name: '蛋老师',
+            age: 18,
+            gender: '男',
+            email: '1111'
+        }
+        const arr = ['name', 'email']
+        const { [arr[0]]: eggName, [arr[1]]: eggEmail } = obj
+        console.log(eggName, eggEmail); // 蛋老师 1111
+    </script>
+</body>
+
+</html>

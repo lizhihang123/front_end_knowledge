@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 20 map 只解构里面的值出来
+        let map = new Map()
+        map.set('name1', '蛋老师')
+        map.set('name2', '猪老师')
+        map.set('name3', '鸡老师')
+
+        for (let [, value] of map) {
+            console.log(value); // 蛋老师 猪老师 鸡老师 只打印里面的值 不打印里面的键
+        }
+    </script>
+</body>
+
+</html>

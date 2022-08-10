@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let foo = {
+        //     bar: 1
+        // }
+        // console.log(foo.bar); // 1
+        // foo.__proto__.bar = 2
+
+        // console.log(foo.bar); // 1
+
+        // let zoo = {}
+        // console.log(zoo.bar); // zoo的bar属性竟然是bar
+
+        /*
+            1. 虽然修改foo对象的proto对象
+            但是foo是Object构造函数的实例
+            实际上修改的是Object.prorotype属性
+            因此zoo即便是空对象 打印的也是2
+        
+
+            2. 原型链污染：如果攻击者修改了一个对象的原型，就可以影响所有和这个对象来自同一个类、父祖类的对象
+        */
+
+
+        // 对象merge
+        // target[key] = source[key] 如果key是proto 是不是就可以被原型链污染呢？
+        function merge(target, source) {
+            for (let key in source) {
+                debugger
+                if (key in source && key in target) {
+                    merge(target[key], source[key])
+                } else {
+                    target[key] = source[key]
+                }
+            }
+        }
+
+        // let o1 = {}
+        // let o2 = {
+        //     a: 3, '__proto__': {
+        //         b: 4
+        //     }
+        // }
+        // merge(o1, o2)
+        // console.log(o1.a, o2.b);
+
+        // let o3 = {}
+        // console.log(o3.b);
+        // o3并没有被污染。我们猜测，上的o1对象的原型proto被修改，是否会影响所有的对象的父类和祖类的prototype指向
+        // 结果：proto此时已经被默认解析为对象的proto，你拿到的是[a, b] =》 所有你没有修改proto的指向，所以没有原型链污染
+
+        let o1 = {}
+        let o2 = JSON.parse('{"a": 1, "__proto__": {"b": 2}}')
+        merge(o1, o2)
+        console.log(o1.a, o2.b);
+        let o3 = {}
+        console.log(o3.b); // 此时已经是2
+        // 因为JSON解析时，__proto__ 会被认为是真正的键名，而不代表原型，所以在遍历o2的时候，就是在修改__proto__原型
+        // merge是最常见的 最有可能被原型链攻击，很多常见的库都存在这个问题
+        // https://www.leavesongs.com/PENETRATION/javascript-prototype-pollution-attack.html#0x01-prototype__proto__
+        // https://blog.csdn.net/u010378896/article/details/125153618?ops_request_misc=&request_id=&biz_id=102&utm_term=json-big%E6%BA%90%E7%A0%81&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-125153618.142^v39^pc_rank_34,185^v2^control&spm=1018.2226.3001.4187
+    </script>
+</body>
+
+</html>

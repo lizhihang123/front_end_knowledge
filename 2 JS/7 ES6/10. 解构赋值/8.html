@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 8 能够解构数组里面特定的几个数据 其余的用一个参数【剩余参数 保存起来】
+        const arr = ['蛋同学', '鸡同学', '鸭同学', '鹅同学', '牛同学', '羊同学']
+        const [num1, num2, num3, ...restNum] = arr
+        console.log(num1, num2, num3, restNum); // 蛋同学 鸡同学 鸭同学 ['鹅同学', '牛同学', '羊同学']
+    </script>
+</body>
+
+</html>

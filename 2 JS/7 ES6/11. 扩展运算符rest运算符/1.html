@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 扩展运算符 也是... 三个.
+        // 他和剩余参数，都是三个点，但是 “扩展运算符”是“剩余参数”的逆运算
+        // 作用是将一个数组转化为用逗号分割的参数序列，主要用于函数调用的场景
+        // 1 合并数组
+        const arr1 = [1, 2, 3]
+        const arr2 = [4, 5, 6]
+        let arr3 = [...arr1, ...arr2]
+        console.log(arr3); // [1, 2, 3, 4, 5, 6]
+
+        // vs传统 concat方法
+        let arr4 = [].concat(arr1, arr2)
+        console.log(arr4); // [1, 2, 3, 4, 5, 6]
+    </script>
+</body>
+
+</html>

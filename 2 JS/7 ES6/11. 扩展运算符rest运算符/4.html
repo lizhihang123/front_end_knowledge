@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 3 函数调用 能够把数组的参数更好的传递到函数里面去
+        function test(num1, num2) {
+            console.log(num1, num2); // 1 2 
+            return num1 + num2
+        }
+
+        let array = [1, 2]
+        console.log(test(...array)); // 3
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 补充一个数组解构的
+        let arr = [
+            { name: '123', age: 456 },
+            [1, 2],
+            7
+        ]
+        let [user, xuHao, num] = arr
+        console.log(user, xuHao, num); // {} [] 7
+
+        let [{ name, age }, [num1, num2], num3] = arr
+        console.log(name, age, num1, num2, num3); // 123 456 1 2 7
+    </script>
+</body>
+
+</html>

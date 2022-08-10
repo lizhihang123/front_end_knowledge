@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 10 对象解构 已有的一个变量 根据对象里面的数据 改值
+        const obj = {
+            id: '1',
+            name: '蛋老师',
+            age: 18,
+            gender: '男',
+            email: '1111'
+        }
+        // let 后面最好加个分号 不然格式有误
+        let gender = '女';
+        ({ gender } = obj)
+        console.log(gender);
+    </script>
+</body>
+
+</html>

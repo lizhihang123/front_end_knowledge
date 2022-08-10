@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 3 代替apply方法
+        // ES5 要把一个数组 push到另一个数组 要借助apply
+        let arr1 = [1, 2, 3]
+        let arr2 = [4, 5, 6]
+        Array.prototype.push.apply(arr1, arr2)
+        console.log(arr1); // [1, 2, 3, 4, 5, 6]
+
+    </script>
+</body>
+
+</html>

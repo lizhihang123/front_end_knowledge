@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 23 从正则表达式中解构值出来
+        const str = '再见了886爱你20'
+        const arrReg = /(\D+)(\d+)(\D+)(\d+)/.exec(str)
+        const { 1: bye, 3: loveYou } = arrReg
+        console.log(bye, loveYou); // 再见了 爱你
+    </script>
+</body>
+
+</html>

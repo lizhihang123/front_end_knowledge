@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 6 能够给解构不到的值 添加默认值
+        const arr = ['蛋同学', '鸡同学', '鸭同学', '鹅同学', '牛同学', '羊同学']
+        let [, , num3, , num5, , num7 = '鹿同学'] = arr
+        console.log(num3, num5, num7); // 鸭同学 牛同学 鹿同学
+    </script>
+</body>
+
+</html>

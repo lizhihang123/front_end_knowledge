@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 函数的参数是个对象 对象里面的参数也可以用默认值
+        function Fn({ x = 3, y = 4 } = {}) {
+            console.log(x, y);
+            return x + y
+        }
+        console.log(Fn({ x: 5 })) // 9
+        console.log(Fn()) // 7
+    </script>
+</body>
+
+</html>

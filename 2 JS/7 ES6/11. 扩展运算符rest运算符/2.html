@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 2 求数组的最大值的方法 下面第一种求 很麻烦
+        // js不提供求数组的最大值的方法 之前要么用for循环，要么用Math对象的max结合apply方法，注意max方法里面的参数只能是参数的序列
+        // 代替apply方法
+        let arr2 = [1, 2, 4, 5]
+        let max = arr2[0]
+        for (let i = 1; i < arr2.length; i++) {
+            if (arr2[i] > max) {
+                max = arr2[i]
+            }
+        }
+        console.log(max); // 5
+
+        // 可以用apply方法
+        console.log(Math.max.apply(null, arr2)); // 5
+
+        // 上面还是很麻烦 下面最简单
+        console.log(Math.max(...arr2)); // 5
+    </script>
+</body>
+
+</html>

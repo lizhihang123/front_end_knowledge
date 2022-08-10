@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 17 从数组里面解构出一个个对象的属性name和age
+        const arr = [
+            { name: '蛋老师', age: 18 },
+            { name: '鸡老师', age: 28 },
+            { name: '鸭老师', age: 38 },
+        ]
+        arr.forEach(({ name, age }) => {
+            console.log(`姓名：${name} 年龄${age}`);
+        })
+    </script>
+</body>
+
+</html>

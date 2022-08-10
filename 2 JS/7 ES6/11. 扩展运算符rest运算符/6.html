@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 4 函数调用 传递很多个参数时
+        function test(arr1, ...arr2) {
+            console.log(arr1, arr2); // [1, 2] [19, 20, 21]
+        }
+
+        let array = [1, 2]
+        console.log(test(array, 19, 20, 21));
+
+    </script>
+</body>
+
+</html>

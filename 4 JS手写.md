@@ -604,3 +604,64 @@ class AA {
 Number转化对象时 先调用 valueOf() 获取返回值，判断返回值能否转化为Number类型
 
 如果不能，调用对象的toString()方法获取返回值，并且判断是否能够转化为Number类型，如果不能 返回NaN
+
+
+
+
+
+# 4. call apply bind
+
+call
+
+```js
+// 1 判断传入的参数是否为函数
+// 2 判断传入上下文对象是否存在 如果不存在 设置为window
+// 3 判断传入的参数 截取第一个参数后的所有参数
+// 4 将函数作为上下文对象的一个属性
+// 5 使用上下文对象来调用这个方法 并保存返回结果
+// 6 删除刚才新增的属性
+// 7 返回结果
+Function.prototype.myCall = function (context) {
+    // context一般是传入来修改this指向的
+    debugger
+    // 1 判断传入的参数是否为函数
+    // this是函数对象实例
+    if (typeof this !== 'function') {
+        console.error('type error');
+    }
+
+    // 2 判断传入上下文对象是否存在 如果不存在 设置为window
+    context = context || window
+
+    // 3 判断传入的参数 截取第一个参数后的所有参数
+    /* 
+      为什么是slice(1) 是取1及后面的值
+    */
+    let args = [...arguments].slice(1)
+
+    // 4 将函数作为上下文对象的一个属性
+    /*   
+      为什么要用context添加fn属性，值为this
+      为了让context这个对象来执行函数 里面打印的this就是修改后的实例 
+      call修改this要指向context
+    */
+    context.fn = this
+
+    // 5. 使用上下文对象来调用这个方法 并保存返回结果 this就是修改后的context的了
+    let result = context.fn(...args)
+
+    // 6. 删除刚才新增的属性
+    delete context.fn
+    // 7 返回结果
+    return result
+}
+
+function setId(id) {
+    console.log(this);
+    console.log(id);
+    return id
+}
+let obj = {
+    name: '123'
+}
+setId.myCall(obj, 111)

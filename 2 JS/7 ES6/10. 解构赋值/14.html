@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 14 对象解构 剔除掉一部分不要的属性
+        const obj = {
+            id: '1',
+            name: '蛋老师',
+            age: 18,
+            gender: '男',
+            email: '1111'
+        }
+        const { id, age, ...resObj } = obj
+        console.log(resObj); // {email: "1111", gender: "男", name: "蛋老师"}
+    </script>
+</body>
+
+</html>

@@ -535,11 +535,11 @@ flex布局：
 ### 1.14 清除浮动的几种方式
 
 ```js
-1. 定高法
-2. 额外标签法
+1. 定高法：给父元素设置高度
+2. 额外标签法：在子元素的最后添加一个div，设置clear:both属性；如果一个页面有很多地方 有父元素 要添加这个盒子和属性 - 不必要的标签
 3. overflow: hidden； 溢出隐藏法 触发BFC，如果有些地方有tab，有下级的菜单要显示出来 就会看不见
-4. 单伪元素法
-5. 双伪元素法
+4. 单伪元素法：设置伪元素，content+display block+clear both
+5. 双伪元素法:before和after都设置content+display: block;after设置clear:both
 ```
 
 
