@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 6 将字符串转化为真正的数据
+        console.log([...'hell']); // ['h', 'e', 'l', 'l']
+
+        // 此外，扩展运算符能够正确的识别32位的unicode字符
+        console.log('x\uD83D\uDE80y'); // x🚀y
+        console.log('x\u{D83D}\u{DE80}y'.length); // 4
+        // 
+        console.log([...'x\uD83D\uDE80y'].length); // 3
+
+        // 凡是设计到32位unicode字符的函数都有这个问题，最好都用扩展运算符
+        let str = 'x\uD83D\uDE80y'
+        console.log(str.split('').reverse().join('')); // 此时翻转会出现乱码
+        console.log([...str].reverse().join('')); // 能够成功进行转移
+
+
+
+    </script>
+</body>
+
+</html>

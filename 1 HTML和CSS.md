@@ -487,17 +487,24 @@ flex布局：
            自适应布局
                 flex：左右都设置定宽，中间设置flex1
                 float： 左右的盒子都飘起来 中间设置overflow: hidden
-                position: 左右都设置定位，设置左右的padding就好了
+                position: 左右都设置定位，中间的盒子设置左右的padding就好了
+           普通元素存在：
+           1. margin 外边距合并 
+           2. 内边距塌陷， 
+           3. 非浮动元素 覆盖浮动元素的位置 
+           4. 浮动元素不被父元素计算高度
         3. 如何触发BFC
-            position: absolute/fixed
-            float：left right
+            position: absolute/fixed 不为static 或者是 relative
+            float：left right 不为none就可以
             overflow: 非visible都可以  hidden scroll auto
-            display：inline-block
+            display：inline-block; table-cell;table-caption
 ```
 
 >联想问题：
 >
 >1. 圣杯布局/ 双飞翼布局怎么写
+>1. 清除浮动
+>1. 外边距盒子塌陷的问题
 
 
 

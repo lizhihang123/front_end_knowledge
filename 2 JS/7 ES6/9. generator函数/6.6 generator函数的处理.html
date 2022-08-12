@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #img {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">点击更换图片</button>
+    <img src="./images/2.png" alt="" id="img">
+    <script>
+        // 以前换图片的一种方式
+        let button = document.getElementById('btn')
+        let img = document.getElementById('img')
+        let flag = 0
+        // button.onclick = function () {
+        //     // 将img标签的src属性值 换成另外一张图片的地址
+        //     if (flag === 0) {
+        //         img.src = 'images/2.png'
+        //         flag = 1
+        //     } else {
+        //         img.src = 'images/1.png'
+        //         flag = 0
+        //     }
+        // }
+
+        // 使用generator函数更换图片的方式
+        let it = f(0)
+        btn.onclick = function () {
+            debugger
+            it.next()
+        }
+        function* f(flag) {
+            // 为什么用while 循环 为了一直有效
+            while (true) {
+                debugger
+                img.src = 'images/1.png'
+                yield flag
+                debugger // 这里也要放一个debugger 才能够走下来
+                img.src = 'images/2.png'
+                yield flag
+            }
+        }
+
+    </script>
+</body>
+
+</html>

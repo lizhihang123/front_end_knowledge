@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="name">123</div>
+    <div class="name">123</div>
+    <script>
+        // 7 实现了Iterator接口的对象
+        //   扩展运算符内部调用的就是Iterator的接口【有这个接口 表示可以进行for …… of 遍历】
+        //   某个数据结构 只要有Iterator接口，就可以用扩展运算符进行展开
+        const nodelist = document.querySelectorAll('.name')
+        console.log(nodelist);
+        // nodelist不是一个真正的数组 是类似数组的对象 里面有Iterator接口 可以用扩展运算符展开
+        for (let item of nodelist) {
+            console.log(item);
+        }
+
+
+        // 下面的ArrayLike是一个类数组的对象 但是没有部署Iterator接口 扩展运算符就会报错
+        const ArrayLike = {
+            '0': 'a',
+            '1': 'b',
+            '2': 'c',
+            length: 3
+        }
+        // for (let item of ArrayLike) {
+        //     console.log(item); // ArrayLike is not iterable
+        // }
+        // console.log(...ArrayLike); // Found non-callable @@iterator
+    </script>
+</body>
+
+</html>

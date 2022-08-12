@@ -16,6 +16,8 @@
         let arr2 = [4, 5, 6]
         Array.prototype.push.apply(arr1, arr2)
         console.log(arr1); // [1, 2, 3, 4, 5, 6]
+        // 下面更加方便
+        Array.prototype.push(...arr1, ...arr2)
 
     </script>
 </body>

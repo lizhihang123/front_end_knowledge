@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // bind函数的使用
+        function add(a, b) {
+            // console.log(this); // 打印的是sub函数
+            return a + b
+        }
+        function sub(a, b) {
+            return a - b
+        }
+        console.log(add.bind(sub, 1, 2)()); // 3
+        console.log(add.bind(sub,)(1, 2)); // 3 这样写也是ok的 bind返回的还是一个函数 需要再次调用
+    </script>
+</body>
+
+</html>

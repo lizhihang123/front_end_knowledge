@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 4 剩余参数 只能放在函数的最后一个位置 不能放在其他位置
+        // function fn(a, ...b, c) {
+
+        // }
+        // 上面这样写就会报错
+        function fn(a, ...b) {
+            console.log(b); // [2, 3, 4]
+        }
+        fn(1, 2, 3, 4)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            当执行 generator it.next() 显示 generator is already running是什么意思
+        */
+        function* main() {
+            debugger
+            let result = yield request('http://xxx.com.api')
+            debugger
+            let resp = JSON.parse(result)
+            console.log(resp.value);
+        }
+        function request(url) {
+            makeAjaxCall(url, function (response) {
+                debugger
+                it.next(response)
+            })
+        }
+        function makeAjaxCall(url, callBack) {
+            debugger
+            callBack(1)
+        }
+        let it = main()
+        it.next()
+    </script>
+</body>
+
+</html>

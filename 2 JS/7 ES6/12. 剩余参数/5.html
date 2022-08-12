@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 2 代替arguments
+        function sortNumber() {
+            // arguments.sort() // 报错 因为 arguments它是类数组 不能直接使用sort方法
+            // 附注：call和bind函数的区别
+            // 如果有两个参数，call传递的参数和指定的函数里面是一一对应的，apply传递的第二个参数是数组 和指定的函数里面是一一对应的
+            return Array.prototype.slice.call(arguments).sort()
+        }
+        console.log(sortNumber(1, 3, 2)); // [1, 2, 3]
+
+        const arr = [1, 2, 3]
+    </script>
+</body>
+
+</html>

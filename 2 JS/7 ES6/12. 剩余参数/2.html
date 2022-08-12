@@ -10,14 +10,13 @@
 
 <body>
     <script>
-        // 4 函数调用 传递很多个参数时
-        function test(arr1, ...arr2) {
-            console.log(arr1, arr2); // [1, 2] [19, 20, 21]
+        // 3 ...后面跟的变量是一个数组 数组的方法他都可以使用
+        function Fn(...item) {
+            item.forEach(name => {
+                console.log(name); // 1 2 3
+            })
         }
-
-        let array = [1, 2]
-        console.log(test(array, 19, 20, 21));
-
+        console.log(Fn(1, 2, 3)); 
     </script>
 </body>
 
