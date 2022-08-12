@@ -1771,20 +1771,20 @@ s.__proto__.__proto__===Person.prototype
 
 ```js
 function Person(name, sex) {
-        this.name = name;
-        this.sex = sex;
-      }
-      Person.prototype.getInfo = function () {
-        console.log("getInfo: [name:" + this.name + ", sex:" + this.sex + "]");
-      };
-      function Student(name, sex, age) {
-        Person.call(this, name, sex); 
-        this.age = age;
-      }
-      Student.prototype = Object.create(Person.prototype);
-      Student.prototype.constructor = Student;     
-      var s = new Student("coco", "femal", 25);
-      s.getInfo();
+    this.name = name;
+    this.sex = sex;
+  }
+  Person.prototype.getInfo = function () {
+    console.log("getInfo: [name:" + this.name + ", sex:" + this.sex + "]");
+  };
+  function Student(name, sex, age) {
+    Person.call(this, name, sex); 
+    this.age = age;
+  }
+  Student.prototype = Object.create(Person.prototype);
+  Student.prototype.constructor = Student;     
+  var s = new Student("coco", "femal", 25);
+  s.getInfo();
 ```
 
 ### 1.5 `Object.create( )`与`new Object()`的区别

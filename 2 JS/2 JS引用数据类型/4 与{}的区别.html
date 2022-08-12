@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. new Object 新创建的对象 proto属性 指向构造函数的prototype属性，还记得 new 关键字里面有一端代码 obj.__proto__ = Object.prototype嘛？
+        // 2. Object.create创建的对象的 proto属性是我们指定的对象，如果传入的是null，那么它的proto的指向就是undefined
+        let obj = new Object()
+        console.log(obj.__proto__ === Object.prototype); // true
+
+        let obj2 = Object.create(null)
+        console.log(obj2.__proto__); // undefined
+
+        // 3. new Object()
+        //    如果传入的也是引用数据类型 创建的新的对象和传入的对象共享一块内存
+        //    传入的如果是1，就是包装类型
+        let a = {
+            name: '1'
+        }
+        let b = new Object(a)
+        console.log(b);
+        console.log(b === a); // true
+
+        let aa = new Object('1')
+        console.log(aa); // String('1')
+    </script>
+</body>
+
+</html>

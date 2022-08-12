@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 实现继承1 能够继承方法 但是里面的属性继承不到
+        function Person(name, age) {
+            this.name = name
+            this.age = age
+        }
+        Person.prototype.getInfo = function () {
+            console.log('getInfo', this.name, this.age);
+        }
+        const person = new Person('lizhihang', 19)
+        const person2 = Object.create(Person.prototype)
+        console.log(person.name); // lizhihang
+        console.log(person.age); // 19
+        console.log(person2.name);
+        console.log(person2.getInfo()); // getInfo undefined undefined
+    </script>
+</body>
+
+</html>

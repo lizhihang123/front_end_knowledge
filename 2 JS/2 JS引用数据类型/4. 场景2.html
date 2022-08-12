@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 实现继承2 
+        function Person(name, age) {
+            this.name = name
+            this.age = age
+        }
+        Person.prototype.getInfo = function () {
+            console.log('getInfo', this.name, this.age, this.height);
+        }
+        function Student(name, age, height) {
+            // 1. 能够共享父类里面的属性和方法
+            Person.call(this, name, age)
+            this.height = height
+        }
+        // 2. 能够共享父类 原型上面的方法
+        Student.prototype = Object.create(Person.prototype)
+        // 3. 
+        let person2 = new Student('lizhihang', 19, 180)
+        console.log(person2.__proto__); // 原本应该指向 Student构造函数的prototype 因为Student.prototype = Object.create(Person.prototype)
+        // 所以 person2.__proto__指向Person的类
+        console.log(Student.prototype.constructor); // 指向Person 这是不合理的 我们应该修改过来
+        Student.prototype.constructor = Person
+        console.log(person2.name); // lizhihang
+        console.log(person2.age); // 19
+        // 子类的实例对象上面找不到 会去父类上面找
+        console.log(person2.getInfo()); // lizhihang 19 180
+    </script>
+</body>
+
+</html>

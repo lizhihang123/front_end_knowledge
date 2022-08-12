@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(name, age) {
+            this.name = name
+            this.age = age
+        }
+        Person.prototype.say = function () {
+            console.log('hello world');
+        }
+        function New() {
+            // 1. 创建一个空对象
+            var obj = {}
+            // 2. 修改obj的proto属性的指向
+            //    为什么要修改？因为这样可以共享Person.prototype上面的属性和方法 如果不改，就访问不到 只能执行里面的name和age的赋值操作
+            obj.__proto__ = Person.prototype
+            // 3. apply 执行构造函数Person 修改this指向为新创建的实例对象 传递参数 arguments
+            Person.apply(obj, arguments)
+            // 4. 返回这个对象
+            return obj
+        }
+        console.log(New('zhangsan', 19).say());
+    </script>
+</body>
+
+</html>

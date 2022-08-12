@@ -16,10 +16,6 @@
 
         Function.prototype.myApply = function (context) {
             debugger
-            // 1. 判断调用的是否是函数
-            if (!typeof context === 'function') {
-                return console.error('type error');
-            }
             // 2. 结果变量
             var result = null
             // 3. 判断是否传入了this指向对象

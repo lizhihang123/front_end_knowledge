@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. hasOwnProperty
+        function Person(name) {
+            this.name = name
+        }
+        Person.prototype.age = '19'
+        let p1 = new Person('lizhihang')
+        console.log(p1.name);
+        console.log(p1.hasOwnProperty('name')); // true
+        console.log(p1.hasOwnProperty('age')); // false
+
+        // 2. 封装一个方法
+        function hasProtoTypeProperty(object, property) {
+            debugger
+            return !object.hasOwnProperty(property) && (property in object)
+        }
+        console.log(hasProtoTypeProperty(p1, 'age')); // true =》表示 age属性是原型的
+        console.log(hasProtoTypeProperty(p1, 'name')); // false =》表示 name属性不是原型的 而是自身的
+    </script>
+</body>
+
+</html>

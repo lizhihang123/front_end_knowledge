@@ -65,7 +65,11 @@
         /*
         7. 如何判断属性是否是实例属性 并且是否可以被枚举？
         propertyIsEnumerable()
-        只有对象实例的属性以及可以枚举的返回值才是true，否则都是false（原型上的，不可以枚举的，不存在的）
+        只有是对象实例的属性以及是可以枚举的 返回值才是true，否则都是false
+        （原型上的返回false
+          不可以枚举的 返回false
+          不存在的 返回false  
+        ）
         */
 
         function Hobby(hobby) {

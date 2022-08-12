@@ -15,10 +15,6 @@
         */
 
         Function.prototype.Mycall = function (context) {
-            // 1. 判断调用的“东东”是不是函数 如果是其他 xxx.call() xxx不是函数 就会报错
-            if (!typeof this === 'function') {
-                return console.error('type error');
-            }
             debugger
             // 2. 获取参数 传递进来的参数第一个是函数 不要，我们要后面的参数 转化为数组
             var args = [...arguments].slice(1)

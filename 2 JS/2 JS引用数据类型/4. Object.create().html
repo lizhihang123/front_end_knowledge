@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.  作用：修改原型proto+创建对象
+        const obj = {
+            name: 'lizhihang',
+            age: '123'
+        }
+        const stu1 = Object.create(obj)
+        console.log(stu1.name); // lizhihang
+        console.log(stu1.age); // 123
+        console.log(stu1.__proto__ === obj); // true
+
+        // 2. 案例2
+        const person = Object.create(null, {
+            username: {
+                value: 'xiaohangzai',
+                enumerable: true,
+                writable: true,
+                configurable: true
+            },
+            age: {
+                value: '19',
+            }
+        })
+        console.log(person.username); // xiaohangzai
+        console.log(person.age); // 19 可以访问
+        for (let o in person) {
+            console.log(o); // 只有username // 因为 enumerable默认是false
+        }
+        person.age = 27
+        console.log(person.age); // 仍旧是19 因为 writable属性默认是false
+        delete person.age
+        console.log(person.age); // 19 仍旧存在 没有能够删除的 因为 configurable就是true
+    </script>
+</body>
+
+</html>
