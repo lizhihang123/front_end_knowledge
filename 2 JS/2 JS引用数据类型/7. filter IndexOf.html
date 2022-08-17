@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. ES6的filter+indexOf 没能够去除 NaN
+        // 空间：O(1)
+        // 时间：O(n^2) 
+        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined,
+            undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+        function unique_arr7(arr) {
+            return arr.filter((item, index, arr) => {
+                return arr.indexOf(item) === index
+            })
+        }
+        console.log(unique_arr7(arr));
+
+
+
+        let arr2 = []
+        for (let i = 0; i < 20000; i++) {
+            arr2[i] = 1
+        }
+        console.time('indexOf')
+        // arr2.indexOf(20000)
+        console.log(unique_arr7(arr2));
+        console.timeEnd('indexOf') // 1ms
+
+        let arr3 = []
+        for (let i = 0; i < 2000000; i++) {
+            arr3[i] = 1
+        }
+        console.time('indexOf')
+        console.log(unique_arr7(arr3));
+        // arr2.indexOf(2000000)
+        console.timeEnd('indexOf') // 59ms
+    </script>
+</body>
+
+</html>

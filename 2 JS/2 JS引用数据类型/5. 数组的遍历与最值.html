@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 遍历的方式有for循环 forEach map some every
+        const arr = [1, 2, 3]
+        const arr2 = arr.map((item) => {
+            console.log(item); // 1 2 3 
+            return item * 2
+        })
+        console.log(arr2); // [2, 4, 6]
+
+        // 2. 数组中有一个值大于6
+        const arr3 = [1, 2, 3, 4, 5, 6]
+        const arr4 = [7, 8, 9]
+        function fn(value, key, arr) {
+            return value > 6
+        }
+        const flag = arr3.some(fn)
+        console.log(flag); false
+
+        // 3. 数组中的每个值都大于6
+        const flag2 = arr4.every(fn)
+        console.log(flag2); // true
+
+        // 4. 使用find函数 主动找到目标值
+        const target = arr4.find(function (value, key, arr) {
+            return value > 6
+        })
+        console.log(target); // 7
+
+
+        // 5. 数组的累加 使用reduce
+        const arr5 = [7, 8, 9]
+        const sum = arr4.reduce(function (accou, cur) {
+            return accou + cur
+        }, 0)
+        console.log(sum); // 24
+        // 6. 求最大最小值 写for循环来进行判断
+        function myMax(arr) {
+            if (arr === []) {
+                return null
+            }
+            let max = arr[0]
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    max = arr[i]
+                }
+            }
+            return max
+        }
+        console.log(myMax(arr5)); // 9
+
+
+        // 6.1 写reduce来判断
+        // 这里利用的就是 第二个return的返回值 会累加到preValue身上
+        Array.prototype.myMax = function () {
+            return this.reduce(function (preValue, cur) {
+                return preValue > cur ? preValue : cur
+            })
+        }
+        console.log(arr5.myMax()); // 9
+
+        // 6.2  扩展运算符进行判断
+        let max = Math.max(...arr5)
+        console.log(max); // 9
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. ES6的set结构 能够去除多余的NaN 但是多余的空对象没能够去除
+        // 时间复杂度是O(n^2) ？ 
+        // 空间O(n)
+        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined,
+            undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+        function unique_arr1(arr) {
+            return [...new Set(arr)]
+        }
+        console.log(unique_arr1(arr));
+
+
+        let arr2 = []
+        for (let i = 0; i < 20000; i++) {
+            arr2[i] = 1
+        }
+        console.time('indexOf')
+        // arr2.indexOf(20000)
+        console.log(unique_arr1(arr2));
+        console.timeEnd('indexOf') // 0.9ms
+
+        let arr3 = []
+        for (let i = 0; i < 2000000000; i++) {
+            arr3[i] = 1
+        }
+        console.time('indexOf2')
+        console.log(unique_arr1(arr3));
+        // arr2.indexOf(2000000)
+        console.timeEnd('indexOf2') // 42ms 是O(n)
+
+
+
+
+    </script>
+</body>
+
+</html>

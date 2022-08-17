@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // splice+递归 从尾巴 -> 开头 直到开头为止
+        // 注意 这种写法并不能去重 NaN
+
+        // 时间: O(n) n是递归的深度，就是有多少个元素，就递归多少次
+        // 空间：O(n) n是递归栈调用的空间
+        // splice的时间复杂度是多少？
+        // 
+        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined,
+            undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+        function unique_arr3(arr) {
+            // 1. 拷贝一份数组
+            var array = arr
+            //    求数组的长度
+            var len = array.length
+            // 2. 数组排序后更好的去重
+            array.sort(function (a, b) {
+                return a - b
+            })
+            // 3. 递归调用 并且返回递归的函数
+            return loop(len - 1, array)
+        }
+        function loop(index, array) {
+            if (index >= 1) {
+                // 4. 如果后一个值和前一个相等 就删除
+                if (array[index] === array[index - 1]) {
+                    array.splice(index, 1)
+                }
+                loop(index - 1, array)
+            }
+            // 记得返回这个函数
+            return array
+        }
+        console.log(unique_arr3(arr));
+        console.log(unique_arr3([1, 2, 3, 4, 4, 5, 5])); // [1, 2 ,3 ,4, 5]
+
+
+        // 直接栈溢出
+        // let arr2 = []
+        // for (let i = 0; i < 20000; i++) {
+        //     arr2[i] = 1
+        // }
+        // console.time('indexOf')
+        // // arr2.indexOf(20000)
+        // console.log(unique_arr3(arr2));
+        // console.timeEnd('indexOf') // 0.9ms
+
+        // let arr3 = []
+        // for (let i = 0; i < 2000000000; i++) {
+        //     arr3[i] = 1
+        // }
+        // console.time('indexOf2')
+        // console.log(unique_arr3(arr3));
+        // // arr2.indexOf(2000000)
+        // console.timeEnd('indexOf2') // 42ms 是O(n)
+    </script>
+</body>
+
+</html>

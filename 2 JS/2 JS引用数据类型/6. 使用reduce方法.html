@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // reduce方法就是进行累加求和
+        // 传入的参数
+        // 1. 回调函数，累加求和的值和初始值，函数体就是进行累加
+        // 2. 传入的初始值
+        const arr = [1, 2, 66]
+        const result = arr.reduce((sum, cur) => sum + cur, 1)
+        console.log(result); // 9
+
+
+        Array.prototype.myReduce = function (fn, init) {
+            // 1. 判断有没有初始值init 如果没有初始值 init，就把数组的第一项作为初始值
+            let hasInit = init !== undefined
+            let value = hasInit ? init : this[0]
+
+            // 2. 进行for循环
+            //    判断是否有初始值 如果没有，数组的第一项已经给了value 所以for循环直接从1开始
+            //    如果有初始值，i就从0开始
+            for (let i = hasInit ? 0 : 1, len = this.length; i < len; i++) {
+                // 这里为什么是value = fn()函数的执行？
+                // 因为下面的所有值的累加的结果都是给到累加器身上的，我们这里把value当作累加器
+                value = fn(value, this[i], i, this)
+            }
+            // 3. 返回value值
+            return value
+        }
+        const result2 = arr.myReduce(function (sum, init) {
+            return sum + init
+        }, 10)
+        console.log(result2); // 79
+    </script>
+</body>
+
+</html>

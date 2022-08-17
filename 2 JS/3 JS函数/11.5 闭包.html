@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 这样到底算不算闭包?
+        // 确切根据定义来说，不是，仅仅是利用了词法作用域的查找规则(作用域链)，这个只是闭包概念的一部分
+        function fn() {
+            debugger
+            let num = 1
+            function inner() {
+                console.log(num);
+            }
+        }
+        fn()
+    </script>
+</body>
+
+</html>

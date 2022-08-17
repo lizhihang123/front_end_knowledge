@@ -2052,13 +2052,13 @@ for(var p in person){
 
 ```js
 <script>
-      var fn = function (x) {
-        return x % 2 !== 0;
-      };
-      var arr = [1, 2, 5, 6, 78, 9, 10];
-      var result = arr.filter(fn);
-      console.log(result);
-    </script>
+  var fn = function (x) {
+    return x % 2 !== 0;
+  };
+  var arr = [1, 2, 5, 6, 78, 9, 10];
+  var result = arr.filter(fn);
+  console.log(result);
+</script>
 ```
 
 下面，我们再来看一下针对复杂类型数组的过滤。
@@ -2066,16 +2066,16 @@ for(var p in person){
 下面案例是查找出年龄大于16的男生的信息。
 
 ```js
- var arr = [
-        { gender: "男", age: 15 },
-        { gender: "男", age: 17 },
-        { gender: "女", age: 15 },
-      ];
-      var fn = function (obj) {
-        return obj.gender === "男" && obj.age > 16;
-      };
-      const result = arr.filter(fn);
-      console.log(result);
+var arr = [
+{ gender: "男", age: 15 },
+{ gender: "男", age: 17 },
+{ gender: "女", age: 15 },
+];
+var fn = function (obj) {
+return obj.gender === "男" && obj.age > 16;
+};
+const result = arr.filter(fn);
+console.log(result);
 ```
 
 ### 2.3 怎样对数组元素做累加处理

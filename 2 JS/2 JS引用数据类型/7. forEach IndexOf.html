@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. ES6的indexOf 没能够去除 NaN
+        // 空间：O(n) res数组的长度
+        // 时间：O(n^2) 因为forEach里面又有一个indexOf,indexOf的时间复杂度是O(n)，嵌套起来就是O(n^2)
+        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined,
+            undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+        function unique_arr4(arr) {
+            // 1. 结果数组
+            let res = []
+            // 2. 遍历数组 forEach + 如果找到这个值 就放进结果数组
+            arr.forEach((item, index) => {
+                // 3. 如果结果数组里面没有这个数组 就放进res里面去
+                if (res.indexOf(item) === -1) {
+                    res.push(item)
+                }
+            })
+        }
+        console.log(unique_arr4(arr));
+
+
+
+        let arr2 = []
+        for (let i = 0; i < 20000; i++) {
+            arr2[i] = 1
+        }
+        console.time('indexOf')
+        // arr2.indexOf(20000)
+        console.log(unique_arr4(arr2));
+        console.timeEnd('indexOf') // 1ms
+
+        let arr3 = []
+        for (let i = 0; i < 2000000; i++) {
+            arr3[i] = 1
+        }
+        console.time('indexOf')
+        console.log(unique_arr4(arr3));
+        // arr2.indexOf(2000000)
+        console.timeEnd('indexOf') // 43ms
+    </script>
+</body>
+
+</html>

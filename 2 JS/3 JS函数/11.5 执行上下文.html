@@ -35,17 +35,18 @@
           fn1的执行上下文从栈中弹出
           ECStack.pop()
         */
-        function fn1() {
-            fn2()
-            console.log(1);
+        function fn1(a) {
+            fn2('2')
+            console.log(a);
         }
-        function fn2() {
-            fn3()
-            console.log(2);
+        function fn2(b) {
+            fn3('3')
+            console.log(b);
         }
-        function fn3() {
-            console.log(3);
+        function fn3(c) {
+            console.log(c);
         }
+        fn1('1')
     </script>
 </body>
 

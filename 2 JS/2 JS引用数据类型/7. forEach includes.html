@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. forEach+includes方法
+        // 时间复杂度：O(n) ？
+        // 空间复杂度：O(n)
+        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined,
+            undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+        function arr_unique6(arr) {
+            const res = []
+            // debugger
+            arr.forEach(element => {
+                if (!res.includes(element)) {
+                    res.push(element)
+                }
+            });
+            return res
+        }
+        console.log(arr_unique6(arr));
+
+
+        let arr2 = []
+        for (let i = 0; i < 20000; i++) {
+            arr2[i] = 1
+        }
+        console.time('indexOf20000')
+        // arr2.indexOf(20000)
+        console.log(arr_unique6(arr2));
+        console.timeEnd('indexOf20000') // 0.9ms
+
+        let arr3 = []
+        for (let i = 0; i < 2000000; i++) {
+            arr2[i] = 1
+        }
+        console.time('indexOf2000000')
+        // arr2.indexOf(20000)
+        console.log(arr_unique6(arr3));
+        console.timeEnd('indexOf2000000') // 0.9ms
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. hasOwnProperty + filter
+        // 空间: O(1)
+        // 时间: O(n^2)
+        var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined,
+            undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+        function arr_unique9(arr) {
+            var hash = {}
+            let res = arr.filter(item => {
+                // console.log(typeof item + JSON.stringify(item)); 'number1' 'number1' 'stringtrue'
+                if (hash.hasOwnProperty(typeof item + JSON.stringify(item))) {
+                    // 如果hash对象自身有这个属性，就返回false 
+                    return false
+                } else {
+                    // 如果没有 就让它的值为true
+                    // filter过滤出值为true的item 存到数组
+                    return hash[typeof item + JSON.stringify(item)] = true
+                }
+            })
+            return res
+        }
+        console.log(arr_unique9(arr));
+
+
+        // let arr2 = []
+        // for (let i = 0; i < 20000; i++) {
+        //     arr2[i] = 1
+        // }
+        // console.time('indexOf')
+        // // arr2.indexOf(20000)
+        // console.log(arr_unique9(arr2));
+        // console.timeEnd('indexOf') // 10
+
+        // let arr3 = []
+        // for (let i = 0; i < 20000000; i++) {
+        //     arr3[i] = 1
+        // }
+        // console.time('indexOf')
+        // console.log(arr_unique9(arr3));
+        // // arr2.indexOf(2000000)
+        // console.timeEnd('indexOf') // 5496
+    </script>
+</body>
+
+</html>
