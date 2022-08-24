@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">获取用户信息</button>
+    <script>
+        var userInfo = {
+            data: [
+                { userName: "zhangsan", age: 20 },
+                { userName: "lisi", age: 21 },
+            ],
+            getUserInfo: function () {
+                // 报错 按钮没有data
+                console.log(this); // 如果用 bind() 这里是指向userInfo对象 但是下面的this是window
+                let that = this // 可以通过that保存this
+                // this.data.forEach(function (p) {
+                //     console.log(that);
+                // });
+                this.data.forEach(() => {
+                    console.log(this); // 也可以通过箭头函数 访问父级 getUserInfo定义时的环境，就是userInfo
+                })
+            },
+        };
+        var btn = document.getElementById("btn");
+        // btn.onclick = userInfo.getUserInfo;
+        btn.onclick = userInfo.getUserInfo.bind(userInfo);
+    </script>
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 时间O(n)
+        // 空间O(1)
+        // 思路：
+        // 1. 使用reduce遍历每一个数组 
+        // 2. reduce的初始值是一个[],每次reduce返回的结果，都要判断是不是数组 Array.isArray() 
+        // 3. 如果是的话，就要再次进行递归，然后和prev进行合并
+        Array.prototype.flatten = function () {
+            return this.reduce(function (prev, cur, curIndex, arr) {
+                return Array.isArray(cur) ? prev.concat(cur.flatten()) : prev.concat(cur)
+            }, [])
+        }
+        const arr = [
+            [1, [2, 5]],
+            3, 4
+        ]
+        console.log(arr.flatten());
+    </script>
+</body>
+
+</html>

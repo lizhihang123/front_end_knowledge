@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 通过 removeAttribute 删除节点的属性值 -->
+    <form action="" id="form1">
+        密码<input type="password" id="password" name="password" />
+    </form>
+    <script>
+        let password = document.getElementById('password')
+        password.removeAttribute('name')
+        console.log(password);
+    </script>
+</body>
+
+</html>

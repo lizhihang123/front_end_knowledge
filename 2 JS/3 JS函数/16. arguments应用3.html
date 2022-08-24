@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 函数的重载
+        // 函数名相同，但是参数的个数不同，能够区分开来调用
+        // 但是js不具备重载：后面的函数会覆盖前面的函数，导致只能够执行最后一个函数
+
+        // 
+        function fn(a, b) {
+            return a + b
+        }
+        function fn(a, b, c) {
+            return a + b + c
+        }
+        console.log(fn(1, 2)); // NaN
+
+
+        // 2. 能够实现，参数的不同 实现不同的累加
+        function fn2() {
+            return Array.prototype.slice.call(arguments).reduce(function (prev, cur) {
+                return prev + cur
+            }, 0)
+        }
+        console.log(fn2(1, 2)); // 
+
+    </script>
+</body>
+
+</html>

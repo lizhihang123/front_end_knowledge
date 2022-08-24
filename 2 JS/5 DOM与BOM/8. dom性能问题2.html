@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="list"></ul>
+    <script>
+        // 1. 上面这样操作可以，但是性能会非常的差
+        // const list = document.getElementById('list')
+        // for (let i = 0; i < 10; i++) {
+        //     const li = document.createElement('li')
+        //     li.innerHTML = `item${i}`
+        //     list.appendChild(li)
+        // }
+
+        // 2. 创建文档碎片 所有的dom节点都放到这个碎片里面去，然后再一次性append到list里面去
+        const list = document.getElementById('list')
+        const frag = document.createDocumentFragment()
+        console.log(frag);
+        for (let i = 0; i < 10; i++) {
+            const li = document.createElement('li')
+            li.innerHTML = `item${i}`
+            frag.appendChild(li)
+        }
+        list.appendChild(frag)
+    </script>
+</body>
+
+</html>

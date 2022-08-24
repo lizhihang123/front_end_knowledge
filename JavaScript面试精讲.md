@@ -6795,7 +6795,7 @@ window.jQuery = window.$ = jQuery;
       <div id="div1">hello</div>
     </div>
    <script>
-  var container = document.getElementById("container"); //获取父元素container
+  	  var container = document.getElementById("container"); //获取父元素container
       var div1 = document.getElementById("div1"); //获取子元素
       var newDiv = document.createElement("div"); // 创建一个新的div元素
       var newText = document.createTextNode("nihao"); //创建一个文本内容

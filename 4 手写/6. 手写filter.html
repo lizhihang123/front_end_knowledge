@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 2. 手写filter方法 和 find方法的手写的区别：不能直接找到一个值就直接返回，要声明一个数组，把所有符合条件的值都放到数组里面去
+        Array.prototype.myFilter = function (fn) {
+            // ！关键
+            let result = []
+            for (let i = 0; i < this.length; i++) {
+                let flag = fn(this[i])
+                if (flag) {
+                    // ！修改了
+                    result.push(this[i])
+                }
+            }
+            return result
+        }
+        const result = [1, 2, 3].myFilter(function (item, index) {
+            return item < 3
+        })
+        console.log(result); // 1
+
+        // ----------------------------------------------------
+        Object.prototype.select = function () {
+            console.log(this); // 打印的也是obj这个对象
+        }
+        let obj = {
+            name: '123'
+        }
+        obj.select()
+    </script>
+</body>
+
+</html>

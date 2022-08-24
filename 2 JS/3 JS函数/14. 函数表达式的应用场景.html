@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 封装块级作用域
+        // 使用者不需要关心里面的 _name是怎么使用的
+        // 只需要调用对应的接口即可
+        var person = (function () {
+            var _name = ''
+            return {
+                getName: function () {
+                    return _name
+                },
+                setName: function (username) {
+                    _name = username
+                }
+            }
+        })()
+        person.setName('zhangsan')
+        console.log(person.getName());
+    </script>
+</body>
+
+</html>

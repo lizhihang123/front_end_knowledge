@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var num = 10;
+        var obj = { num: 20 };
+
+        obj.fn = (function (num) {
+            debugger
+            this.num = num * 3; // 60
+            num++; // 21
+            return function (n) { // 
+                debugger
+                this.num += n; // window 下的 num = 65 / obj.num = 30
+                num++;// 22 -> 23 第二次进来的时候 还是访问上层的作用域的变量
+                console.log(num); // 23 
+            };
+        })(obj.num);
+
+
+
+        var fn = obj.fn;
+        fn(5);
+        obj.fn(10);
+        console.log(num, obj.num);
+    </script>
+</body>
+
+</html>

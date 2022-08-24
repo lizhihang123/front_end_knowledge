@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 手写map
+        Array.prototype.myMap = function (fn) {
+            // 1. 声明返回的数组
+            let result = []
+            // 2. 遍历this这个数组里面的每一个值
+            for (let i = 0; i < this.length; i++) {
+                // 3. 调用fn函数 注意传入，值 索引 和数组项
+                let re = fn(this[i], i, this)
+                // 4. 把得来的结果放到result结果数组里面去
+                //    和filter不同的是，filter是过滤出的结果是值，而map更加强大，能够返回任意数据结构和值的结果，值 索引 数组都可以
+                result.push(re)
+            }
+            // 5. 返回结果
+            return result
+        }
+
+        let result = [1, 2, 3].myMap(function (item, value, arr) {
+            return item * value
+        })
+        console.log(result); // 1
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <h4>我是h4</h4>
+        <span>我是span</span>
+        <p>我是第一个p 报错都是因为我</p>
+        <p>
+            段落内容
+            <span>我是p标签里面的第一个span</span>
+            <span>我是p标签里面的第二个span</span>
+        </p>
+    </div>
+
+    <script>
+        // 获取p里面的第一个span
+        console.log(document.querySelector('p span').innerHTML); // 我是p标签里面的第一个span 
+        // 获取h4,或者是span 有h4，就只拿h4
+        console.log(document.querySelector('h4, span').innerHTML); // 我是h4
+
+        // 奇奇怪怪的匹配
+        let ele = document.querySelector('p')
+        // 为什么这里依然能够获取到span -》先看 p里面有没有div，没有- -》去最外层找div -》找到所有span元素的集合 -》判断span是不是p标签的子元素，是的话就返回
+        // 发现第一个p下面是没有span的，就会报错
+        console.log(ele.querySelector('div span').innerHTML); // <span>我是p标签里面的第一个span</span>
+    </script>
+</body>
+
+</html>

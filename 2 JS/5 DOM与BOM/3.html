@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+        <div class="bar"></div>
+        <div class="foo">
+            <div class="inner"></div>
+        </div>
+    </div>
+
+    <script>
+        // 1. 这里的main获取的是HTMLCollection 是一个类数组
+        // 2. 
+        var main = document.getElementById('container').children
+        console.log(main); // HTMLCollection
+        console.log(main.length); // 2
+        console.log(main.item(0)); // .bar
+        console.log(main.item(1)); // .foo
+        console.log(main.item(2)); // null
+    </script>
+</body>
+
+</html>

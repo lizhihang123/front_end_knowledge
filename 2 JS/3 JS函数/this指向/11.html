@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">获取用户信息</button>
+
+
+    <script>
+        var userInfo = {
+            data: [
+                { userName: "zhangsan", age: 20 },
+                { userName: "lisi", age: 21 },
+            ],
+            getUserInfo: function () {
+                var index = 1;
+                // this指向的是按钮 按钮里面没有 data 所以会报错
+                console.log(this.data[index].userName + " " + this.data[index].age);
+            },
+        };
+
+
+
+        var btn = document.getElementById("btn");
+        btn.onclick = userInfo.getUserInfo.bind(userInfo) // 通过bind修改 this指向了 userInfo对象
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        1. 通过document.querySelectorAll('#container div')获取到的 NodeList对象
+           不具备 namedItem()方法
+        2. NodeList和HTMLCollection的区别是什么：
+           1. NodeList没有 namedItem方法，但有item方法
+           2. HTMLCollection有 namedItem和item方法
+        3. 相同点：
+           1. 类数组 都可以使用.call 和 .apply()方法 转化为真正的数组
+           2. 都有 item()方法
+           3. 都是实在的，在dom节点上添加 或者删除dom，都会反应到 NodeList和HTMLCollection上面
+     -->
+    <div id="container">
+        <div class="bar"></div>
+        <div class="foo">
+            <div class="inner" name="inner"></div>
+        </div>
+    </div>
+
+    <script>
+        const div1 = document.querySelectorAll('#container div')
+        console.log(div1); // NodeList
+        // console.log(div1.namedItem('inner')); // 报错 说这不是一个方法
+    </script>
+</body>
+
+</html>

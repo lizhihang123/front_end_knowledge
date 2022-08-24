@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 时间O(n)
+        // 空间O(n)
+        Array.prototype.flatten = function () {
+            // 1. 声明一个空数组
+            let resultArr = []
+            // 2. 递归遍历数组的每一项
+            // 这里的this指向的是传进来的数组
+            let len = this.length
+            // 2.1 如果是数组 就递归调用 
+            for (let i = 0; i < len; i++) {
+                if (Array.isArray(this[i])) {
+                    // !this[i].flatten写法不熟悉
+                    // 递归调用
+                    resultArr = resultArr.concat(this[i].flatten())
+                } else {
+                    // 2.2 如果不是数组 就放进结果数组
+                    resultArr.push(this[i])
+                }
+            }
+            return resultArr
+        }
+        const arr = [
+            [1, [2, 5]],
+            3, 4
+        ]
+        console.log(arr.flatten());
+    </script>
+</body>
+
+</html>

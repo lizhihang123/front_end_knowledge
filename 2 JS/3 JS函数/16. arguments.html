@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. arguments判断函数的参数的个数
+        // function fn() {
+        //     if (arguments.length > 2) {
+        //         throw new Error('函数的个数超了')
+        //     }
+        // }
+        // fn(1, 2, 3)
+
+        // 2. 只对函数的前面几个参数做特别的处理 后面的函数不论传递多少个，都统一处理
+        function fn2(dep) {
+            // 这个方法 Array.prototype.slice.call 内部的原理 能够把具有length属性的类数组 转化为数组，然后具备数组的方法, 第二个参数1表示截取这个数组的值 从第一位开始
+            const arr = Array.prototype.slice.call(arguments, 1)
+            return arr.join(dep)
+            // 转化数组的方法
+            // 1. Array.prototype.slice.call
+            // 2. [].slice.call(arguments, 1)
+            /* 
+            3. var args = []
+            for (var i = 1; i < s.length; i++) {
+                args.push(arguments[i])
+            }
+            */
+            // 4. Array.from()方法也能够把伪数组转化为数组
+            /* 
+            5. 通用的转化方法
+            var toArray = function(s){
+                try{
+                    return Array.prototype.slice.call(s);
+                } catch(e){
+                var arr = [];
+                for(var i = 0,len = s.length; i < len; i++){
+                    //arr.push(s[i]);
+                    arr[i] = s[i]; //据说这样比push快
+                    }
+                    return arr;
+                }
+            }
+            
+            */
+        }
+        console.log(fn2('-', 1, 2, 3));
+    </script>
+</body>
+
+</html>

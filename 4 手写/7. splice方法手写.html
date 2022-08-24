@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Array.prototype.mySplice = function (start, howmany = this.length, ...insertArr) {
+            let _TYPE = 0,
+                end,
+                deleteArr = [],
+                restArr = [],
+                beforeArr = [],
+                curLength
+            if (howmany < 0) {
+                throw new Error('howmany must great than -1')
+            }
+
+            if (start < 0) {
+                start = this.length + start;
+                _TYPE = 1;
+            }
+
+            if (_TYPE === 0) {
+                end = Math.min(start + howmany - 1, this.length - 1);
+            } else {
+                let tmp = start;
+                end = Math.max(start - howmany + 1, 0);
+                start = end;
+                end = tmp;
+            }
+            curLength = this.length - howmany + insertArr.length;
+
+            for (let i = 0; i < this.length; i++) {
+                if (i < start) {
+                    beforeArr.push(this[i]);
+                }
+                else if (i >= start && i <= end) {
+                    deleteArr.push(this[i]);
+                } else {
+                    restArr.push(this[i]);
+                }
+            }
+
+            [...beforeArr, ...insertArr, ...restArr].forEach((v, i) => {
+                this[i] = v;
+            })
+            this.length = curLength;
+            return delet
+        }
+
+    </script>
+</body>
+
+</html>

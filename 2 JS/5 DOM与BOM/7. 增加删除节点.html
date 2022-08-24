@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="" id="form1">
+        密码<input type="password" id="password" name="password" />
+    </form>
+    <script>
+        /*
+        1. 创建一个节点
+        2. 创建一个属性
+        3. 将属性绑定到元素上
+        4. 创建一个文本节点
+        */
+        let form1 = document.getElementById('form1')
+        let newInput = document.createElement('input')
+        let newAttr = document.createAttribute('type')
+        newAttr.value = 'text'
+        newInput.setAttributeNode(newAttr)
+        let text = document.createTextNode('用户名')
+        form1.appendChild(text)
+        form1.appendChild(newInput)
+
+
+        /* 
+            删除元素
+        */
+        let children = form1.childNodes
+        console.log(children[0]); // 密码
+        console.log(children[1]); // input框
+        form1.removeChild(children[0]) // 删除密码
+        console.log(form1);
+        form1.removeChild(children[0]) // 删除密码的文本框
+        console.log(form1);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<body>
+    <table border="1">
+        <tbody>
+            <tr>
+                <td>单元格内容</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        // 1. table ->tr ->td ->tbody
+        var table = document.querySelector("table");
+        var tbody = document.querySelector("tbody");
+        var tr = document.querySelector("tr");
+        var td = document.querySelector("td");
+        //事件捕获
+        table.addEventListener(
+            "click",
+            function () {
+                console.log("table");
+            },
+            true
+        );
+        //事件冒泡
+        tbody.addEventListener("click", function () {
+            console.log("tbody");
+        });
+        //事件捕获
+        tr.addEventListener(
+            "click",
+            function () {
+                console.log("tr");
+            },
+            true
+        );
+        //事件冒泡
+        td.addEventListener("click", function (event) {
+            console.log("td");
+        });
+    </script>
+</body>

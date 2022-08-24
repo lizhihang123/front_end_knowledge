@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- namedItem 
+         首先根据id进行匹配 匹配不到，就根据name进行匹配
+    -->
+    <form id="form1">
+        <input type="text" id="userName" />
+        <input type="password" id="password" name="userPwd" />
+    </form>
+
+    <script>
+        let form1 = document.getElementById('form1')
+        console.log(form1);
+        let children = form1.children
+        console.log(children.namedItem('userPwd')); // 返回的是 input name="userPwd"
+        console.log(children.namedItem('pass')); // null
+    </script>
+</body>
+
+</html>

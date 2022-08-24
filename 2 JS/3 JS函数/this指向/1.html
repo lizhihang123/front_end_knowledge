@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 构造函数 this指向实例
+        function Person(userName) {
+            this.userName = userName;
+        }
+        var person = new Person("zhangsan");
+        console.log(person.userName);
+
+        // 2. 构造函数当普通函数调用 this指向window
+        function Person(userName) {
+            console.log(this); // window
+            this.userName = userName;
+        }
+        Person("lisi");
+        console.log(window.userName);
+    </script>
+</body>
+
+</html>

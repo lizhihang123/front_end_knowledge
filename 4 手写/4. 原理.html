@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Object.create = function (proto, propertiesObject) {
+            // 1. 创建一个构造函数
+            function F() { }
+            // 2. 构造函数的prototype指向新传递进来的参数 proto属性
+            F.prototype = proto;
+            // 3. 判断是否有第二个参数【这一步没能实现成功 Object.create()的第二个参数可以给最终的对象增加很多属性，但是我没加成功】
+            if (propertiesObject) { Object.defineProperties(F, propertiesObject) }
+            // 4. 创建一个新的实例对象 并return
+            var f = new F()
+            return f
+        }
+        var obj = {
+            name: 'lizhihang',
+            height: 180
+        }
+        const obj1 = Object.create(obj, {
+            age: {
+                value: '18',
+                enumerable: true,
+                writable: true,
+                configurable: true
+            }
+        })
+        console.log(obj1); // 其实是一个空对象
+        console.log(obj1.name); // obj1 能够访问到 obj身上的 lizhihang
+        console.log(obj1.height); // 180
+        console.log(obj1.age); // 180
+        console.log(obj1.__proto__ === obj); // true
+    </script>
+</body>
+
+</html>

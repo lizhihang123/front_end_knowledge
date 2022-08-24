@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 4 必须所有的值都满足条件 才return true 否则就返回false
+        Array.prototype.myEvery = function (fn) {
+            for (let i = 0; i < this.length; i++) {
+                let flag = fn(this[i])
+                // 这里增加一个逻辑非，只要有一个false 就直接return false
+                if (!flag) {
+                    return false
+                }
+            }
+            // 只有所有的都是true 才能够走到这里来
+            return true
+        }
+        const result = [2, 2, 2].myEvery(function (item, index) {
+            return item < 3
+        })
+        console.log(result); // true
+    </script>
+</body>
+
+</html>

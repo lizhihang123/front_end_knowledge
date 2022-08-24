@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Person(name, age) {
+            this.name = name
+            this.age = age
+        }
+        Person.prototype.say = function () {
+            console.log('hello world');
+        }
+        function objectFactory() {
+            let newObject = null;
+            // 这句代码看不懂 => 导致constructor看不懂
+            let constructor = Array.prototype.shift.call(arguments);
+            let result = null;
+            // 判断参数是否是一个函数
+            if (typeof constructor !== "function") {
+                console.error("type error");
+                return;
+            }
+            // 新建一个空对象，对象的原型为构造函数的 prototype 对象
+            debugger
+            newObject = Object.create(constructor.prototype);
+            // 将 this 指向新建对象，并执行函数
+            // 不懂result进行赋值的目的 下面判断是object还是function
+            result = constructor.apply(newObject, arguments);
+            // 判断返回对象
+            let flag = result && (typeof result === "object" || typeof result === "function");
+            // 判断返回结果
+            console.log(newObject);
+            console.log(flag);
+            // Person和Array处理的结果是不一样的
+            return flag ? result : newObject;
+        }
+        // 使用方法
+        console.log(objectFactory(Person, 'mike', 19));
+        console.log(objectFactory(Array, 'mike', 19));
+    </script>
+</body>
+
+</html>

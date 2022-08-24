@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var val = 1;
+        var json = {
+            val: 10,
+            dbl: function () {
+                val *= 2; // 如果没有加 this.val 那么访问的就是全局的val
+            },
+        };
+        json.dbl();
+        console.log(json.val + val); // 12
+    </script>
+</body>
+
+</html>

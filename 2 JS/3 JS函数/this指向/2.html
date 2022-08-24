@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 2. bar函数是window调用的  method是obj调用的
+        var a = 10;
+        var obj = {
+            a: 120,
+            method: function () {
+                var bar = function () {
+                    console.log(this.a); // 10 // this指向window
+                };
+                bar();//这里是通过window对象完成bar方法的调用 // this指向obj对象
+                return this.a;
+            },
+        };
+        console.log(obj.method()); // 120
+    </script>
+</body>
+
+</html>

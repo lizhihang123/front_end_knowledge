@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. obj.prop.getFullName() 调用者是prop对象 但是这个对象里面没有 fullName属性
+        // 2. test = obj.prop.getFullName 然后再test()调用 this指向的就是window，访问的就是language
+        var fullName = "language";
+        var obj = {
+            fullName: "javascript",
+            prop: {
+                getFullName: function () {
+                    return this.fullName;
+                },
+            },
+        };
+        console.log(obj.prop.getFullName()); // undefined
+        var test = obj.prop.getFullName; // language
+        console.log(test());
+    </script>
+</body>
+
+</html>

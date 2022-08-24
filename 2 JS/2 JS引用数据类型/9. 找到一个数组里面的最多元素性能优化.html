@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.数组中最多的元素
+        // map来实现
+        // 时间O(n)
+        // 空间O(n)
+        function MostElement(arr) {
+            if (arr.length === 0) {
+                return 0
+            }
+            if (arr.length === 1) {
+                return 1
+            }
+            let obj = {}
+            let max = 0
+            let maxElement = 0
+            for (let item of arr) {
+                if (obj[item]) {
+                    obj[item] += 1
+                } else {
+                    obj[item] = 1
+                }
+                if (obj[item] > max) {
+                    max = obj[item]
+                    maxElement = item
+                }
+            }
+            return maxElement
+        }
+        let arr = [1, 2, 3, 3, 4, 4, 4, 9]
+        console.log(MostElement(arr));
+    </script>
+</body>
+
+</html>

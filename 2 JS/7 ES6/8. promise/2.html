@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 2. 这个案例想做的是
+        // - img图片的加载
+        // - new Image()是为了new 一个图片实例
+        // - 修改他的src值 如果成功 触发 onload
+        // - 如果失败 触发onerror
+        //   通过.then和.catch来处理最终的结果
+        let imgUrl = 'https://img0.baidu.com/it/u=2112693830,2857591310&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=750'
+        const imgPromise = (url) => {
+            return new Promise((resolve, reject) => {
+                let img = new Image()
+                img.src = url
+                img.onload = function () {
+                    resolve(img)
+                }
+                img.onerror = function () {
+                    reject(new Error('图片加载错误'))
+                }
+            })
+        }
+        imgPromise(imgPromise).then((img) => {
+            document.body.appendChild(img)
+        }).catch(err => {
+            document.body.innerHTML = err
+        })
+    </script>
+</body>
+
+</html>

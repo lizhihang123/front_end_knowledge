@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 全局变量
+        var value = 10;
+        var obj = {
+            value: 20,
+        };
+        // 全局函数
+        var method = function () {
+            console.log(this.value);
+        };
+
+
+
+
+        method(); // 10
+        method.call(obj); // 20
+        method.apply(obj); // 20
+        var newMethod = method.bind(obj);
+        newMethod(); // 20
+    </script>
+</body>
+
+</html>

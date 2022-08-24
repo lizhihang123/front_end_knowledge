@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        Array.prototype.findMytest = function (fn) {
+            // 1. 遍历数组每一个值
+            //    思考为什么用this，this.length是什么意思？this就指代的是数组这个实例 this[i]就是数组对应的元素
+            //    下面列出了Object.prototype.select 假设里面也打印this，也是对应的实例对象
+            for (let i = 0; i < this.length; i++) {
+                // 2. 每一个值 都要去调用fn这个回调函数
+                //    思考fn(this[i])是什么意思 就是执行回调函数
+                let flag = fn(this[i])
+                // 3. 如果flag是true 就直接返回这个值[表示我们已经找到了这个值]
+                //    思考 find方法 其实就是里面有坑，你给一个指令“要查找什么值”，他给你执行，找到你想要的值，就直接返回
+                if (flag) {
+                    return this[i]
+                }
+            }
+        }
+        const result = [1, 2, 3].findMytest(function (item, index) {
+            return item < 2
+        })
+        console.log(result); // 1
+
+        // ----------------------------------------------------
+        Object.prototype.select = function () {
+            console.log(this); // 打印的也是obj这个对象
+        }
+        let obj = {
+            name: '123'
+        }
+        obj.select()
+    </script>
+</body>
+
+</html>

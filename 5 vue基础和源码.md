@@ -43,8 +43,6 @@ VM：
 
 ### 4.2 生命周期的理解
 
-【7-9】
-
 vue的生命周期，就是vue里面的组件从创建到被销毁的一整个过程。
 
 
@@ -192,12 +190,220 @@ activated
 deactivated
 
 >keep-alive包裹的 组件真的是这样的执行顺序吗？
+>
+>第一次进入时 beforeRouteEnter -》 beforeCreate -> created -> beforeMount -> mounted -> activated
+>
+>再次进入时 beforeRouteEnter -> activated -> deactivated(离开触发)
 
 
 
 #### 7. vue3的生命周期 要和 vue2进行对比
 
 
+
+#### 8. 计算属性和watch methods区别
+
+关键词：`缓存` `异步` `性能消耗`
+
+
+
+计算属性：
+
+1. 是什么：当一个值 需要 依赖另一些值的运算得来时，就考虑用计算属性。【插值表达式不用写的太复杂】。data或者是props来的数据
+
+2. 有缓存，数据和原来不一致才会刷新 =》 性能好，内存占用少
+
+3. 不支持异步，异步操作里面的数据变化计算属性监听不到 =》不支持过于复杂的操作
+
+4. 写法
+
+```vue
+// 简单
+computed: {
+	name() {
+		return a + b
+	}
+}
+// 复杂
+computed: {
+	name: {
+        get() {
+
+        },
+        set() {
+
+        }
+	}
+}
+//vue3写法
+import {computed} from 'vue'
+……
+const name = computed(() => {
+	return a.val + b.val
+})
+//也可以return多个值
+const obj = computed(() => {
+	return {name, age, height}  // 组件使用的话，直接{{obj.name}}这样就好
+})
+```
+
+
+
+watch：
+
+1. 是什么：能够监听某一个数据的变化，这个数据的值不一定需要依赖别的值。data或者是props来的数据
+2. 缓存：无缓存，只要数据变了，即便是和原来一样的，也是会更新 =》性能差
+3. 异步：支持，所以复杂的操作可以用侦听器
+4. 使用
+
+```vue
+//vue2 简单写法
+watch: {
+	// 只能监听简单的数据类型
+	name(newVal, oldVal) {
+		……
+	}
+}
+//复杂写法
+watch: {
+	// 可以监听引用数据类型
+	name: {
+		handler(newVal, oldVal) {
+			……
+		},
+		deep: true, // 开启深度监听
+		immediate: true // 一进入页面 就会开启监听
+	}
+}
+
+// vue3的写法
+import {watch} from 'vue'
+……
+// 1. 监听简单数据类型
+watch(name, (newValue, oldValue) => {
+	……操作
+})
+// 2. 监听多个数据，都是简单数据类型
+watch([name1, name2], (newValue, oldValue) => {
+	
+})
+// 3.开启 立即触发，第三个参数
+watch([name1, name2], (newValue, oldValue) => {
+	
+}, {
+	immediate: true
+})
+// 4. 监听ref的简单数据类型 注意，不加 .value
+watch(ref1, (newValue, oldValue) => {
+	
+}, {
+	immediate: true
+})
+// 5. 监听ref的多个简单数据类型，注意，不加 .value
+watch([ref1, ref2], (newValue, oldValue) => {
+	
+}, {
+	immediate: true
+})
+// 6. 监听reactive设置的复杂数据类型，
+const person = reactive({
+  sex: "男",
+  age: 19,
+  car: {
+    name: "奔驰",
+  },
+});
+// 获取不到oldValue
+// 自动开启深度监听
+watch(person, (newValue, oldValue) => {
+
+}, {
+	immediate: true
+})
+
+// 7.监听reactive的对象的某个属性
+const person2 = reactive({
+  sex: "男",
+  age: 19,
+  inner: {
+    sex: "男",
+  },
+});
+watch(
+  () => person2.inner,
+  (newValue, oldValue) => {
+    console.log(newValue, oldValue);
+  },
+  {
+    immediate: true,
+    // deep: true,
+  }
+);
+
+// 8. 监听reactive对象的很多个属性
+const ele = reactive({
+  weight: "120",
+  height: "180",
+  head: "2",
+  money: {
+    month: "2000",
+  },
+});
+watch(
+  [() => ele.weight, () => ele.height],
+  (newValue, oldValue) => {
+    console.log(newValue, oldValue);
+  },
+  {
+    immediate: true,
+  }
+);
+```
+
+
+
+
+
+## 4.3 组件通信
+
+1. EventBus => 发布订阅模式
+2. props父传子
+3. emit 父组件 绑定自定义事件 子传父 => 
+
+
+
+
+
+
+
+
+
+## 4.4 diff算法和虚拟dom
+
+
+
+
+
+
+
+
+
+## 4.5 nextTick()
+
+
+
+
+
+## 4.6 v-if和v-show的区别：
+
+
+
+1. 手段：动态添加和删除 | 通过css样式 display来控制
+2. 编译过程：v-if 有一个局部的编译和卸载 | v-show只是基于css切换
+3. 条件：v-if:只要值是false，就什么也不做，就是惰性 | v-show 不管什么条件，都会渲染，坑都占着，只是是否显示的问题
+4. 性能：v-if 切换消耗 性能消耗更高，更差 | v -show 首次加载的性能差，但是后期就很好
+5. 生命周期：v-if 触发 beforeCreate created beforeMount mounted -> 销毁 beforeDestroy destroyed | v-show不会触发
+6. 场景：条件不大改变 数据不怎么变的  | 频繁切换 tab栏
 
 
 

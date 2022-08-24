@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="btn">
+        123
+        <div id="btn2">
+            456
+        </div>
+    </div>
+    <script>
+        // 1. HTML和JS中都有绑定内容 但是只有JS触发了哦
+        // 2. DOM模型中 只会支持冒泡
+        // 3. 只能够绑定一次事件
+        let btn = document.querySelector('#btn')
+        let btn2 = document.querySelector('#btn2')
+        btn.addEventListener('click', function () {
+            console.log(1);
+        })
+        btn.addEventListener('click', function () {
+            console.log(2);
+        })
+        btn2.addEventListener('click', function () {
+            console.log(3);
+        })
+        // 匿名函数 删不掉 
+        btn2.removeEventListener('click', function () {
+            console.log(3);
+        })
+    </script>
+</body>
+
+</html>

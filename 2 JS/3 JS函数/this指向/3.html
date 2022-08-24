@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 3. this指向的实例对象
+        var num = 10;
+        function Person() {
+            //给全局变量重新赋值
+            num = 20;
+            // 实例变量
+            this.num = 30;
+        }
+        Person.prototype.getNum = function () {
+            console.log(this); // 实例对象 new的时候会去执行构造函数 this.num这句代码也会执行
+            return this.num;
+        };
+        var person = new Person();
+        console.log(person.getNum()); // 30
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- 父节点.replaceChild(新的节点，旧的节点) -->
+    <div id="container">
+        <div class="son1">
+            123
+        </div>
+    </div>
+    <script>
+        let container = document.getElementById('container')
+        let son1 = document.getElementsByClassName('son1')[0] //; 得到的是div.son1
+        let son2 = document.createElement('div')
+        let text = document.createTextNode('我是新增的div的内容')
+        son2.appendChild(text)
+        container.replaceChild(son2, son1) // 替换 必须是旧的替换芯的
+    </script>
+</body>
+
+</html>

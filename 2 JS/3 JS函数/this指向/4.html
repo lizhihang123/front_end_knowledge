@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // this指向调用者 fn()是window调用 obj.fn()是obj调用
+        function fn() {
+            console.log(this);
+        }
+        let obj = {
+            fn: fn,
+        };
+        fn(); //window
+        obj.fn(); //obj
+    </script>
+</body>
+
+</html>

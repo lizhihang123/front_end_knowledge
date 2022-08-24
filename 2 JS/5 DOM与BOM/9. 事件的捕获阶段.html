@@ -1,0 +1,46 @@
+<body>
+    <table border="1">
+        <tbody>
+            <tr>
+                <td>单元格内容</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        /* 
+            addEventListener的第三个变量是true 就是捕获 是false 就是冒泡
+        */
+        var table = document.querySelector("table");
+        var tbody = document.querySelector("tbody");
+        var tr = document.querySelector("tr");
+        var td = document.querySelector("td");
+        table.addEventListener(
+            "click",
+            function () {
+                console.log("table");
+            },
+            true
+        );
+        tbody.addEventListener(
+            "click",
+            function () {
+                console.log("tbody");
+            },
+            true
+        );
+        tr.addEventListener(
+            "click",
+            function () {
+                console.log("tr");
+            },
+            true
+        );
+        td.addEventListener(
+            "click",
+            function () {
+                console.log("td");
+            },
+            true
+        );
+    </script>
+</body>

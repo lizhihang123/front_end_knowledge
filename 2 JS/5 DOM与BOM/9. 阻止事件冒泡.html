@@ -1,0 +1,29 @@
+<body>
+    <table border="1">
+        <tbody>
+            <tr>
+                <td>单元格内容</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var table = document.querySelector("table");
+        var tbody = document.querySelector("tbody");
+        var tr = document.querySelector("tr");
+        var td = document.querySelector("td");
+        table.addEventListener("click", function () {
+            console.log("table");
+        });
+        tbody.addEventListener("click", function () {
+            console.log("tbody");
+        });
+        tr.addEventListener("click", function () {
+            console.log("tr");
+        });
+        td.addEventListener("click", function (event) {
+            //阻止了事件的冒泡操作
+            event.stopPropagation();
+            console.log("td");
+        });
+    </script>
+</body>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 时间O(n)
+        // 空间O(n)
+        // 思路：使用generator函数 + yield* + yield关键字 函数扁平化数组 不会一次性返回所有的结果，所以后面还是需要 for of 
+        function* iterTree(tree) {
+            debugger
+            if (Array.isArray(tree)) {
+                for (let i = 0; i < tree.length; i++) {
+                    yield* iterTree(tree[i])
+                }
+            } else {
+                yield tree
+            }
+        }
+
+        let arr1 = [1, 2, ['a', 'b', ['中', '文', [1, 2, 3, [11, 21, 31]]]], 3];
+        let list = []
+        for (const x of iterTree(arr1)) {
+            debugger
+            list.push(x)
+        }
+        console.log(list);
+    </script>
+</body>
+
+</html>
