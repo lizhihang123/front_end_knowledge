@@ -281,3 +281,13 @@ btn1.addEventListener('click', function (e) {
 
 也可以单独的针对不同的元素，进行不同的操作。利用switch
 
+
+
+
+
+9. 有哪些事件 没有操作哦！
+
+
+
+
+

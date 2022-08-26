@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. 第一步，创建一个类 这个类可以接受一个函数
+        // 函数会立即执行
+        // 函数分别是 resolve 和 reject 需要通过this访问
+        // 需要声明这两个函数
+        class Commitment {
+            static PENDING = '待定';
+            static FULFILLED = '成功'
+            static REJECTED = '拒绝'
+
+            constructor(func) {
+                this.resolveCallback = []
+                this.rejectCallback = []
+                try {
+                    // status属性 初始值就是PENDING
+                    this.status = Commitment.PENDING
+                    this.result = null
+                    // 报错 status是undefined
+                    // 因为这里的this跟丢了 因为resolve方法是在外部使用的 没有在class内部使用这个this
+                    func(this.resolve.bind(this), this.reject.bind(this))
+                } catch (error) {
+                    // 处理报错的情况？
+                    this.reject(error)
+                }
+            }
+            resolve(result) {
+                // 判断是否是待定状态
+                // 这里的this如果跟丢了 上面要使用bind进行修改
+                setTimeout(() => {
+                    if (this.status === Commitment.PENDING) {
+                        // debugger
+                        // 修改状态
+                        // 必须加 Commitment.
+                        this.status = Commitment.FULFILLED
+                        this.result = result
+                        this.resolveCallback.forEach(callback => {
+                            callback(this.result)
+                        })
+                    }
+                })
+            }
+            reject(result) {
+                // 判断是否是待定状态
+                setTimeout(() => {
+                    if (this.status === Commitment.PENDING) {
+                        // 修改状态
+                        // 必须加 Commitment.
+                        this.status = Commitment.REJECTED
+                        this.result = result
+                        this.rejectCallback.forEach(callback => {
+                            callback(this.result)
+                        })
+                    }
+                })
+            }
+
+            // then方法 使用时 -》传入两个函数
+            // 我们这里接受的两个参数 -》也是函数
+            // 注意要判断此时的状态 执行对应的回调
+            then(onResolve, onReject) {
+                onResolve = typeof onResolve === 'function' ? onResolve : () => { }
+                onReject = typeof onReject === 'function' ? onReject : () => { }
+                if (this.status === Commitment.PENDING) {
+                    // 这里做什么
+                    this.resolveCallback.push(onResolve)
+                    this.rejectCallback.push(onReject)
+                }
+                if (this.status === Commitment.FULFILLED) {
+                    setTimeout(() => {
+                        onResolve(this.result)
+                    })
+                }
+                if (this.status === Commitment.REJECTED) {
+                    setTimeout(() => {
+                        onReject(this.result)
+                    })
+                }
+            }
+        }
+        console.log('第一次');
+        let commit = new Commitment((resolve, reject) => {
+            setTimeout(() => {
+                resolve('第n次')
+                console.log('第二次');
+            })
+        })
+        commit.then(res => {
+            console.log(res);
+        }, err => {
+            console.log(err);
+        }).then(res => {
+            console.log(res);
+        }, err => {
+            console.log(err);
+        })
+        console.log('第三次');
+
+    </script>
+</body>
+
+</html>

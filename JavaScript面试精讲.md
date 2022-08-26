@@ -6810,7 +6810,7 @@ window.jQuery = window.$ = jQuery;
 修改属性的节点，我们可以通过`setAttribute()`函数来完成，如果想获取属性节点可以通过`getAttribute()`函数来完成。
 
 ```html
-  <div id="container">
+  	<div id="container">
       <div id="div1" style="color: red">hello</div>
     </div>
 <script>
@@ -7536,7 +7536,7 @@ btn.removeEventListener('click',function(){})
 `DOM3`事件模型中允许自定义事件，自定义事件有`createEvent("CustomEvent")`函数来完成。返回的对象有一个`initCustomEvent`（）方法接收如下四个参数。
 
 ```
-1）type：字符串，触发的事件类型，自定义。例如 “keyDown”，“selectedChange”;
+    1）type：字符串，触发的事件类型，自定义。例如 “keyDown”，“selectedChange”;
 　　2）bubble（布尔值）：标示事件是否应该冒泡；
 　　3）cancelable(布尔值)：标示事件是否可以取消；
 　　4）detail（对象）：任意值，保存在event对象的detail属性中；

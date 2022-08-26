@@ -665,3 +665,643 @@ let obj = {
     name: '123'
 }
 setId.myCall(obj, 111)
+
+```
+
+
+
+
+
+
+
+# 5. promise手写
+
+
+
+
+
+
+
+
+
+this指向丢失的问题 -> class this跟丢的问题
+
+```js
+let commit = new Commitment((resolve, reject) => {
+    resolve('123')
+    // throw new Error('就是要报错?')
+})
+```
+
+
+
+```diff
+class Commitment {
+            static PENDING = '待定';
+            static FULFILLED = '成功'
+            static REJECTED = '拒绝'
+            constructor(func) {
+                try {
+                    // status属性 初始值就是PENDING
+                    this.status = Commitment.PENDING
+                    this.result = null
+                    // 报错 status是undefined
+                    // 因为这里的this跟丢了 因为resolve方法是在外部使用的 没有在class内部使用这个this
++                    func(this.resolve.bind(this), this.reject.bind(this))
+                } catch (error) {
+                    // 处理报错的情况？
+                    debugger
+                    this.reject(error)
+                }
+            }
+            resolve(result) {
+                // 判断是否是待定状态
++                // 这里的this如果跟丢了 上面要使用bind进行修改
++                if (this.status === Commitment.PENDING) {
+                    // debugger
+                    // 修改状态
+                    // 必须加 Commitment.
+                    this.status = Commitment.FULFILLED
+                    this.result = result
+                }
+            }
+```
+
+
+
+
+
+
+
+必须要判断是否是等待状态，保证状态不可逆
+
+```diff
+resolve(result) {
+                // 判断是否是待定状态
+                // 这里的this如果跟丢了 上面要使用bind进行修改
++               if (this.status === Commitment.PENDING) {
+                    // debugger
+                    // 修改状态
+                    // 必须加 Commitment.
+                    this.status = Commitment.FULFILLED
+                    this.result = result
+                }
+            }
+            reject(result) {
+                // 判断是否是待定状态
++                if (this.status === Commitment.PENDING) {
+                    // 修改状态
+                    // 必须加 Commitment.
+                    this.status = Commitment.REJECTED
+                    this.result = result
+                }
+            }
+```
+
+
+
+
+
+
+
+如果参数不是函数，就要忽略，返回一个空函数
+
+原生的promise ，resolve改为undefiend是不会报错的，
+
+```js
+   let promise = new Promise((resolve, reject) => {
+            // resolve('123')
+            // throw new Error('就是要报错?')
+        })
+   // resolve -> 改成 undefined
++        promise.then(undefined, reject => {
+            console.log(reject);
+        })
+```
+
+我们写的promise，会报错
+
+如果传一个undefined
+
+![image-20220826130740906](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826130740906.png)
+
+```diff
+then(onResolve, onReject) {
++        onResolve = typeof onResolve === 'function' ? onResolve : () => { }
++        onReject = typeof onReject === 'function' ? onReject : () => { }
+        if (this.status === Commitment.FULFILLED) {
+            onResolve(this.result)
+        }
+        if (this.status === Commitment.REJECTED) {
+            onReject(this.result)
+        }
+    }
+```
+
+
+
+
+
+
+
+
+
+如果直接在new Promise()里面“抛出错误”，这个错误信息，是能够被打印出来，且“不会报错的”。
+
+```js
+  let promise = new Promise((resolve, reject) => {
+            // resolve('123')
++            throw new Error('就是要报错?')
+        })
+        promise.then(undefined, reject => {
+            console.log(reject);
+        })
+```
+
+
+
+![image-20220826125134639](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826125134639.png)
+
+
+
+来看看我们手写的代码，会直接报错。resolve reject 这两个函数都没有执行
+
+```diff
+   let commit = new Commitment((resolve, reject) => {
+            // resolve('123')
+            throw new Error('就是要报错?')
+        })
+```
+
+![image-20220826125417954](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826125417954.png)
+
+
+
+修改，constructor里面进行try catch判断
+
+注意，this.reject(error)
+
+```js
+constructor(func) {
+    try {
+        // status属性 初始值就是PENDING
+        this.status = Commitment.PENDING
+        this.result = null
+        // 报错 status是undefined
+        // 因为这里的this跟丢了 因为resolve方法是在外部使用的 没有在class内部使用这个this
+        func(this.resolve.bind(this), this.reject.bind(this))
+    } catch (error) {
+        // 处理报错的情况？
+        this.reject(error)
+    }
+}
+```
+
+
+
+
+
+promise的异步顺序
+
+```diff
+console.log('第一次');
+let promise = new Promise((resolve, reject) => {
+    console.log('第二次');
+    resolve('第n次')
+})
+promise.then(res => {
+    console.log(res);
+}, reject => {
+    console.log(reject);
+})
+console.log('第三次');
+```
+
+![image-20220826131221756](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826131221756.png)
+
+
+
+我们手写的代码， 打印的是 1 2 n 3
+
+```diff
+console.log('第一次');
+let commit = new Commitment((resolve, reject) => {
+    console.log('第二次');
+    resolve('第n次')
+})
+commit.then(res => {
+    console.log(res);
+}, err => {
+    console.log(err);
+})
+console.log('第三次');
+```
+
+
+
+
+
+我们去then方法里面 设置定时器
+
+```diff
+then(onResolve, onReject) {
+    onResolve = typeof onResolve === 'function' ? onResolve : () => { }
+    onReject = typeof onReject === 'function' ? onReject : () => { }
+
+
+    if (this.status === Commitment.FULFILLED) {
++        setTimeout(() => {
+            onResolve(this.result)
+        })
+    }
+    if (this.status === Commitment.REJECTED) {
++        setTimeout(() => {
+            onReject(this.result)
+        })
+    }
+}
+
+```
+
+查看打印的顺序是我们想要的
+
+<img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826131655898.png" alt="image-20220826131655898" style="zoom:50%;" />
+
+
+
+
+
+但是此时的异步问题，还没有完全解决,
+
+
+
+原生的promise如下， 结果是 1 3 2 n
+
+```diff
+console.log('第一次');
+let promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('第n次')
+        console.log('第二次');
+    })
+})
+promise.then(res => {
+    console.log(res);
+}, reject => {
+    console.log(reject);
+})
+console.log('第三次');
+```
+
+
+
+<img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826132708625.png" alt="image-20220826132708625" style="zoom:50%;" />
+
+
+
+我们写的promise，1 3 2 就没有输出 n。为什么呢？因为new Promsie的时候 ，因为延时器的功能，resolve函数没有来得及执行 => 那么状态没有修改 => 还是 PENDING的状态 => 所以 进入then时，状态没变，无法进入去执行 onResolve， => 无法打印结果的值
+
+```diff
+console.log('第一次');
+let commit = new Commitment((resolve, reject) => {
+    setTimeout(() => {
+        console.log('第二次');
+        resolve('第n次')
+    })
+})
+commit.then(res => {
+    console.log(res);
+}, err => {
+    console.log(err);
+})
+console.log('第三次');
+```
+
+添加一个PENDING的判断
+
+```diff
+then(onResolve, onReject) {
+        onResolve = typeof onResolve === 'function' ? onResolve : () => { }
+        onReject = typeof onReject === 'function' ? onReject : () => { }
++        if (this.status === Commitment.PENDING) {
+            // 这里做什么？
+        }
+        if (this.status === Commitment.FULFILLED) {
+            setTimeout(() => {
+                onResolve(this.result)
+            })
+        }
+        if (this.status === Commitment.REJECTED) {
+            setTimeout(() => {
+                onReject(this.result)
+            })
+        }
+    }
+}
+```
+
+
+
+我们添加数组
+
+```diff
+class Commitment {
+            static PENDING = '待定';
+            static FULFILLED = '成功'
+            static REJECTED = '拒绝'
+
+            constructor(func) {
++                this.resolveCallback = [] // 接受then的成功回调
++                this.rejectCallback = [] // 接受err的失败回调s
+                try {
+                    // status属性 初始值就是PENDING
+                    this.status = Commitment.PENDING
+                    this.result = null
+                    // 报错 status是undefined
+                    // 因为这里的this跟丢了 因为resolve方法是在外部使用的 没有在class内部使用这个this
+                    func(this.resolve.bind(this), this.reject.bind(this))
+                } catch (error) {
+                    // 处理报错的情况？
+                    this.reject(error)
+                }
+            }
+```
+
+
+
+当我们调用resolve或者reject函数的时候, 遍历回调数组 => 触发回调
+
+```diff
+resolve(result) {
+        // 判断是否是待定状态
+        // 这里的this如果跟丢了 上面要使用bind进行修改
+        if (this.status === Commitment.PENDING) {
+            // debugger
+            // 修改状态
+            // 必须加 Commitment.
+            this.status = Commitment.FULFILLED
+            this.result = result
++                    this.resolveCallback.forEach(callback => {
+                callback(this.result)
+            })
+        }
+    }
+    reject(result) {
+        // 判断是否是待定状态
+        if (this.status === Commitment.PENDING) {
+            // 修改状态
+            // 必须加 Commitment.
+            this.status = Commitment.REJECTED
+            this.result = result
++                    this.rejectCallback.forEach(callback => {
+                callback(this.result)
+            })
+        }
+    }
+```
+
+
+
+
+
+再来回顾一下我们当初的，执行结果结果就是
+
+```diff
+console.log('第一次');
+let commit = new Commitment((resolve, reject) => {
+    setTimeout(() => {
+        console.log('第二次');
+        resolve('第n次')
+    })
+})
+commit.then(res => {
+    console.log(res);
+}, err => {
+    console.log(err);
+})
+console.log('第三次');
+```
+
+
+
+![image-20220826135149007](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826135149007.png)
+
+
+
+
+
+你真的以为这样就是对的了嘛？还是错哒！
+
+注意，原生的resolve就是在事件循环的末尾执行的，
+
+```diff
+console.log('第一次');
+let promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('第n次')
+        console.log('第二次');
+    })
+})
+promise.then(res => {
+    console.log(res);
+}, reject => {
+    console.log(reject);
+})
+console.log('第三次');
+```
+
+上面代码，即便resolve("第n次")，在‘第二次’的上面，最终输出，n还是最后的。
+
+![image-20220826135526826](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826135526826.png)
+
+
+
+但是我们的代码呢？
+
+```diff
+console.log('第一次');
+let commit = new Commitment((resolve, reject) => {
+    setTimeout(() => {
++        resolve('第n次')
++        console.log('第二次');
+    })
+})
+commit.then(res => {
+    console.log(res);
+}, err => {
+    console.log(err);
+})
+console.log('第三次');
+```
+
+![image-20220826135633768](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826135633768.png)
+
+
+
+怎么修改，我们把resolve和reject的内部函数的执行，都放进了 setTimeout(() => {}) 这样最终输出是ok的
+
+```diff
+resolve(result) {
+    // 判断是否是待定状态
+    // 这里的this如果跟丢了 上面要使用bind进行修改
++    setTimeout(() => {
+        if (this.status === Commitment.PENDING) {
+            // debugger
+            // 修改状态
+            // 必须加 Commitment.
+            this.status = Commitment.FULFILLED
+            this.result = result
+            this.resolveCallback.forEach(callback => {
+                callback(this.result)
+            })
+        }
+    })
+}
+reject(result) {
+    // 判断是否是待定状态
++    setTimeout(() => {
+        if (this.status === Commitment.PENDING) {
+            // 修改状态
+            // 必须加 Commitment.
+            this.status = Commitment.REJECTED
+            this.result = result
+            this.rejectCallback.forEach(callback => {
+                callback(this.result)
+            })
+        }
+    })
+}
+
+```
+
+
+
+![image-20220826135819208](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826135819208.png)
+
+
+
+# 6.双向数据绑定原理
+
+
+
+
+
+第一个难点，为什么 info对象里面的数据没有get和set呢？
+
+<img src="https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826161032438.png" alt="image-20220826161032438" style="zoom:50%;" />
+
+```js
+const vm = new Vue({
+    el: '#app',
+    data: {
+        name: '小航哥',
+        info: {
+            age: 18
+        }
+    }
+})
+console.log(vm);
+```
+
+
+
+第二个难点，为什么我们把name改为一个对象，改后的对象，没有get和set呢？
+
+![image-20220826161142356](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826161142356.png)
+
+
+
+
+
+我们进行如下修改：
+
+第三：我们去这个地方，进行递归，同时添加递归的出口
+
+```diff
+function observer(obj) {
+    // 3. 如果递归时 传递进来的不是对象 或者是空值 就返回 - 递归的出口
++    if (!obj || typeof obj !== 'object') return
+    // 1. 我们要找到这个对象 拿到所有的key
+    Object.keys(obj).forEach(item => {
+        // 2. 我们劫持每一个对象的key
+        // Object.defineProperty 会去劫持每一个对象的key
+        let value = obj[item]
+        // 递归遍历值
++        observer(value)  //注意这个递归添加的位置 在下一个Object.defineProperty进行劫持之前
+        Object.defineProperty(obj, item, {
+            configurable: true,
+            enumerable: true,
+            // 返回数据
+            get() {
+                // set修改了，这里返回的也是新的值
+                console.log(value);
+                return value
+            },
+            // 修改数据
+            set(newValue) {
+                // 注意 这里设置的是 value等于而不是obj[item]
+                value = newValue
+                console.log('obj[item]: newValue', newValue);
+                // observer(newValue)
+            }
+        })
+    })
+}
+```
+
+去到控制台，我们发现有get和set了
+
+![image-20220826161227351](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826161227351.png)
+
+
+
+第四步，我们再次修改，添加一个递归 =》意思是每次set修改值以后，要对新修改的值 进行递归劫持
+
+```diff
+function observer(obj) {
+    // 3. 如果递归时 传递进来的不是对象 或者是空值 就返回 - 递归的出口
+    if (!obj || typeof obj !== 'object') return
+    // 1. 我们要找到这个对象 拿到所有的key
+    Object.keys(obj).forEach(item => {
+        // 2. 我们劫持每一个对象的key
+        // Object.defineProperty 会去劫持每一个对象的key
+        let value = obj[item]
+        // 递归遍历值
+        observer(value) 
+        Object.defineProperty(obj, item, {
+            configurable: true,
+            enumerable: true,
+            // 返回数据
+            get() {
+                // set修改了，这里返回的也是新的值
+                console.log(value);
+                return value
+            },
+            // 修改数据
+            set(newValue) {
+                // 注意 这里设置的是 value等于而不是obj[item]
+                value = newValue
+                console.log('obj[item]: newValue', newValue);
++               observer(newValue)
+            }
+        })
+    })
+}
+```
+
+
+
+修改vm.name = {}，发现是有get和set
+
+![image-20220826161945792](https://xingqiu-tuchuang-1256524210.cos.ap-shanghai.myqcloud.com/4575/image-20220826161945792.png)
+
+
+
+
+
+第五步，
+
+
+
+
+

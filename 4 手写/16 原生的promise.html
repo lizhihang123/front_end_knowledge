@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log('第一次');
+        let promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('第n次')
+                console.log('第二次');
+            })
+        })
+        promise.then(res => {
+            console.log(res);
+        }, reject => {
+            console.log(reject);
+        })
+        console.log('第三次');
+    </script>
+</body>
+
+</html>
